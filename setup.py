@@ -19,8 +19,6 @@ else:
 
 dependencies = [
     'ansible',
-    'sphinx_bootstrap_theme',
-    'sphixextension_fancybox',
 ]
 
 links = [
