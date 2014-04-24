@@ -1,25 +1,26 @@
 
-import argparse
+from git import Repo
 
 
 def main():
+
     
-    # create the top-level parser
-    parser = argparse.ArgumentParser(prog='PROG')
-    parser.add_argument('--foo', action='store_true', help='foo help')
-    subparsers = parser.add_subparsers(help='sub-command help')
+    _url, _path = 'git@git.mirsky.net:ansible-playbooks/haproxy.git','.cache/haproxy'
+    #repo = Repo.clone_from(_url, _path)
+    #repo.git.checkout('tags/real')
+
+    pip_path = 'git://git.myproject.org/MyProject.git@abcdee'
     
-    # create the parser for the "a" command
-    parser_a = subparsers.add_parser('a', help='this is a description of a')
-    parser_a.add_argument('bar', type=int, help='bar help')
+    import re
+    fqdn = '((?:[a-z][a-z\\.\\d\\-]+)\\.(?:[a-z][a-z\\-]+))(?![\\w\\.])'
+    repo = '((?:[a-z][a-z0-9_]+))'
+    gitre = re.compile(r'git\:\/\/' + fqdn +'\/' + repo + '\.git' + '@?' + repo+'?', re.IGNORECASE)
     
-    # create the parser for the "b" command
-    parser_b = subparsers.add_parser('b', help='b help')
-    parser_b.add_argument('--baz', choices='XYZ', help='baz help')
+    print gitre.search(pip_path).groups()
     
-    # parse some argument lists
-    parser.parse_args(['a', '12'])
-    parser.parse_args(['--foo', 'b', '--baz', 'Z'])
-    parser.parse_args(['--help'])
+    repo = Repo(_path)
+    repo.git.checkout('bafd95f5054eceba952f555600313bc1a2d72e70')
+    
+
 
 main()
