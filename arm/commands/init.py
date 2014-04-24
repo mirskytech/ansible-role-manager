@@ -1,5 +1,6 @@
 import os
 from shutil import copytree
+from jinja2 import Environment, FileSystemLoader
 from . import Command, CommandException
 
 class BaseCommand(Command):
@@ -35,13 +36,30 @@ class BaseCommand(Command):
         
         if os.path.exists(_destination):
             raise CommandException('%s directory already exists: %s' % (source, _destination))
-        
-        copytree(_source, _destination)
-        
-        for root, dirs, files in os.walk(_destination):
-            for f in [f for f in files if '.j2' in f]:
-                print os.path.join(root,f)
-        
+
+        #copytree(_source, _destination)
+
+        env = Environment(loader=FileSystemLoader(_source))
+
+        def _handle(_path):
+            
+            # create directory _destination + _path
+            
+            for root,dirs,files in os.walk(os.path.join(_source, _path)):
+                
+                for f in files:
+                    if '.arm' in f:
+                        env.get_template(os.path.join(_path,f))
+                        # render to _destination + _path + f
+                    else:
+                        # copy to _destination + _path + f
+
+                for d in dirs:
+                    # create destination dir
+                    _handle(os.path.join(_path,d))
+            return
+                            
+        _handle('')        
         
         
         print "ansible %s created successfully" % (source)
