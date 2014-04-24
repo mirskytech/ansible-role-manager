@@ -7,7 +7,7 @@ from distutils.core import setup
 from setuptools import find_packages
 
 
-VERSIONFILE="ansible-role-manager/_version.py"
+VERSIONFILE="arm/_version.py"
 verstrline = open(VERSIONFILE, "rt").read()
 VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
 mo = re.search(VSRE, verstrline, re.M)
