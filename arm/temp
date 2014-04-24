@@ -1,0 +1,48 @@
+from basecommand import Command
+
+
+def main():
+    
+    print "main"
+    import os
+
+    commands = []
+
+    commands_dir = os.path.join(os.path.dirname(__file__),'commands')
+
+    for module in os.listdir(commands_dir):
+        if module == '__init__.py' or module[-3:] != '.py':
+            continue
+        commands.append(module[:-3])
+        
+    if len(sys.argv) < 2 or sys.argv[1] == 'help':
+        print "Usage: arm <command> [options]"
+        print ""
+        print "Commands:"
+        for command in commands:
+            print command
+            module = __import__('commands.%s' % command, locals(), globals())
+            module.
+            #print "\t%s\t%" % (command, BaseCommand.help)
+        return 0        
+
+    if argv[1] in commands:
+        __import__(argv[1].BaseCommand, locals(), globals())
+        
+        cmd = BaseCommand(sys.argv[0], sys.argv[1])
+        
+        parser = argparse.ArgumentParser()
+        argv = parser.parse_args(sys.argv[2:])
+                
+        cmd.run(argv)
+    
+    
+    
+    
+
+    
+    cmd = Command(sys.argv[0],sys.argv[1])
+    
+    cmd.run(argv)
+        
+    
