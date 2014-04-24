@@ -27,7 +27,7 @@ links = [
 
 os.environ['ARCHFLAGS'] = '-Wno-error=unused-command-line-argument-hard-error-in-future'
 
-setup(name='ansible-role-manager',
+setup(name='arm',
       version=verstr,
       description='Manager it install, uninstall and update Ansible roles',
       author='Andrew Mirsky',
