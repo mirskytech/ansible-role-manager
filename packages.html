@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>“Required” Packages &mdash; Ansible Role Manager 0.1alpha documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.1alpha',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+    <script type="text/javascript">
+        jQuery(function () {
+            SphinxRtdTheme.StickyNav.enable();
+        });
+    </script>
+  
+
+  
+    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Ansible Role Manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<ul class="simple">
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="index.html">Ansible Role Manager</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>&#8220;Required&#8221; Packages</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/packages.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="required-packages">
+<h1>&#8220;Required&#8221; Packages<a class="headerlink" href="#required-packages" title="Permalink to this headline">¶</a></h1>
+<p>While none of this package actually requires any dependencies, the ones that I use most frequently are included.</p>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<p>The latest versions are installed from pypi, unless otherwise noted.</p>
+<dl class="docutils">
+<dt>django:</dt>
+<dd>mvc (or mvt) platform. it rocks.</dd>
+<dt>pillow:</dt>
+<dd>a fork of PIL (python imaging library) wich is now the latest, support version</dd>
+<dt>south:</dt>
+<dd>schema and date migration tool for changes to django models</dd>
+<dt>Sphinx:</dt>
+<dd>documentation generating based embedded comments in code as well as restructured text files</dd>
+<dt>boto:</dt>
+<dd>a comprehensive (and well documented) library to interactive with lots of the Amazon services</dd>
+<dt>jsonfield:</dt>
+<dd>the most comprehensive (and bug free) implementation of a model field that stores json.</dd>
+<dt>django-bitfield:</dt>
+<dd>a model field where you can set / clear individual bits in a sequences.</dd>
+<dt>celery:</dt>
+<dd>asynchronous task management.</dd>
+<dt>django-haystack:</dt>
+<dd>inteface to the apache solr (lucene) search engine, providing a QuerySet-like interface.</dd>
+<dt>django-sekizai:</dt>
+<dd>css / jss file management, creating a cached file combining all css or js into a single file to help download performance</dd>
+<dt>django-compressor:</dt>
+<dd>css / js file compression utility which can be used in conjunction with sekizai to pre-process or compress. see <em class="xref std std-ref">static-file-management</em></dd>
+<dt>django-fsm:</dt>
+<dd>facilities for creating a finite-state machine for a model</dd>
+<dt>django-retracer:</dt>
+<dd>simple utility that helps you store / retrieve origin pages</dd>
+<dt>django-tastypie:</dt>
+<dd>&#8220;instant&#8221; ReST interface, created automagically based on django models</dd>
+<dt>django-bootstrap-form:</dt>
+<dd>template tag filter for displayng a django form with the right classes &amp; structure for bootstrap 3</dd>
+<dt>django-admin-bootstrapped:</dt>
+<dd>skin / theme for django admin using bootstrap so it looks modern</dd>
+</dl>
+</div>
+<div class="section" id="install-flags">
+<h2>Install Flags<a class="headerlink" href="#install-flags" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>WITH_GEVENT:</dt>
+<dd>multi-threading capabilities for python. requires uwsgi, which is also installed with this flag</dd>
+<dt>WITH_MYSQL:</dt>
+<dd>postgres is the default. this installs mysql support for python instead</dd>
+<dt>SERVER_INSTALL:</dt>
+<dd>installs uwsgi for running in a production environment. uwsgi can also be used for development purposes (see <em class="xref std std-ref">wsgi-application</em>)</dd>
+</dl>
+</div>
+<div class="section" id="package-recommendations">
+<h2>Package Recommendations<a class="headerlink" href="#package-recommendations" title="Permalink to this headline">¶</a></h2>
+<p>While I use these packages less frequently, these are better than other varients.</p>
+<dl class="docutils">
+<dt>python-social:</dt>
+<dd>replacement for django-social-auth. documentation isn&#8217;t great, but it easily integrates with</dd>
+<dt>lxml:</dt>
+<dd>&lt;description&gt; including STATIC_DEPS</dd>
+<dt>beautifulsoup, beautifulsoup4:</dt>
+<dd>required by compressor</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Apache License v2.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>
