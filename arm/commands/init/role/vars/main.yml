@@ -1,0 +1,5 @@
+---
+# file : {{ role_name }}/vars/main.yml
+
+var_one: 1
+var_two: 2

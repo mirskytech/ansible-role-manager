@@ -1,0 +1,2 @@
+---
+# file: {{ role_name }}/handlers/main.yml

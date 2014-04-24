@@ -1,0 +1,13 @@
+# inventory file: production
+
+[production1]
+production1a.example.com
+production1b.example.com
+
+[production2]
+production2a.example.com
+production2b.example.com
+
+[combined:children]
+production1
+production2

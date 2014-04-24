@@ -1,4 +1,7 @@
 ---
+
+# file: {{ role_name }}/meta/main.yml
+
 galaxy_info:
   author: your name
   description: 
@@ -108,6 +111,8 @@ galaxy_info:
   #- packaging
   #- system
   #- web
+  
+  
 dependencies: []
   # List your role dependencies here, one per line. Only
   # dependencies available via galaxy should be listed here.

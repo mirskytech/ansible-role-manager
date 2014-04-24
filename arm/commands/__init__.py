@@ -11,3 +11,7 @@ class Command(object):
         
     def run(self, argv):
         raise NotImplemented('please run method in subclass')
+
+
+class CommandException(Exception):
+    pass

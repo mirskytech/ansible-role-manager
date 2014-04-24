@@ -1,0 +1,5 @@
+---
+# file: group_vars/group2
+
+var_alpha: 2
+var_beta: 2
