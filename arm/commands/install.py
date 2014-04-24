@@ -1,7 +1,4 @@
-from basecommand import Command
-
-
-
+from . import Command
 
 class BaseCommand(Command):
         
@@ -13,6 +10,10 @@ class BaseCommand(Command):
         parser.add_argument('-f','--foo', help='the foo parameter')
         
     def run(self, argv):
-        print "running %s" % argv
+        
+        _role = argv.role
+        
+        
+
         
         

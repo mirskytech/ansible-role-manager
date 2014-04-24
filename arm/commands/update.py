@@ -1,7 +1,4 @@
-from basecommand import Command
-
-
-
+from . import Command
 
 
 class BaseCommand(Command):
