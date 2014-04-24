@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# MirskUtils documentation build configuration file, created by
+# ansible-role-manager documentation build configuration file, created by
 # sphinx-quickstart on Thu Jan 30 08:20:20 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -179,7 +179,7 @@ html_static_path = ['../themes/sphinx_rtd_theme/static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MirskUtilsdoc'
+htmlhelp_basename = 'AnsibleRoleManager'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -199,7 +199,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'MirskUtils.tex', u'MirskUtils Documentation',
+  ('index', 'AnsibleRoleManager.tex', u'Ansible Role Manager Documentation',
    u'Andrew Mirsky', 'manual'),
 ]
 
@@ -229,7 +229,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'mirskutils', u'MirskUtils Documentation',
+    ('index', 'ansible-role-manager', u'Ansible Role Manager',
      [u'Andrew Mirsky'], 1)
 ]
 
