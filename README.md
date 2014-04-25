@@ -3,7 +3,7 @@ Ansible Role Manager
 
 Manager to install, uninstall, update roles from Ansible Galaxy &amp; git repositories.
 
-__under development__
+**under development**
 
 - [Installation](http://ajmirsky.github.io/ansible-role-manager/installation.html)
 
