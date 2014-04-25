@@ -19,6 +19,7 @@ else:
 
 dependencies = [
     'ansible',
+    'requests',
 ]
 
 links = [

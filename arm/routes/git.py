@@ -1,22 +1,22 @@
-
-
-
+import re
+from . import Route
 
 
 
 
 class BaseRoute(Route):
     
+    pattern = re.compile(r'^[a-z]+?\.[a-z]+?$')
+    
     def __init__(self):
         pass
     
-    def _parse(self, path)
+    def is_valid(self, identifier):
+        return False
     
     
-    def download(self, location='.cache'):
-        
-        pass
-        
+    def fetch(self, identifier):
+        print "fetch from git"
     
     
     

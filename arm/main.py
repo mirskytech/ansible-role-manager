@@ -14,10 +14,10 @@ def main():
             continue
         command = module[:-3]
         
-        module = __import__('arm.commands.%s' % command, locals(), globals(),['object'],-1)
+        cmd_mod = __import__('arm.commands.%s' % command, locals(), globals(),['object'],-1)
 
-        cmd_parser = subparsers.add_parser(command, help=module.BaseCommand.help)
-        cmd = module.BaseCommand(cmd_parser)
+        cmd_parser = subparsers.add_parser(command, help=cmd_mod.BaseCommand.help)
+        cmd = cmd_mod.BaseCommand(cmd_parser)
         cmd_parser.set_defaults(func=cmd.run)
         
     args = parser.parse_args(sys.argv[1:])
