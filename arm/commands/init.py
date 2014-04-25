@@ -1,5 +1,5 @@
 import os
-from shutil import copytree
+import shutil
 from jinja2 import Environment, FileSystemLoader
 from . import Command, CommandException
 
@@ -37,28 +37,29 @@ class BaseCommand(Command):
         if os.path.exists(_destination):
             raise CommandException('%s directory already exists: %s' % (source, _destination))
 
-        #copytree(_source, _destination)
-
         env = Environment(loader=FileSystemLoader(_source))
 
         def _handle(_path):
-            
-            # create directory _destination + _path
-            
-            for root,dirs,files in os.walk(os.path.join(_source, _path)):
-                
-                for f in files:
-                    if '.arm' in f:
-                        env.get_template(os.path.join(_path,f))
-                        # render to _destination + _path + f
-                    else:
-                        # copy to _destination + _path + f
+            os.mkdir(os.path.join(_destination, _path))
 
-                for d in dirs:
-                    # create destination dir
-                    _handle(os.path.join(_path,d))
-            return
-                            
+            files = os.listdir(os.path.join(_source,_path))
+            for f in files:
+                _s = os.path.join(_source,_path,f)
+                _d = os.path.join(_destination, _path, f)                    
+                
+                if os.path.isdir(_s):
+                    _handle(os.path.join(_path,f))
+                elif '.arm' in f:
+                    template = env.get_template(os.path.join(_path,f))
+                    _d = os.path.join(_destination, _path, f.replace('.arm',''))
+                    
+                    # render to _destination + _path + f
+                    with open(_d, 'wb') as fh:
+                        fh.write(template.render(name=destination))
+                else:
+                    # copy to _destination + _path + f
+                    shutil.copy(_s,_d)
+
         _handle('')        
         
         
