@@ -1,7 +1,7 @@
-import re
+import re, os, shutil
 from . import Route, RouteException
 import requests
-
+from yaml import load, Loader
 from arm.util import fetch_git_repository
 
 GALAXY_SERVER_DEFAULT = 'galaxy.ansible.com'
@@ -10,7 +10,7 @@ GALAXY_SERVER_DEFAULT = 'galaxy.ansible.com'
 class BaseRoute(Route):
     
     owner__name = r'(?P<owner>[a-z]+?)\.(?P<name>[a-z]+?)$'
-    version = r'[0-9]\.[0-9]\.[0-9]'
+    version = r'(?P<version>[0-9]\.[0-9]\.[0-9])'
     
     patterns = ( 
         re.compile(r'%s$' % owner__name),
@@ -49,6 +49,14 @@ class BaseRoute(Route):
             raise RouteException('galaxy :: version is not available %s' % d['version'])
         
         location = fetch_git_repository('github.com', role['github_repo'], role['github_repo'])
+
+        meta_path = os.path.join(location, 'meta/main.yml')
+        if os.path.exists(meta_path):
+            meta_info = load(open(meta_path, 'r'), Loader=Loader)
+            print meta_info
+            
+        
+        #shutil.copytree(location, os.path.join('roles'))
         
         
         
