@@ -2,7 +2,7 @@ import re, os, shutil
 from . import Route, RouteException
 import requests
 from yaml import load, Loader
-from arm.util import fetch_git_repository
+#from arm.util import fetch_git_repository
 
 GALAXY_SERVER_DEFAULT = 'galaxy.ansible.com'
 
