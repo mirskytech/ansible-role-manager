@@ -10,7 +10,7 @@ GALAXY_SERVER_DEFAULT = 'galaxy.ansible.com'
 class BaseRoute(Route):
     
     owner__name = r'(?P<owner>[a-z]+?)\.(?P<name>[a-z]+?)$'
-    version = r'(?P<version>[0-9]\.[0-9]\.[0-9])'
+    version = r'v(?P<version>[0-9]\.[0-9]\.[0-9])'
     
     patterns = ( 
         re.compile(r'%s$' % owner__name),
