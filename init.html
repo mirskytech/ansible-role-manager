@@ -53,6 +53,7 @@
 
   
     <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/>
+        <link rel="next" title="install" href="install.html"/>
         <link rel="prev" title="Installation" href="installation.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -84,11 +85,14 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">init</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#new-projects">New Projects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#roles">Roles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module">Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage"><strong>Usage</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove.html">remove</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="freeze.html">freeze</a></li>
 </ul>
 
         
@@ -127,62 +131,72 @@
 <h1>init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h1>
 <p>Creates the recommended directory structure to keep Ansible playbooks organized. And
 provides boilerplate with examples to help get started.</p>
-<p>From <a class="reference external" href="http://ansible.com/blahblahblah">http://ansible.com/blahblahblah</a></p>
-<div class="section" id="new-projects">
-<h2>New Projects<a class="headerlink" href="#new-projects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="usage">
+<h2><strong>Usage</strong><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>from <tt class="docutils literal"><span class="pre">arm</span> <span class="pre">init</span> <span class="pre">-h</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>arm init [-h] (-p PLAYBOOK | -r ROLE | -m MODULE)
+
+optional arguments:
+  -h, --help                            show this help message and exit
+  -p PLAYBOOK, --playbook PLAYBOOK      create the recommended structure for a playbook
+  -r ROLE, --role ROLE                  within a playbook, create directly &amp; file structure for role
+  -m MODULE, --module MODULE            within a playbook, create the structure for a custom module
+</pre></div>
+</div>
+<div class="section" id="playbook">
+<h3>Playbook<a class="headerlink" href="#playbook" title="Permalink to this headline">¶</a></h3>
 <p>-p, &#8211;playbook:</p>
 <div class="highlight-python"><div class="highlight"><pre>playbook/
-            .gitignore
-            production                              # inventory file for &lt;named&gt;
+    .gitignore
+    production                      # inventory file for &lt;named&gt;
 
-            site.yml                                # master playbook
-            webservers.yml                  # playbooks for different tiers
-            databases.yml
+site.yml                            # master playbook
+webservers.yml                      # playbooks for different tiers
+databases.yml
 
-            roles/                                  # role playbooks
-            library_roles/                  # installed role playbooks
+roles/                              # role playbooks
+library_roles/                      # installed role playbooks
 
-            group_vars/
-                            production1             # variables for groups within &lt;named&gt; inventory file
-                            production2
-            host_vars/
-                            production1a.example.com                # variables associated with specific &lt;host&gt;
-                            production2b.example.com
+group_vars/
+    production1                     # variables for groups within &lt;named&gt; inventory file
+    production2
+host_vars/
+    production1a.example.com        # variables associated with specific &lt;host&gt;
+    production2b.example.com
 </pre></div>
 </div>
 </div>
 <div class="section" id="roles">
-<h2>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>-r, &#8211;role::</dt>
-<dd><dl class="first last docutils">
-<dt>roles/role/</dt>
-<dd><dl class="first last docutils">
-<dt>meta/</dt>
-<dd>main.yml                                # role dependencies &amp; properties</dd>
-<dt>files/</dt>
-<dd>bar.txt                                 # files for use with the copy resource
-foo.sh                                  # script files for use with the script resource</dd>
-<dt>handlers/</dt>
-<dd>main.yml                                # handlers file</dd>
-<dt>tasks/</dt>
-<dd>main.yml                                # primary task file</dd>
-<dt>templates/</dt>
-<dd>example.cfg.j2                  # files for use with the template resource</dd>
-<dt>vars/</dt>
-<dd>main.yml                                # variables associated with this role</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
-</div>
-<div class="section" id="module">
-<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
-<p>-m, &#8211;module:</p>
-<div class="highlight-python"><div class="highlight"><pre>__in progress__
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
+<p>-r, &#8211;role:</p>
+<div class="highlight-python"><div class="highlight"><pre>roles/role/
+    meta/
+        main.yml                    # role dependencies &amp; properties
+    files/
+        bar.txt                     # files for use with the copy resource
+        foo.sh                      # script files for use with the script resource
+    handlers/
+        main.yml                    # handlers file
+    tasks/
+        main.yml                    # primary task file
+    templates/
+        example.cfg.j2              # files for use with the template resource
+    vars/
+        main.yml                    # variables associated with this role
 </pre></div>
 </div>
+</div>
+<div class="section" id="module">
+<h3>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h3>
+<p>-m, &#8211;module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">todo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="http://docs.ansible.com/playbooks_best_practices.html#directory-layout">Ansible Directory Layout</a></p>
 </div>
 </div>
 
@@ -191,6 +205,8 @@ foo.sh                                  # script files for use with the script r
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="install"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="installation.html" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
