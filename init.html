@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; Ansible Role Manager 0.1alpha documentation</title>
+  <title>init &mdash; Ansible Role Manager 0.1alpha documentation</title>
   
 
   
@@ -52,7 +52,8 @@
   
 
   
-    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/> 
+    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -81,7 +82,13 @@
             <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<ul class="simple">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">init</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#new-projects">New Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module">Module</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -105,7 +112,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>&lt;no title&gt;</li>
+    <li>init</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/init.txt" rel="nofollow"> View page source</a>
@@ -116,10 +123,79 @@
 </div>
           <div role="main">
             
-  
+  <div class="section" id="init">
+<h1>init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h1>
+<p>Creates the recommended directory structure to keep Ansible playbooks organized. And
+provides boilerplate with examples to help get started.</p>
+<p>From <a class="reference external" href="http://ansible.com/blahblahblah">http://ansible.com/blahblahblah</a></p>
+<div class="section" id="new-projects">
+<h2>New Projects<a class="headerlink" href="#new-projects" title="Permalink to this headline">¶</a></h2>
+<p>-p, &#8211;playbook:</p>
+<div class="highlight-python"><div class="highlight"><pre>playbook/
+            .gitignore
+            production                              # inventory file for &lt;named&gt;
+
+            site.yml                                # master playbook
+            webservers.yml                  # playbooks for different tiers
+            databases.yml
+
+            roles/                                  # role playbooks
+            library_roles/                  # installed role playbooks
+
+            group_vars/
+                            production1             # variables for groups within &lt;named&gt; inventory file
+                            production2
+            host_vars/
+                            production1a.example.com                # variables associated with specific &lt;host&gt;
+                            production2b.example.com
+</pre></div>
+</div>
+</div>
+<div class="section" id="roles">
+<h2>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>-r, &#8211;role::</dt>
+<dd><dl class="first last docutils">
+<dt>roles/role/</dt>
+<dd><dl class="first last docutils">
+<dt>meta/</dt>
+<dd>main.yml                                # role dependencies &amp; properties</dd>
+<dt>files/</dt>
+<dd>bar.txt                                 # files for use with the copy resource
+foo.sh                                  # script files for use with the script resource</dd>
+<dt>handlers/</dt>
+<dd>main.yml                                # handlers file</dd>
+<dt>tasks/</dt>
+<dd>main.yml                                # primary task file</dd>
+<dt>templates/</dt>
+<dd>example.cfg.j2                  # files for use with the template resource</dd>
+<dt>vars/</dt>
+<dd>main.yml                                # variables associated with this role</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<p>-m, &#8211;module:</p>
+<div class="highlight-python"><div class="highlight"><pre>__in progress__
+</pre></div>
+</div>
+</div>
+</div>
+
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

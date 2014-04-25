@@ -53,6 +53,7 @@
 
   
     <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/>
+        <link rel="next" title="init" href="init.html"/>
         <link rel="prev" title="MirskUtils" href="index.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -82,7 +83,13 @@
             <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Installation</a></li>
 </ul>
-<ul class="simple">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="init.html">init</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="init.html#new-projects">New Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="init.html#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="init.html#module">Module</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -121,8 +128,27 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>install using pip:</p>
 <p><tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+ssh://git&#64;github.com/ajmirsky/ansible-role-manager.git</span></tt></p>
-<p>or if you&#8217;re interested in staying up-to-date with the latest, install the source:</p>
+<p>or if you&#8217;re interested in contributing, install the source:</p>
 <p><tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">git+ssh://git&#64;github.com/ajmirsky/ansible-role-manager.git#egg=ansible-role-manager</span></tt></p>
+<p>..WARNING:</p>
+<div class="highlight-python"><div class="highlight"><pre>For those on MacOSX running Xcode5.1, there is a breaking change which turns a previous warning into an error. To use
+the legacy behavior, set the environment variable::
+
+    &gt;&gt; export ARCHFLAGS=&#39;-Wno-error=unused-command-line-argument-hard-error-in-future&#39;
+
+Excerpt from XCode Release Notes::
+
+    Apple LLVM compiler in Xcode 5.1 treats unrecognized command-line options as errors. This issue has been
+    seen when building both Python native extensions and Ruby Gems, where some invalid compiler options are
+    currently specified. Projects using invalid compiler options will need to be changed to remove those
+    options. To help ease that transition, the compiler will temporarily accept an option to downgrade
+    the error to a warning:
+
+    -Wno-error=unused-command-line-argument-hard-error-in-future
+
+For more information, see the `XCode 5.1 Release Notes`_xcode51
+</pre></div>
+</div>
 </div>
 
 
@@ -130,6 +156,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="init.html" class="btn btn-neutral float-right" title="init"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="MirskUtils"><span class="icon icon-circle-arrow-left"></span> Previous</a>
