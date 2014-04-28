@@ -20,6 +20,8 @@ else:
 dependencies = [
     'ansible',
     'requests',
+    'GitPython',
+    'semantic_version'
 ]
 
 links = [

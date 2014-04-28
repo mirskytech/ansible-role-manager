@@ -5,7 +5,7 @@ from git import Repo
 def main():
 
     
-    _url, _path = 'git@git.mirsky.net:ansible-playbooks/haproxy.git','.cache/haproxy'
+    _url, _path = 'ssh://git@git.mirsky.net:ansible-playbooks/haproxy.git','.cache/haproxy'
     #repo = Repo.clone_from(_url, _path)
     #repo.git.checkout('tags/real')
 
@@ -18,8 +18,12 @@ def main():
     
     print gitre.search(pip_path).groups()
     
-    repo = Repo(_path)
-    repo.git.checkout('bafd95f5054eceba952f555600313bc1a2d72e70')
+    src = Repo(_url)
+    src.clone(_path)
+    
+    
+    #repo = Repo(_path)
+    #repo.git.checkout('bafd95f5054eceba952f555600313bc1a2d72e70')
     
 
 

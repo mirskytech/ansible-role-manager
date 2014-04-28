@@ -1,3 +1,4 @@
+import os
 
 
 
@@ -23,4 +24,12 @@ class Route(object):
     
     
     
+commands_dir = os.path.dirname(__file__)
+routes = []
+
+for module in os.listdir(commands_dir):
+    if module == '__init__.py' or module[-3:] != '.py':
+        continue
+    route_mod = __import__('arm.routes.%s' % module[:-3], locals(), globals(),['object'],-1)
     
+    routes.append(route_mod.BaseRoute())    

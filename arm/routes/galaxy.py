@@ -2,7 +2,7 @@ import re, os, shutil
 from . import Route, RouteException
 import requests
 from yaml import load, Loader
-#from arm.util import fetch_git_repository
+from arm.util import fetch_git_repository
 
 GALAXY_SERVER_DEFAULT = 'galaxy.ansible.com'
 
@@ -43,20 +43,33 @@ class BaseRoute(Route):
         elif data['count'] < 1:
             raise RouteException('galaxy :: could not find %s.%s' %  (d['owner'],d['name']) )
         
-        role = data['results'][0]
+        role_info = data['results'][0]
         
-        if d.get('version', None) and role['versions'] and d['version'] not in role['versions']:
-            raise RouteException('galaxy :: version is not available %s' % d['version'])
+        def _check_version(required, actual):
+            
+            if required and actual and required not in actual:
+                raise RouteException('galaxy :: version is not available %s' % d['version'])
+            
+        _check_version(d.get('version', None),role_info.get('versions', None))
         
-        location = fetch_git_repository('github.com', role['github_repo'], role['github_repo'])
-
+        location = fetch_git_repository('github.com', role_info['github_user'], role_info['github_repo'])
+        
+        name = "%s.%s" % (d['owner'],d['name'])
+        if False:
+            name = egg_name
+            
+        
         meta_path = os.path.join(location, 'meta/main.yml')
         if os.path.exists(meta_path):
             meta_info = load(open(meta_path, 'r'), Loader=Loader)
-            print meta_info
-            
+            _check_version(d.get('version', None), role_info.get('versions',None))
         
-        #shutil.copytree(location, os.path.join('roles'))
+
+        return location, name
+
+    
+        
+        
         
         
         
