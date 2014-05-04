@@ -9,6 +9,22 @@ def retrieve_role(identifier, dest=None):
             return route.fetch(identifier)
         pass
     
+def retrieve_all_roles(identifier, needs={}):
+    
+    role = retrieve_role(identifier)
+    
+    needs.update( { role.get_name(): role } )
+    
+    for need in role['dependencies']:
+        if need in needs:
+            continue
+        needs = retrieve_all_roles(identifier, needs)
+        
+    return needs
+        
+        
+    
+    
 
 
 def fetch_git_repository(server, user, repo, tag=None):

@@ -1,4 +1,5 @@
 import re, os, shutil
+from arm import Role
 from . import Route, RouteException
 import requests
 from yaml import load, Loader
@@ -65,7 +66,7 @@ class BaseRoute(Route):
             _check_version(d.get('version', None), role_info.get('versions',None))
         
 
-        return location, name
+        return Role(location, alias, **role_info)
 
     
         

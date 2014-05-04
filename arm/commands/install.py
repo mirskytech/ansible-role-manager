@@ -8,18 +8,23 @@ class BaseCommand(Command):
     
     def __init__(self, parser):
         parser.description = self.help
-        parser.add_argument('-U','--upgrade', action='store_true')        
+        parser.add_argument('-U','--upgrade', action='store_true')
+        parser.add_argument('-n', '--no-dependencies', action='store_true')
         parser.add_argument('role', help='name of the role to install')
         
     def run(self, argv):
         
-        _role = argv.role
+        role_ident = argv.role
         root = get_playbook_root(os.getcwd())
         if not root:
             print "can't find playbook. use arm init to create recommended structure."
             return 1
         
-        source, name = retrieve_role(_role)
+        
+        role = retrieve_all_roles(role_ident)
+
+            
+            
 
         library = os.path.join(root,'library_roles',name)
         destination = os.path.join(root, 'roles', name)
