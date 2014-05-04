@@ -22,10 +22,12 @@ def retrieve_all_roles(identifier, needs={}):
         
     return needs
         
-        
-    
-    
 
+
+"""
+        Description:
+            fetch a git repository into playbook cache                
+"""
 
 def fetch_git_repository(server, user, repo, tag=None):
     

@@ -17,14 +17,18 @@ class BaseCommand(Command):
         role_ident = argv.role
         root = get_playbook_root(os.getcwd())
         if not root:
-            print "can't find playbook. use arm init to create recommended structure."
+            print '''
+            can't find playbook. 
+            use `arm init` to create recommended structure.
+            or use the `--no-dependencies` option.'''
             return 1
         
-        
-        role = retrieve_all_roles(role_ident)
-
-            
-            
+        roles = []
+        if argv.no_dependencies:
+            role = retrieve_roll(roll_ident)
+            roles = [ role, ]
+        else:
+            roles = retrieve_all_roles(role_ident)
 
         library = os.path.join(root,'library_roles',name)
         destination = os.path.join(root, 'roles', name)
