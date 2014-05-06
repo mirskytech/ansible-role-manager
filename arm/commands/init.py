@@ -49,9 +49,9 @@ class BaseCommand(Command):
                 
                 if os.path.isdir(_s):
                     _handle(os.path.join(_path,f))
-                elif '.arm' in f:
+                elif '.armj2' in f:
                     template = env.get_template(os.path.join(_path,f))
-                    _d = os.path.join(_destination, _path, f.replace('.arm',''))
+                    _d = os.path.join(_destination, _path, f.replace('.armj2',''))
                     
                     # render to _destination + _path + f
                     with open(_d, 'wb') as fh:
