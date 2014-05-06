@@ -1,7 +1,6 @@
 import os, shutil
 from git import Repo
 
-
 def retrieve_role(identifier, dest=None):
     from routes import routes    
     for route in routes:
