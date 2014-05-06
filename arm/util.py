@@ -28,12 +28,15 @@ def retrieve_all_roles(identifier, needs={}):
             fetch a git repository into playbook cache                
 """
 
-def fetch_git_repository(server, user, repo, tag=None):
+def fetch_git_repository(server, owner, repo, user=None, tag=None, protocol='https'):
     
     _destination = '%s/.cache/%s' % (get_playbook_root(os.getcwd()), repo)
     if os.path.exists(_destination):
         shutil.rmtree(_destination)
-    _url = "https://%s/%s/%s.git" % (server, user, repo)
+    _url = "%s://%s/%s/%s.git" % (protocol, server, owner, repo)
+    if user:
+        _url = "%s://%s@%s/%s/%s.git" % (protocol, user, server, owner, repo)        
+        
     repo = Repo.clone_from(_url, _destination)
     
     if tag:

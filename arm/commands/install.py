@@ -1,10 +1,10 @@
 import os, shutil
 from . import Command
-from arm.util import retrieve_role, get_playbook_root
+from arm.util import retrieve_role, get_playbook_root, retrieve_all_roles
 
 class BaseCommand(Command):
         
-    help = "install playbook command"    
+    help = "install playbook role"    
     
     def __init__(self, parser):
         parser.description = self.help

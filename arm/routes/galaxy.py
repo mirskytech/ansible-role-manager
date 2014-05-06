@@ -14,8 +14,8 @@ class BaseRoute(Route):
     version = r'v(?P<version>[0-9]\.[0-9]\.[0-9])'
     
     patterns = ( 
-        re.compile(r'%s$' % owner__name),
-        re.compile(r'%s,%s$' % (owner__name, version))
+        re.compile(r'^%s$' % owner__name),
+        re.compile(r'^%s,%s$' % (owner__name, version))
         )
     
     def __init__(self, api_server=GALAXY_SERVER_DEFAULT):
@@ -53,12 +53,7 @@ class BaseRoute(Route):
             
         _check_version(d.get('version', None),role_info.get('versions', None))
         
-        location = fetch_git_repository('github.com', role_info['github_user'], role_info['github_repo'])
-        
-        name = "%s.%s" % (d['owner'],d['name'])
-        if False:
-            name = egg_name
-            
+        location = fetch_git_repository('github.com', role_info['github_user'], role_info['github_repo'])    
         
         meta_path = os.path.join(location, 'meta/main.yml')
         if os.path.exists(meta_path):
@@ -66,7 +61,7 @@ class BaseRoute(Route):
             _check_version(d.get('version', None), role_info.get('versions',None))
         
 
-        return Role(location, alias, **role_info)
+        return Role(location, **role_info)
 
     
         

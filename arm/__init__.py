@@ -4,7 +4,7 @@
 
 class Role(dict):
     
-    def __init__(self, local_store, alias, *args, **kwargs):
+    def __init__(self, local_store, *args, **kwargs):
         self.local_store = local_store
         self.alias = alias
         super(Role, self).__init__(*args, **kwargs)
