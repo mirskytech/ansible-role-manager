@@ -76,24 +76,23 @@ class BaseRoute(Route):
         if getattr(info, 'user', None):
             params['user'] = info['user']
         
-        #location = fetch_git_repository(**params)
-        #meta_path = os.path.join(location, 'meta/main.yml')
-        #if os.path.exists(meta_path):
-            #meta_info = load(open(meta_path, 'r'), Loader=Loader)
+        location = fetch_git_repository(**params)
+        meta_path = os.path.join(location, 'meta/main.yml')
+        if os.path.exists(meta_path):
+            meta_info = load(open(meta_path, 'r'), Loader=Loader)
 
-            ## TODO : support version
-            ## http://git.myproject.org/MyProject.git==0.2            
-            ##_check_version(d.get('version', None), role_info.get('versions',None))
+            # TODO : could support version in this format:
+            # http://git.myproject.org/MyProject.git==0.2 
+            # would fail if the retrieved role doesn't line up. but could be useful if >= or <=
+            #_check_version(d.get('version', None), role_info.get('versions',None))
             
-            #return Role(location, **meta_info)
-        #print "WARNING : The role '%s' does not have a meta/main.yml. Role attributes not available."
+            return Role(location, **meta_info)
         
-        #attrs = {
-            #'github_user':
-        
-        #}
-        
-        #return Role(location,{})
+        print "WARNING : The role '%s' does not have a meta/main.yml. Role attributes & dependencies not available."
+        return Role(location,{
+            'github_user':info['owner'],
+            'github_repo':info['repo']
+        })
             
             
         

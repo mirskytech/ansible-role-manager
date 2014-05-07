@@ -30,11 +30,19 @@ class BaseCommand(Command):
         else:
             roles = retrieve_all_roles(role_ident)
 
+        alias = name # TODO unless #aliasname or #alias=aliasname
+
+        # this needs to be converted to handling multiple roles
+        # for role in roles:
+        #    name = role.get_name()
+        #    alias = name if not #alias but only applies to the first role, should assert that's the first in the role list)
+        
         library = os.path.join(root,'library_roles',name)
-        destination = os.path.join(root, 'roles', name)
+        destination = os.path.join(root, 'roles', alias)
+        
         if os.path.exists(library):
             
-            if os.path.exists(destination) and not os.path.islink(destination):
+            if os.path.exists(destination) and not os.path.islink(destination) and not getattr(argv, 'upgarde', False):
                 print "role '%s' already exists as a non-library role"
                 return 1            
             
@@ -47,13 +55,12 @@ class BaseCommand(Command):
                 print "existing version already installed in library, use --upgrade to install latest"
                 return 1                
                 
-
-
         shutil.copytree(source, library)
+        
         
         os.symlink(
             os.path.relpath(destination, 'roles/'),
-            os.path.join('roles',os.path.basename(name))
+            os.path.join('roles',os.path.basename(alias))
             )
         print "role '%s' installed succesfully" % (argv.role)
         return 0
