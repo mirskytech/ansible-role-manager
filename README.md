@@ -1,7 +1,9 @@
 Ansible Role Manager
 =======================
 
-Manager to install, uninstall, update roles from Ansible Galaxy &amp; version control repositories.
+Manager to install, uninstall, update roles from Ansible Galaxy &amp; other version control repositories.
+
+Compatible with `ansible-galaxy` and `ansible-librarian` file formats.
 
 **under development**
 
@@ -22,12 +24,19 @@ References
 Release Notes & Schedule
 ----------------------
 
+*0.0.5*
+expected: 2014-05-17
+
+- fetch roles from within other repositories
+- svn support
+
+
+
 *0.0.4*
 expected: 2014-05-14
 
 - fetch/install roles from `requirements.txt` file
--
--
+- mercurial support
 
 *0.0.3*
 expected: 2014-05-10
@@ -39,7 +48,7 @@ expected: 2014-05-10
 *release 0.0.2*
 expected: 2014-05-07
 
-- create fetch role from git
+- create fetch role from any git server
 - create `help` command (alias to -h)
 - fetch dependencies (optional)
 
