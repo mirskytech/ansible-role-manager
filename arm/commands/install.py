@@ -1,6 +1,6 @@
 import os, shutil
 from . import Command
-from arm.util import retrieve_role, get_playbook_root
+from arm.util import retrieve_role, retrieve_all_roles, get_playbook_root
 
 class BaseCommand(Command):
         
