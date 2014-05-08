@@ -1,19 +1,24 @@
+class RoleException(Exception):
+    pass
 
 
-
-
-class Role(dict):
+class Role(object):
     
-    def __init__(self, local_store, alias, *args, **kwargs):
+    def __init__(self, local_store, *args, **kwargs):
         self.local_store = local_store
-        self.alias = alias
-        super(Role, self).__init__(*args, **kwargs)
-        
-    
+        for k,v in kwargs.iteritems():
+            setattr(self, k, v)
+            
     def get_name(self):
-        return "%s.%s" % (role_info['github_user'], role_info['github_repo'])
+        if hasattr(self, 'github_user') and hasattr(self, 'github_repo'):
+            return "%s.%s" % (getattr(self, 'github_user'), getattr(self, 'github_repo'))
+        raise RoleException('Role does not have unique name')
+        
+    def get_path(self):
+        return self.local_store
     
-    def get_alias(self):
-        if not self.alias:
-            return self.get_name()
-        return alias
+    def get_dependencies(self):
+        if hasattr(self, 'dependencies'):
+            return getattr(self, 'dependencies')
+        print "Warning : role's dependencies are not specified `%s`" % self.get_name()
+        return []
