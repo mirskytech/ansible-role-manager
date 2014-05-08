@@ -46,11 +46,11 @@ expected: 2014-05-10
 - add `alias` when linking library_roles -> roles
 
 *release 0.0.2*
-expected: 2014-05-07
+released: 2014-05-08
 
 - create fetch role from any git server
 - create `help` command (alias to -h)
-- fetch dependencies (optional)
+- fetch dependencies
 
 
 *release 0.0.1*
