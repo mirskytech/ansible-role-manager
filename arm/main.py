@@ -1,6 +1,7 @@
 import sys
 import argparse
 import os
+from routes import RouteException
 
 def main():
     
@@ -21,7 +22,12 @@ def main():
         cmd_parser.set_defaults(func=cmd.run)
         
     args = parser.parse_args(sys.argv[1:])
-    args.func(args)
+    
+    try:
+        args.func(args)
+    except RouteException as e:
+        print "Error :: %s" % e
+        return 1
     
 
     

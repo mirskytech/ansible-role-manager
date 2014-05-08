@@ -17,7 +17,7 @@ Requirement Specifiers
 
   ::
 
-  >> arm install SomeOwner.SomeRoleName#egg=SomeName
+  >> arm install SomeOwner.SomeRoleName#alias=SomeName
   
   ( works with all formats listed above in #1 )
 
@@ -40,20 +40,25 @@ Requirement Specifiers
 
 **git**
 
-  ``arm`` will install the role with an alias of ``myproject``::
+  ``arm`` will install the role with an alias of ``myproject`` and supports the following pip-style patterns::
   
-  >> arm install git+git://git.myproject.org/MyProject
-  >> arm install git+https://git.myproject.org/MyProject  
-  >> arm install git+ssh://git.myproject.org/MyProject
+  >> arm install git://git.myproject.org/Owner/MyProject
+  >> arm install git+https://git.myproject.org/Owner/MyProject  
+  >> arm install git+ssh://git.myproject.org/Owner/MyProject
   
+  as well as the git-style patterns::
   
+  >> arm install git@github.com:Owner/MyProject.git
+  >> arm install https://github.com/Owner/MyProject.git
+  >> arm install ssh://git@github.com/Owner/MyProject.git
+    
   specify a branch, tag or commit hash to install a specific version::
     
   >> arm install git+git://git.myproject.org/MyProject.git@master
   >> arm install git+git://git.myproject.org/MyProject.git@v1.0
   >> arm install git+git://git.myproject.org/MyProject.git@da39a3ee5e6b4b0d3255bfef95601890afd80709
   
-  * note: ``#egg=SomeName`` can be used with all git patterns above  
+  * note: ``#alias=SomeName`` can be used with all git patterns above  
   
   **for example with github.com**
   
