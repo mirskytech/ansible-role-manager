@@ -31,3 +31,5 @@ class Role(object):
             needs.append(dependency)
             print "NEEDS : %s" % needs
         return needs
+
+LIBRARY_ROLE_PATH = 'library_roles/'

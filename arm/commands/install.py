@@ -1,5 +1,6 @@
 import os, shutil
 from . import Command
+from arm import LIBRARY_ROLE_PATH
 from arm.util import retrieve_role, retrieve_all_roles, get_playbook_root
 
 
@@ -12,6 +13,8 @@ class BaseCommand(Command):
         parser.add_argument('-U','--upgrade', action='store_true')
         parser.add_argument('-n', '--no-dependencies', action='store_true')
         parser.add_argument('role', help='name of the role to install')
+        # TODO : add argument of where the role is to be installed
+        # TODO : add argument of where the installed role should be linked
         
     def run(self, argv):
         
@@ -39,7 +42,7 @@ class BaseCommand(Command):
             alias = role.get_name()
 
             source_path = role.get_path()
-            library_path = os.path.join(root,'library_roles', name)
+            library_path = os.path.join(root,LIBRARY_ROLE_PATH, name)
             link_path = os.path.join(root, 'roles', alias)
         
             if os.path.exists(library_path):
@@ -60,7 +63,7 @@ class BaseCommand(Command):
             shutil.copytree(source_path, library_path)
             
             os.symlink(
-                os.path.relpath(os.path.join('library_roles/',name), 'roles/'),
+                os.path.relpath(os.path.join(LIBRARY_ROLE_PATH,name), 'roles/'),
                 os.path.join(root,'roles',os.path.basename(alias))
                 )
             print "role '%s' installed succesfully" % (argv.role)
