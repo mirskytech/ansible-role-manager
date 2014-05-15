@@ -20,7 +20,7 @@ else:
 dependencies = [
     'ansible',
     'requests',
-    'GitPython',
+    'gitpython',
     'semantic_version'
 ]
 

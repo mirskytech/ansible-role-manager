@@ -49,7 +49,7 @@ class BaseCommand(Command):
                     return 1            
             
                 if getattr(argv, 'upgrade', False):
-                    if os.path.exists(library_path): shutil.rmtree(library_pathe)
+                    if os.path.exists(library_path): shutil.rmtree(library_path)
                     if os.path.islink(link_path):
                         print "unlinking: %s" % link_path
                         os.unlink(link_path)
@@ -62,7 +62,7 @@ class BaseCommand(Command):
         
             os.symlink(
                 os.path.relpath(library_path, 'roles/'),
-                os.path.join('roles',os.path.basename(alias))
+                os.path.join(root,'roles',os.path.basename(alias))
                 )
             print "role '%s' installed succesfully" % (argv.role)
         return 0

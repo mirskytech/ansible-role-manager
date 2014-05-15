@@ -44,7 +44,7 @@ class BaseRoute(Route):
         
         # patterns two & three
         re.compile(r'^git\+(?P<protocol>http[s]{0,1}):\/\/%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % pieces),
-        re.compile(r'^git\+(?P<protocol>ssh)\:\/\/%(user)s\@%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % pieces),
+        re.compile(r'^git\+(?P<protocol>ssh)\:\/\/(%(user)s\@){0,1}%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % pieces),
         
         # patterns four & five
         re.compile(r'^(?P<protocol>http[s]{0,1}):\/\/%(fqdn)s\/%(owner)s\/%(repo)s\.git%(tag)s' % pieces),        

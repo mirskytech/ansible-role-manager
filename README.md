@@ -25,7 +25,8 @@ Release Notes & Schedule
 ----------------------
 
 *0.0.5*
-expected: 2014-05-17
+
+expected: 2014-05-19
 
 - fetch roles from within other repositories
 - svn support
@@ -33,19 +34,22 @@ expected: 2014-05-17
 
 
 *0.0.4*
-expected: 2014-05-14
+
+expected: 2014-05-17
 
 - fetch/install roles from `requirements.txt` file
 - mercurial support
 
 *0.0.3*
-expected: 2014-05-10
+
+expected: 2014-05-15
 
 - create `freeze` command to capture dependencies
 - `remove` (or `uninstall`?) to remove role
 - add `alias` when linking library_roles -> roles
 
 *release 0.0.2*
+
 released: 2014-05-08
 
 - create fetch role from any git server
