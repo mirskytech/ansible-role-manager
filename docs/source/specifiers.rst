@@ -8,25 +8,39 @@ Requirement Specifiers
 
   ::
 
-  >> arm install SomeOwner.SomeRole            # latest version
-  >> arm install SomeOwner.SomeRole==1.0.4     # specific version
-  >> arm install SomeOwner.SomeRole,v1.0.4     # `ansible-galaxy` compatiblity
-  >> arm install SomeOwner.SomeRole>=1.0.4     # minimum version
+	SomeOwner.SomeRole            # latest version
+  	SomeOwner.SomeRole==1.0.4     # specific version
+	SomeOwner.SomeRole,v1.0.4     # `ansible-galaxy` compatiblity
+	SomeOwner.SomeRole>=1.0.4     # minimum version
 
-2. Install `SomePackage` by `SomeOwner` with an alias
+For example: `arm install SomeOwner.SomeRole,v1.0.4`
 
-  ::
+2. Install `SomeRole` by `SomeOwner` from a git repository.
 
-  >> arm install SomeOwner.SomeRoleName#egg=SomeName
-  
-  ( works with all formats listed above in #1 )
-
-3) Upgrade an already installed `SomePackage` to the latest from PyPI.
+Using pip-like specifiers
 
   ::
 
-  >> pip install --upgrade owner.role_name
+  >> git://git.myproject.org/SomeOwner/SomeRole
+  >> git+https://git.myproject.org/SomeOwner/SomeRole
+  >> git+ssh://git@git.myproject.org/SomeOwner/SomeRole
+  >> git+git@git.myproject.org:SomeOwner/SomeRole
 
+Or using git-like specifiers
+
+  ::
+
+  >> arm install git@git.myproject.org:SomeOwner/SomeRole.git
+
+*Note*: any of the above specifiers can select a tag, branch or commit by using `@` plus the tag, branch or commit identifier.
+
+
+
+3. Install `SomePackage` by `SomeOwner` from a mecurial repository.
+
+  ::
+
+  **coming soon**
 
 
 3. Install a list of requirements specified in a file.  See the :ref:`Requirements files <Requirements Files>`.
