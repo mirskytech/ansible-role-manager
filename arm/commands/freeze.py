@@ -22,6 +22,8 @@ class BaseCommand(Command):
             if not os.path.islink(_item):
                 continue
             
+            # should i incorporate this into the routes?
+            
             print "link : %s" % os.path.realpath(_item)
             repo = Repo(os.path.realpath(_item))
             for i in repo.remotes.origin.refs:
