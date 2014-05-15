@@ -58,10 +58,9 @@ class BaseCommand(Command):
                     return 1                
                 
             shutil.copytree(source_path, library_path)
-        
-        
+            
             os.symlink(
-                os.path.relpath(library_path, 'roles/'),
+                os.path.relpath(os.path.join('library_roles/',name), 'roles/'),
                 os.path.join(root,'roles',os.path.basename(alias))
                 )
             print "role '%s' installed succesfully" % (argv.role)

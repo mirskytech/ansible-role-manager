@@ -14,10 +14,12 @@ class BaseCommand(Command):
         
     def run(self, argv):
         
-        root = get_playbook_root(os.getcwd())
-        
-        for item in os.listdir(root):
-            print item
+        _root = get_playbook_root(os.getcwd())
+        _roles_directory = os.path.join(_root, 'roles')
+        for _item in os.listdir(_roles_directory):
+            _item = os.path.join(_roles_directory, _item)
+            if os.path.islink(_item):
+                print "link : %s" % os.path.realpath(_item)
         
 
         

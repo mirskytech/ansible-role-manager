@@ -17,10 +17,6 @@ def retrieve_all_roles(identifier, needs={}):
     
     for need in role.get_dependencies():
 
-        if type(need) != str:
-            print "WARNING :: dependencies of '%s' are improperly defined"
-            break
-
         if need in needs:
             continue
         needs = retrieve_all_roles(identifier, needs)
