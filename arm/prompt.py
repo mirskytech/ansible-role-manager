@@ -69,7 +69,7 @@ def query_options(menu_items, default=None):
     return _selection()
 
 
-def query_yes_no(question, default="yes"):
+def query_yes_no(question, default=''):
     """Ask a yes/no question via raw_input() and return their answer.
     
     "question" is a string that is presented to the user.
@@ -81,22 +81,37 @@ def query_yes_no(question, default="yes"):
     """
     valid = {"yes":"yes",   "y":"yes",  "ye":"yes",
              "no":"no",     "n":"no"}
+
+
+    exact = False
     if default == None:
-        prompt = " [y/n] "
+        exact = True
+    
+    if exact:
+        prompt = ("yes","no")
+        valid = {"yes":"yes", "no":"no"}
+    elif not default:
+        prompt = ('y','n')
+    elif default == "y":
+        prompt = ('Y','n')
+    elif default == "n":
+        prompt = ('y','N')
     elif default == "yes":
-        prompt = " [Y/n] "
+        prompt = ('Yes','no')
     elif default == "no":
-        prompt = " [y/N] "
+        prompt = ('yes','No')
     else:
         raise ValueError("invalid default answer: '%s'" % default)
 
     while 1:
-        print question + prompt
+        print question + " [%s/%s] " % (prompt[0],prompt[1])
         choice = raw_input().lower()
-        if default is not None and choice == '':
-            return default
-        elif choice in valid.keys():
+        if exact and choice in valid:
+            return choice
+        elif default and choice == '':
+            return valid[default]
+        elif not exact and choice in valid.keys():
             return valid[choice]
         else:
-            print "Please respond with 'yes' or 'no'"
+            print "Please respond with '%s' or '%s'" % (prompt[0].lower(), prompt[1].lower())
             

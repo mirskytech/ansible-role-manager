@@ -54,9 +54,9 @@ class BaseCommand(Command):
             }
         ]
 
-        print query_options(my_menu, default='id1')
+        #print query_options(my_menu, default='id1')
         
-        print query_yes_no('Ask these questions?', default=None)
+        print query_yes_no('Ask these questions?',default='y')
         
 
                 
