@@ -4,6 +4,11 @@ from arm.util import get_playbook_root
 import argparse, os
 from git import Repo
 
+from colorama import Fore, Back, Style
+
+from arm.prompt import query_options, query_yes_no
+
+
 class BaseCommand(Command):
         
     help = "remove a role"    
@@ -31,28 +36,29 @@ class BaseCommand(Command):
             #for f in files:
                 #print "%s/%s" % (root, f)
                 
-        from arm.prompt import menu
         my_menu = [
             { 'id':'id1',
-              'name':'choice 1',
+              'name':'Update',
               'description':'this is choice 1',
               'callback':lambda a: "called back: %s" % a
             },
             { 'id':'id2',
-              'name':'choice 2',
+              'name':'Upgrade',
               'description':'this is choice 2',
               'callback':None
             },
             {
             'id':'id3',
-            'name':'choice 3',
+            'name':'Quit',
             'description':'this is choice 3'
             }
         ]
 
+        print query_options(my_menu, default='id1')
         
-        menu(my_menu)
-           
+        print query_yes_no('Ask these questions?', default=None)
+        
+
                 
         
 

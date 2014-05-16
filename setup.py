@@ -20,7 +20,8 @@ dependencies = [
     'ansible',
     'requests',
     'gitpython==0.3.2.RC1',
-    'semantic_version'
+    'semantic_version',
+    'colorama'
 ]
 
 links = [
