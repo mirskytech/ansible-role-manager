@@ -21,14 +21,13 @@ class BaseCommand(Command):
             _item = os.path.join(_roles_directory, _item)
             if not os.path.islink(_item):
                 continue
-            
-            # should i incorporate this into the routes?
-            
-            print "link : %s" % os.path.realpath(_item)
-            repo = Repo(os.path.realpath(_item))
-            for i in repo.remotes.origin.refs:
-                for j in i.iter_items(repo):
-                    print j
+                                    
+            # if git
+            if os.path.exists(os.path.join(os.path.realpath(_item),'.git')):
+                repo = Repo(os.path.realpath(_item))
+                origin = repo.remotes[0].config_reader.config.get('remote "origin"','url')
+                commit = repo.head.commit.hexsha
+                print "git+%s@%s" % (origin,commit)
                 
         
 
