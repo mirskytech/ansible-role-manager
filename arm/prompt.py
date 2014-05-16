@@ -3,7 +3,7 @@ import colorama
 
 
 
-def query_options(menu_items, default=None):
+def query_options(menu_items, question='Please select', default=None):
 
     numbers = range(1,len(menu_items)+1)
     selectors = ['%s' % n for n in numbers]
@@ -45,9 +45,9 @@ def query_options(menu_items, default=None):
         
     def _selection():           
         if default:
-            choice = raw_input(" please select [%s] >> " % ids[default]['name'])
+            choice = raw_input("%s [%s] " % (question, ids[default]['name']))
         else:
-            choice = raw_input(" please select >> ")
+            choice = raw_input("%s >> " % (question))
     
         choice = choice.strip().lower()
 
@@ -115,3 +115,9 @@ def query_yes_no(question, default=''):
         else:
             print "Please respond with '%s' or '%s'" % (prompt[0].lower(), prompt[1].lower())
             
+            
+def query_true_false(question, default=''):
+    if query_yes_no(question,default) == 'yes':
+        return True
+    return False
+

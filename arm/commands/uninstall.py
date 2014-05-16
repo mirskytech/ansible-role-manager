@@ -54,7 +54,7 @@ class BaseCommand(Command):
             }
         ]
 
-        #print query_options(my_menu, default='id1')
+        print query_options(my_menu, question="action unclear\nwhich would you like to do", default='id1')
         
         print query_yes_no('Ask these questions?',default='y')
         
