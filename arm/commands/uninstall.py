@@ -4,59 +4,50 @@ from arm.util import get_playbook_root
 import argparse, os
 from git import Repo
 
-from colorama import Fore, Back, Style
-
-from arm.prompt import query_options, query_yes_no
+from arm.prompt import query_true_false
 
 
 class BaseCommand(Command):
         
-    help = "remove a role"    
+    help = "remove a role from the library of dependencies"    
     
     def __init__(self, parser):
         parser.description = self.help
-        #parser.add_argument('command_name', nargs='?', help='name of command to get help')
+        parser.add_argument('role', help='name of command to get help')
         parser.add_argument('-u','--unlink',action='store_true', help="remove link but leave in library")
 
         
     def run(self, argv):
         
         _root = get_playbook_root(os.getcwd())
-        _roles_directory = os.path.join(_root, 'roles')
-    
-        #import logging
+        _role = os.path.join(_root, 'roles', argv.role)
         
-        #logger = logging.getLogger('arm')    
+        if not os.path.exists(_role):
+            print "the role `%s` does not exist in the playbook's library" % _role
+            return 1
 
-        #logger.info('my arm message')
-        #logger.warning('my arm warning')
-        #for root, dir, files in os.walk(os.path.join(_root, 'library_roles/')):
-            #if '.git' in root:
-                #continue
-            #for f in files:
-                #print "%s/%s" % (root, f)
+        if not os.path.islink(_role):
+            print "the role `%s` was not installed using ARM. refusing to delete." % _role
+            return 1
+
+        _library = os.path.join(os.path.realpath(_role))
+        
+        # TODO : check to see if the library role has non-committed changes
+        
+        # TODO : check to see if the library role has non-pushed changes
+
+        for root, dir, files in os.walk(_role):
+            if '.git' in root:
+                continue
+            for f in files:
+                print "%s/%s" % (root, f)
                 
-        my_menu = [
-            { 'id':'id1',
-              'name':'Update',
-              'description':'this is choice 1',
-              'callback':lambda a: "called back: %s" % a
-            },
-            { 'id':'id2',
-              'name':'Upgrade',
-              'description':'this is choice 2',
-              'callback':None
-            },
-            {
-            'id':'id3',
-            'name':'Quit',
-            'description':'this is choice 3'
-            }
-        ]
+        if query_true_false('Are you sure you want to remove `%s`?' % argv.role, default=True):
+            print "uninstall"
+        else:
+            print "exiting"
+                
 
-        print query_options(my_menu, question="action unclear\nwhich would you like to do", default='id1')
-        
-        print query_yes_no('Ask these questions?',default='y')
         
 
                 

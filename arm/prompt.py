@@ -117,6 +117,11 @@ def query_yes_no(question, default=''):
             
             
 def query_true_false(question, default=''):
+    if default == True:
+        default = 'y'
+    elif default == False:
+        default = 'n'
+        
     if query_yes_no(question,default) == 'yes':
         return True
     return False
