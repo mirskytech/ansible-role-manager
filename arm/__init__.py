@@ -1,3 +1,40 @@
+import logging
+
+class SingleLevelFilter(logging.Filter):
+    def __init__(self, passlevel, reject):
+        self.passlevel = passlevel
+        self.reject = reject
+
+    def filter(self, record):
+        if self.reject:
+            return (record.levelno != self.passlevel)
+        else:
+            return (record.levelno == self.passlevel)
+
+
+
+
+logger = logging.getLogger('arm')
+logger.setLevel(logging.INFO)
+
+
+warn_handler = logging.StreamHandler()
+warn_handler.setLevel(logging.WARNING)
+formatter = logging.Formatter('%(levelname)s (ARM) :: %(message)s')
+warn_handler.setFormatter(formatter)
+
+info_handler = logging.StreamHandler()
+info_handler.setLevel(logging.INFO)
+info_filter = SingleLevelFilter(logging.INFO, False)
+info_handler.addFilter(info_filter)
+formatter = logging.Formatter('%(message)s')
+info_handler.setFormatter(formatter)
+
+
+logger.addHandler(warn_handler)
+logger.addHandler(info_handler)
+
+
 class RoleException(Exception):
     pass
 

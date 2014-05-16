@@ -16,28 +16,42 @@ class BaseCommand(Command):
         
     def run(self, argv):
         
-        
-        
-        import subprocess
-        try:
-            p = subprocess.Popen(['xcodebuild','-version'], stdout=subprocess.PIPE)
-            out, err = p.communicate()
-            ver_re = re.compile('(?P<version>\d(.\d){0,2})')
-            ver_match = ver_re.search(out)
-            if not os.environ.get('ARCHFLAGS',False) \
-               and ver_match \
-               and LooseVersion('5.1') <= LooseVersion(ver_match.groupdict()['version']):
-                print "Warning : `pycrypto` on OSX with XCode >= 5.1 will not compile without ARCHFLAGS being set. see docs."
-        except OSError as e:
-            # we're probably not running on OSX
-            pass
-        
         _root = get_playbook_root(os.getcwd())
         _roles_directory = os.path.join(_root, 'roles')
-       
+    
+        #import logging
+        
+        #logger = logging.getLogger('arm')    
+
+        #logger.info('my arm message')
+        #logger.warning('my arm warning')
         #for root, dir, files in os.walk(os.path.join(_root, 'library_roles/')):
+            #if '.git' in root:
+                #continue
             #for f in files:
-                #print "r: %s/%s" % (root, f)
+                #print "%s/%s" % (root, f)
+                
+        from arm.prompt import menu
+        my_menu = [
+            { 'id':'id1',
+              'name':'choice 1',
+              'description':'this is choice 1',
+              'callback':lambda a: "called back: %s" % a
+            },
+            { 'id':'id2',
+              'name':'choice 2',
+              'description':'this is choice 2',
+              'callback':None
+            },
+            {
+            'id':'id3',
+            'name':'choice 3',
+            'description':'this is choice 3'
+            }
+        ]
+
+        
+        menu(my_menu)
            
                 
         
