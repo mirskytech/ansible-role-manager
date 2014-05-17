@@ -6,6 +6,13 @@
 Ansible Role Manager
 ======================================
 
+Manager to install, uninstall, update roles from Ansible Galaxy & git repositories.
+
+Uses design patterns from `pip` [#]_ and `git` [#]_.
+
+Inspiration from `ansible-galaxy` [#]_ and `librarian-ansible` [#]_.
+
+
 Sections
 ----------------------------------
 
@@ -22,6 +29,7 @@ Getting Started
     :maxdepth: 1
 
     installation
+    
 
 
 .. _command-docs:
@@ -37,6 +45,14 @@ Commands
     remove
     update
     freeze
+    
+Reference
+------------------
+
+.. toctree::
+    :maxdepth: 1
+    
+    specifiers
 
 
 Indices and tables
@@ -45,4 +61,11 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. rubric:: Footnotes
+
+.. [#] http://www.pip-installer.org/en/latest/reference/pip_install.html#pip-install-examples
+.. [#] http://git-scm.com/docs/git-init
+.. [#] https://galaxy.ansible.com/intro
+.. [#] https://github.com/bcoe/librarian-ansible
 

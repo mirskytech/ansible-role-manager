@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>remove &mdash; Ansible Role Manager 0.1alpha documentation</title>
+  <title>Future &mdash; Ansible Role Manager 0.1alpha documentation</title>
   
 
   
@@ -52,9 +52,7 @@
   
 
   
-    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/>
-        <link rel="next" title="update" href="update.html"/>
-        <link rel="prev" title="install" href="install.html"/> 
+    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -83,14 +81,14 @@
             <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="init.html">init</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="init.html#usage"><strong>Usage</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="init.html#reference">Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">install</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">remove</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove.html">remove</a></li>
 <li class="toctree-l1"><a class="reference internal" href="update.html">update</a></li>
 <li class="toctree-l1"><a class="reference internal" href="freeze.html">freeze</a></li>
 </ul>
@@ -121,10 +119,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>remove</li>
+    <li>Future</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/remove.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/releasenotes.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -132,23 +130,51 @@
 </div>
           <div role="main">
             
-  <div class="section" id="remove">
-<h1>remove<a class="headerlink" href="#remove" title="Permalink to this headline">¶</a></h1>
-<p><em>todo</em></p>
+  <p><em>0.0.5</em></p>
+<p>expected: 2014-05-23</p>
+<ul class="simple">
+<li>fetch roles from within other repositories</li>
+<li>svn support</li>
+</ul>
+<p><em>0.0.4</em></p>
+<p>expected: 2014-05-18</p>
+<ul class="simple">
+<li>fetch/install roles from <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file</li>
+<li>mercurial support</li>
+</ul>
+<p><em>0.0.3</em></p>
+<p>expected: 2014-05-16</p>
+<ul class="simple">
+<li>create <tt class="docutils literal"><span class="pre">freeze</span></tt> command to capture dependencies</li>
+<li><tt class="docutils literal"><span class="pre">remove</span></tt> (or <tt class="docutils literal"><span class="pre">uninstall</span></tt>?) to remove role</li>
+<li>add <tt class="docutils literal"><span class="pre">alias</span></tt> when linking library_roles -&gt; roles</li>
+</ul>
+<p><em>release 0.0.2</em></p>
+<p>released: 2014-05-08</p>
+<ul class="simple">
+<li>create fetch role from any git server</li>
+<li>create <tt class="docutils literal"><span class="pre">help</span></tt> command (alias to -h)</li>
+<li>fetch dependencies</li>
+</ul>
+<p><em>release 0.0.1</em></p>
+<p>released: 2014-04-29</p>
+<ul class="simple">
+<li>framework for creating commands &amp; fetching rolls</li>
+<li>created <tt class="docutils literal"><span class="pre">init</span></tt> command for playbook and module template</li>
+<li>create <tt class="docutils literal"><span class="pre">install</span></tt> command &amp; fetching from ansible galaxy (no
+dependencies)</li>
+</ul>
+<div class="section" id="future">
+<h1>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>make library_roles read-only and provide a <tt class="docutils literal"><span class="pre">-e</span></tt> mechanism</li>
+<li>warn when upgrading a role that has been modified</li>
+</ul>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="update.html" class="btn btn-neutral float-right" title="update"/>Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="install.html" class="btn btn-neutral" title="install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

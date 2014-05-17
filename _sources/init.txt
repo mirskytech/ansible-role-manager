@@ -2,12 +2,12 @@ init
 ======================================
 
 Creates the recommended directory structure to keep Ansible playbooks organized. And
-provides boilerplate with examples to help get started.
+provides examples to help get started.
 
 **Usage**
 ++++++++++++++++++
 
-from ``arm init -h``::
+  ::
 
     arm init [-h] (-p PLAYBOOK | -r ROLE | -m MODULE)
     
@@ -20,33 +20,33 @@ from ``arm init -h``::
 Playbook
 ------------------
 
--p, --playbook::
+  ::
 
-    playbook/
+    <PLAYBOOK>/
         .gitignore
         production		        # inventory file for <named>
 
-    site.yml		    	        # master playbook 
-    webservers.yml			# playbooks for different tiers
-    databases.yml
-
-    roles/				# role playbooks
-    library_roles/			# installed role playbooks
-
-    group_vars/
-        production1			# variables for groups within <named> inventory file
-        production2
-    host_vars/
-        production1a.example.com	# variables associated with specific <host>
-        production2b.example.com
+        site.yml		    	        # master playbook 
+        webservers.yml			# playbooks for different tiers
+        databases.yml
+    
+        roles/				# role playbooks
+        library_roles/			# installed role playbooks
+    
+        group_vars/
+            production1			# variables for groups within <named> inventory file
+            production2
+        host_vars/
+            production1a.example.com	# variables associated with specific <host>
+            production2b.example.com
 
 
 Roles
 --------------------		
 
--r, --role::
+  ::
 
-    roles/role/
+    roles/<ROLE>/
         meta/
             main.yml	        	# role dependencies & properties
         files/
@@ -64,15 +64,13 @@ Roles
 Module
 ---------------------
 
--m, --module::
-
-    todo
+*coming soon*
 
 
 
 Reference
 +++++++++++++++++++
 
-From `Ansible Directory Layout`_
+- `Ansible Directory Layout`_
 
 .. _Ansible Directory Layout: http://docs.ansible.com/playbooks_best_practices.html#directory-layout

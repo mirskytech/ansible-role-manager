@@ -94,6 +94,11 @@
 <li class="toctree-l1"><a class="reference internal" href="update.html">update</a></li>
 <li class="toctree-l1"><a class="reference internal" href="freeze.html">freeze</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="specifiers.html">Requirement Specifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifiers.html#alias">Alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifiers.html#dependencies-file">Dependencies File</a></li>
+</ul>
 
         
       </div>
@@ -130,11 +135,11 @@
   <div class="section" id="init">
 <h1>init<a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h1>
 <p>Creates the recommended directory structure to keep Ansible playbooks organized. And
-provides boilerplate with examples to help get started.</p>
+provides examples to help get started.</p>
 <div class="section" id="usage">
 <h2><strong>Usage</strong><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>from <tt class="docutils literal"><span class="pre">arm</span> <span class="pre">init</span> <span class="pre">-h</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre>arm init [-h] (-p PLAYBOOK | -r ROLE | -m MODULE)
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre>arm init [-h] (-p PLAYBOOK | -r ROLE | -m MODULE)
 
 optional arguments:
   -h, --help                            show this help message and exit
@@ -143,33 +148,35 @@ optional arguments:
   -m MODULE, --module MODULE            within a playbook, create the structure for a custom module
 </pre></div>
 </div>
+</div></blockquote>
 <div class="section" id="playbook">
 <h3>Playbook<a class="headerlink" href="#playbook" title="Permalink to this headline">¶</a></h3>
-<p>-p, &#8211;playbook:</p>
-<div class="highlight-python"><div class="highlight"><pre>playbook/
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre>&lt;PLAYBOOK&gt;/
     .gitignore
     production                      # inventory file for &lt;named&gt;
 
-site.yml                            # master playbook
-webservers.yml                      # playbooks for different tiers
-databases.yml
+    site.yml                                # master playbook
+    webservers.yml                  # playbooks for different tiers
+    databases.yml
 
-roles/                              # role playbooks
-library_roles/                      # installed role playbooks
+    roles/                          # role playbooks
+    library_roles/                  # installed role playbooks
 
-group_vars/
-    production1                     # variables for groups within &lt;named&gt; inventory file
-    production2
-host_vars/
-    production1a.example.com        # variables associated with specific &lt;host&gt;
-    production2b.example.com
+    group_vars/
+        production1                 # variables for groups within &lt;named&gt; inventory file
+        production2
+    host_vars/
+        production1a.example.com    # variables associated with specific &lt;host&gt;
+        production2b.example.com
 </pre></div>
 </div>
+</div></blockquote>
 </div>
 <div class="section" id="roles">
 <h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
-<p>-r, &#8211;role:</p>
-<div class="highlight-python"><div class="highlight"><pre>roles/role/
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre>roles/&lt;ROLE&gt;/
     meta/
         main.yml                    # role dependencies &amp; properties
     files/
@@ -185,18 +192,18 @@ host_vars/
         main.yml                    # variables associated with this role
 </pre></div>
 </div>
+</div></blockquote>
 </div>
 <div class="section" id="module">
 <h3>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h3>
-<p>-m, &#8211;module:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">todo</span>
-</pre></div>
-</div>
+<p><em>coming soon</em></p>
 </div>
 </div>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<p>From <a class="reference external" href="http://docs.ansible.com/playbooks_best_practices.html#directory-layout">Ansible Directory Layout</a></p>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.ansible.com/playbooks_best_practices.html#directory-layout">Ansible Directory Layout</a></li>
+</ul>
 </div>
 </div>
 

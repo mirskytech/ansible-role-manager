@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>remove &mdash; Ansible Role Manager 0.1alpha documentation</title>
+  <title>uninstall &mdash; Ansible Role Manager 0.1alpha documentation</title>
   
 
   
@@ -52,9 +52,7 @@
   
 
   
-    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/>
-        <link rel="next" title="update" href="update.html"/>
-        <link rel="prev" title="install" href="install.html"/> 
+    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -83,14 +81,14 @@
             <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="init.html">init</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="init.html#usage"><strong>Usage</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="init.html#reference">Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">install</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">remove</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove.html">remove</a></li>
 <li class="toctree-l1"><a class="reference internal" href="update.html">update</a></li>
 <li class="toctree-l1"><a class="reference internal" href="freeze.html">freeze</a></li>
 </ul>
@@ -121,10 +119,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>remove</li>
+    <li>uninstall</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/remove.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/uninstall.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -132,23 +130,27 @@
 </div>
           <div role="main">
             
-  <div class="section" id="remove">
-<h1>remove<a class="headerlink" href="#remove" title="Permalink to this headline">¶</a></h1>
-<p><em>todo</em></p>
+  <div class="section" id="uninstall">
+<h1>uninstall<a class="headerlink" href="#uninstall" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre>usage: arm uninstall [-h] [-u] role
+
+remove a role from the library of dependencies
+
+positional arguments:
+  role          name of command to get help
+
+optional arguments:
+  -h, --help    show this help message and exit
+  -u, --unlink  remove link but leave in library
+</pre></div>
+</div>
+</div></blockquote>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="update.html" class="btn btn-neutral float-right" title="update"/>Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="install.html" class="btn btn-neutral" title="install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

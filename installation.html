@@ -85,13 +85,19 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="init.html">init</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="init.html#structure">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="init.html#usage"><strong>Usage</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="init.html#reference">Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="remove.html">remove</a></li>
 <li class="toctree-l1"><a class="reference internal" href="update.html">update</a></li>
 <li class="toctree-l1"><a class="reference internal" href="freeze.html">freeze</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="specifiers.html">Requirement Specifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifiers.html#alias">Alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifiers.html#dependencies-file">Dependencies File</a></li>
 </ul>
 
         
@@ -134,8 +140,8 @@
 <p><tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">git+ssh://git&#64;github.com/ajmirsky/ansible-role-manager.git#egg=ansible-role-manager</span></tt></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p>For those on MacOSX running Xcode5.1, there is a breaking change which turns a previous warning into an error. To use
-the legacy behavior, set the environment variable:</p>
+<p>For those on MacOSX running Xcode5.1, there is a breaking change which turns a previous warning when compiling <cite>pycrypto</cite>
+into an error. To use the legacy behavior, set the environment variable:</p>
 <div class="highlight-python"><div class="highlight"><pre>&gt;&gt; export ARCHFLAGS=&#39;-Wno-error=unused-command-line-argument-hard-error-in-future&#39;
 </pre></div>
 </div>
