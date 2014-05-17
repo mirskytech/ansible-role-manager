@@ -46,19 +46,22 @@ except OSError as e:
     # we're probably not running on OSX
     pass
 
+with open('README.rst') as file:
+    long_description = file.read()
 
 
 setup(name='arm',
       version=verstr,
-      description='Manager to install, uninstall, update and track Ansible role dependencies',
+      description='A tool for installing and managing Ansible roles, playbooks & modules.',
       author='Andrew Mirsky',
-      author_email='andrew@mirsky.net',
+      author_email='andrew@mirskytech.com',
       scripts=['bin/arm'],
-      url='http://ajmirsky.github.io/ansible-role-manager/',
+      url='http://mirskytech.github.io/ansible-role-manager/',
       packages=find_packages(),
       include_package_data=True,
       install_requires=dependencies,
       dependency_links = links,
+      long_description=long_description
      )
 
 

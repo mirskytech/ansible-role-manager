@@ -2,7 +2,7 @@ init
 ======================================
 
 Creates the recommended directory structure to keep Ansible playbooks organized. And
-provides boilerplate with examples to help get started.
+provides examples to help get started.
 
 **Usage**
 ++++++++++++++++++
@@ -64,7 +64,7 @@ Roles
 Module
 ---------------------
 
-*todo*
+*coming soon*
 
 
 
