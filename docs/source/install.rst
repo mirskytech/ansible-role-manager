@@ -1,6 +1,8 @@
 install
 ======================================
 
+  ::
+
     usage: arm install [-h] [-U] [-n] role
     
     install playbook role

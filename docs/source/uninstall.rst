@@ -3,7 +3,7 @@ uninstall
 
   ::
   
-    usage: /Users/andrew/env/arm/bin/arm uninstall [-h] [-u] role
+    usage: arm uninstall [-h] [-u] role
     
     remove a role from the library of dependencies
     
