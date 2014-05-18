@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Future &mdash; Ansible Role Manager 0.1alpha documentation</title>
+  <title>Release Notes &mdash; Ansible Role Manager 0.1alpha documentation</title>
   
 
   
@@ -52,7 +52,9 @@
   
 
   
-    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/> 
+    <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/>
+        <link rel="next" title="Requirement Specifiers" href="specifiers.html"/>
+        <link rel="prev" title="Commands" href="commands.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -78,24 +80,24 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="init.html">init</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="init.html#usage"><strong>Usage</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="init.html#reference">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#install">install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#uninstall">uninstall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#freeze">freeze</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">install</a></li>
-<li class="toctree-l1"><a class="reference internal" href="remove.html">remove</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update.html">update</a></li>
-<li class="toctree-l1"><a class="reference internal" href="freeze.html">freeze</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#feature-requests">Feature Requests</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="specifiers.html">Requirement Specifiers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="specifiers.html#alias">Alias</a></li>
-<li class="toctree-l1"><a class="reference internal" href="specifiers.html#dependencies-file">Dependencies File</a></li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="specifiers.html">Requirement Specifiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="specifiers.html#alias">Alias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="specifiers.html#dependencies-file">Dependencies File</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -119,7 +121,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Future</li>
+    <li>Release Notes</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/releasenotes.txt" rel="nofollow"> View page source</a>
@@ -130,24 +132,18 @@
 </div>
           <div role="main">
             
-  <p><em>0.0.5</em></p>
-<p>expected: 2014-05-23</p>
-<ul class="simple">
-<li>fetch roles from within other repositories</li>
-<li>svn support</li>
-</ul>
-<p><em>0.0.4</em></p>
-<p>expected: 2014-05-18</p>
-<ul class="simple">
-<li>fetch/install roles from <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file</li>
-<li>mercurial support</li>
-</ul>
+  <div class="section" id="release-notes">
+<h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
 <p><em>0.0.3</em></p>
-<p>expected: 2014-05-16</p>
+<p>expected: 2014-05-18</p>
 <ul class="simple">
 <li>create <tt class="docutils literal"><span class="pre">freeze</span></tt> command to capture dependencies</li>
 <li><tt class="docutils literal"><span class="pre">remove</span></tt> (or <tt class="docutils literal"><span class="pre">uninstall</span></tt>?) to remove role</li>
 <li>add <tt class="docutils literal"><span class="pre">alias</span></tt> when linking library_roles -&gt; roles</li>
+<li>fetch/install roles from <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file</li>
+<li>mercurial support</li>
+<li>fetch roles from within other playbooks or &#8220;library&#8221; of roles</li>
+<li>svn support</li>
 </ul>
 <p><em>release 0.0.2</em></p>
 <p>released: 2014-05-08</p>
@@ -164,17 +160,27 @@
 <li>create <tt class="docutils literal"><span class="pre">install</span></tt> command &amp; fetching from ansible galaxy (no
 dependencies)</li>
 </ul>
-<div class="section" id="future">
-<h1>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="feature-requests">
+<h2>Feature Requests<a class="headerlink" href="#feature-requests" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>make library_roles read-only and provide a <tt class="docutils literal"><span class="pre">-e</span></tt> mechanism</li>
 <li>warn when upgrading a role that has been modified</li>
 </ul>
 </div>
+</div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="specifiers.html" class="btn btn-neutral float-right" title="Requirement Specifiers"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="commands.html" class="btn btn-neutral" title="Commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

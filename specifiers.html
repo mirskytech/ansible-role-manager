@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Requirement Specifiers &mdash; Ansible Role Manager 0.1alpha documentation</title>
+  <title>Specifiers &mdash; Ansible Role Manager 0.1alpha documentation</title>
   
 
   
@@ -53,7 +53,7 @@
 
   
     <link rel="top" title="Ansible Role Manager 0.1alpha documentation" href="index.html"/>
-        <link rel="prev" title="freeze" href="freeze.html"/> 
+        <link rel="prev" title="Release Notes" href="releasenotes.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -79,24 +79,24 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="init.html">init</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="init.html#usage"><strong>Usage</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="init.html#reference">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#init">init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#install">install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#uninstall">uninstall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#freeze">freeze</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">install</a></li>
-<li class="toctree-l1"><a class="reference internal" href="remove.html">remove</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update.html">update</a></li>
-<li class="toctree-l1"><a class="reference internal" href="freeze.html">freeze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releasenotes.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#feature-requests">Feature Requests</a></li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Requirement Specifiers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#alias">Alias</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#dependencies-file">Dependencies File</a></li>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Specifiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#alias">Alias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies-file">Dependencies File</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -120,7 +120,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Requirement Specifiers</li>
+    <li>Specifiers</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/specifiers.txt" rel="nofollow"> View page source</a>
@@ -131,10 +131,10 @@
 </div>
           <div role="main">
             
-  <div class="section" id="requirement-specifiers">
-<h1>Requirement Specifiers<a class="headerlink" href="#requirement-specifiers" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="specifiers">
+<h1>Specifiers<a class="headerlink" href="#specifiers" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
-<li>Install <cite>SomeRole</cite> by <cite>SomeOwner</cite> and its dependencies from <a href="#id1"><span class="problematic" id="id2">`Ansible Galaxy`_</span></a></li>
+<li>Install <cite>SomeRole</cite> by <cite>SomeOwner</cite> and its dependencies from <a class="reference external" href="https://galaxy.ansible.com/">Ansible Galaxy</a></li>
 </ol>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre>SomeOwner.SomeRole            # latest version
@@ -181,9 +181,8 @@ SomeOwner.SomeRole&gt;=1.0.4     # minimum version
 <li>Install <cite>SomeRole</cite> by <cite>SomeOwner</cite> from a subversion (svn) repository</li>
 </ol>
 <p><em>coming soon</em></p>
-</div>
 <div class="section" id="alias">
-<h1>Alias<a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h1>
+<h2>Alias<a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h2>
 <p>To change the role&#8217;s name for local reference</p>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install SomeOwner.SomeRoleName#alias=SomeName
@@ -192,13 +191,14 @@ SomeOwner.SomeRole&gt;=1.0.4     # minimum version
 </div></blockquote>
 </div>
 <div class="section" id="dependencies-file">
-<h1>Dependencies File<a class="headerlink" href="#dependencies-file" title="Permalink to this headline">¶</a></h1>
-<p>Install a list of requirements specified in a file.  See the <em class="xref std std-ref">Requirements files</em>.</p>
+<h2>Dependencies File<a class="headerlink" href="#dependencies-file" title="Permalink to this headline">¶</a></h2>
+<p>Install a list of requirements specified in a file.</p>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install -r requirements.txt
 </pre></div>
 </div>
 </div></blockquote>
+</div>
 </div>
 
 
@@ -208,7 +208,7 @@ SomeOwner.SomeRole&gt;=1.0.4     # minimum version
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="freeze.html" class="btn btn-neutral" title="freeze"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="releasenotes.html" class="btn btn-neutral" title="Release Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
