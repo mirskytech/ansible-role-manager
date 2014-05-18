@@ -1,4 +1,4 @@
-import os, shutil
+import os, shutil, re
 from . import Command
 from arm import LIBRARY_ROLE_PATH
 from arm.util import retrieve_role, retrieve_all_roles, get_playbook_root
@@ -27,7 +27,7 @@ class BaseCommand(Command):
             or use the `--no-dependencies` option.'''
             return 1
         
-        aliasRE = re.compile(u'^(?P<ident>.*?)(\#alias=(?P<alias>[a-zA-Z][a-zA-Z0-9\]+)}{0,1}')
+        aliasRE = re.compile(r'^(?P<ident>.+?)(\#alias\=(?P<alias>[a-zA-Z][a-zA-Z0-9]+?)){0,1}$')
         
         alias_match = aliasRE.match(argv.role)
         
@@ -35,11 +35,9 @@ class BaseCommand(Command):
             print "error : could not find format"
             return 1
         
-        role_ident = alias_match.groupdict()['ident']
-        print role_ident
-        print alias_match.groupdict()['alias']
+        alias = alias_match.groupdict().get('alias',None)
         
-        return 2
+        role_ident = alias_match.groupdict()['ident']
         
         roles = []
         if argv.no_dependencies:
@@ -48,12 +46,13 @@ class BaseCommand(Command):
         else:
             roles = retrieve_all_roles(role_ident)
         
-        for role in roles.itervalues():
+        def _install_and_link(role, alias=None):
             # #<alias name> or #alias=<alias name>
             # alias = name if not #alias but only applies to the first role
             # should assert that's the first in the role list)
             name = role.get_name()
-            alias = role.get_name()
+            if not alias:
+                alias = role.get_name()
 
             source_path = role.get_path()
             library_path = os.path.join(root,LIBRARY_ROLE_PATH, name)
@@ -80,7 +79,18 @@ class BaseCommand(Command):
                 os.path.relpath(os.path.join(LIBRARY_ROLE_PATH,name), 'roles/'),
                 os.path.join(root,'roles',os.path.basename(alias))
                 )
-            print "role '%s' installed succesfully" % (argv.role)
+        
+        roles = roles.values()
+        r = _install_and_link(roles[0], alias)
+        if r:
+            return r
+        
+        for role in roles[1:]:
+            r = _install_and_link(role)
+            if r:
+                return r
+            
+        print "role '%s' installed succesfully as '%s'" % (role_ident, alias)
         return 0
                 
         
