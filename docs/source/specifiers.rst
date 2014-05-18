@@ -1,8 +1,8 @@
-Requirement Specifiers
+Specifiers
 =============================
 
 
-1. Install `SomeRole` by `SomeOwner` and its dependencies from `Ansible Galaxy`_
+1. Install `SomeRole` by `SomeOwner` and its dependencies from `Ansible Galaxy <https://galaxy.ansible.com/>`_
 
   ::
 
@@ -63,7 +63,7 @@ Dependencies File
 ---------------------------
 
 
-Install a list of requirements specified in a file.  See the :ref:`Requirements files <Requirements Files>`.
+Install a list of requirements specified in a file.
 
   ::
 

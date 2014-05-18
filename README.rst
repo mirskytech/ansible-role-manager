@@ -22,7 +22,7 @@ Provides the following utilities:
 
 see `arm help` for all availble commands.
 
-Installation of ARM (Ansible Role Manager)
+Installation of Ansible Role Manager (ARM)
 ================================================
 
 Standard installation::
@@ -60,7 +60,6 @@ References
 Release Notes & Roadmap
 ===========================
 
-TBD
-
+http://mirskytech.github.io/ansible-role-manager/releasenotes.html
 
 
