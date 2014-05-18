@@ -27,6 +27,20 @@ class BaseCommand(Command):
             or use the `--no-dependencies` option.'''
             return 1
         
+        aliasRE = re.compile(u'^(?P<ident>.*?)(\#alias=(?P<alias>[a-zA-Z][a-zA-Z0-9\]+)}{0,1}')
+        
+        alias_match = aliasRE.match(argv.role)
+        
+        if not alias_match:
+            print "error : could not find format"
+            return 1
+        
+        role_ident = alias_match.groupdict()['ident']
+        print role_ident
+        print alias_match.groupdict()['alias']
+        
+        return 2
+        
         roles = []
         if argv.no_dependencies:
             role = retrieve_roll(roll_ident)
