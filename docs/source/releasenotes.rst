@@ -1,7 +1,8 @@
 Release Notes
 -------------------
 
-**0.3.0**
+0.3
+=================
 
 expected: 2014-05-18
 
@@ -14,7 +15,8 @@ expected: 2014-05-18
 -  svn support
 
 
-**release 0.2.0**
+0.2
+============
 
 released: 2014-05-08
 
@@ -22,7 +24,8 @@ released: 2014-05-08
 -  create ``help`` command (alias to -h)
 -  fetch dependencies
 
-**release 0.1.0**
+0.1
+=============
 
 released: 2014-04-29
 
