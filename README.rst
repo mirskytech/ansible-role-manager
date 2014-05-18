@@ -12,15 +12,15 @@ Description
 
 Provides the following utilities:
 
-- `init` Creates the Ansible recommended folder structure and initial core files for playbooks, roles and modules.
+- ``init`` Creates the Ansible recommended folder structure and initial core files for playbooks, roles and modules.
 
-- `install` Installs Ansible roles from Ansible Galaxy or located in any version control repository (git, mercurial and svn).
+- ``install`` Installs Ansible roles from Ansible Galaxy or located in any version control repository (git, mercurial and svn).
 
-- `uninstall` Remove dependencies from the playbook's library
+- ``uninstall`` Remove dependencies from the playbook's library
 
-- `freeze` Create list of installed dependencies for a playbook
+- ``freeze`` Create list of installed dependencies for a playbook
 
-see `arm help` for all availble commands.
+see ``arm help`` for all availble commands.
 
 Installation of Ansible Role Manager (ARM)
 ================================================
@@ -44,6 +44,7 @@ Dependencies
 
 - mercurial
 - git
+
 
 - ansible
 - requests
