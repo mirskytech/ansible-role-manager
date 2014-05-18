@@ -41,7 +41,9 @@ try:
     if not os.environ.get('ARCHFLAGS',False) \
        and ver_match \
        and LooseVersion('5.1') <= LooseVersion(ver_match.groupdict()['version']):
-        print "Warning : `pycrypto` on OSX with XCode 5.1 and above will not compile without ARCHFLAGS being set. see docs."
+        print "Warning :"
+        print "\t`pycrypto` on OSX with XCode 5.1 and above will not compile without ARCHFLAGS being set."
+        print "\tsee http://mirskytech.github.io/ansible-role-manager/installation.html"
 except OSError as e:
     # we're probably not running on OSX
     pass
