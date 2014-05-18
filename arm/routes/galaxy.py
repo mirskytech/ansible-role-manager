@@ -10,7 +10,7 @@ GALAXY_SERVER_DEFAULT = 'galaxy.ansible.com'
 
 class BaseRoute(Route):
     
-    owner__name = r'(?P<owner>[a-z]+?)\.(?P<name>[a-z]+?)$'
+    owner__name = r'(?P<owner>[a-zA-Z\-\_]+?)\.(?P<name>[a-z]+?)$'
     version = r'v(?P<version>[0-9]\.[0-9]\.[0-9])'
     
     patterns = ( 
@@ -35,14 +35,14 @@ class BaseRoute(Route):
         _url = 'https://%s/api/v1/roles/?owner__username=%s&name=%s' % (self.api_server,d['owner'],d['name'])
         r = requests.get(_url,verify=False)
         if r.status_code != 200:
-            raise RouteException('galaxy :: could not find %s.%s' % (d['owner'],d['name']) )
+            raise RouteException('galaxy could not find role `%s.%s`' % (d['owner'],d['name']) )
         
         data = r.json()
         
         if data['count'] > 1:
-            raise RouteException('galaxy :: too many results for %s.%s' %  (d['owner'],d['name']) )
+            raise RouteException('galaxy had too many results for %s.%s' %  (d['owner'],d['name']) )
         elif data['count'] < 1:
-            raise RouteException('galaxy :: could not find %s.%s' %  (d['owner'],d['name']) )
+            raise RouteException('galaxy could not find role `%s.%s`' %  (d['owner'],d['name']) )
         
         role_info = data['results'][0]
         

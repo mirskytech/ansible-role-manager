@@ -30,7 +30,7 @@ links = [
 
 # pycrypto is a dependency of ansible & git-python and has issues compiling on OSX with XCode 5.1 and above.
 # display warning. need to set this before running setup for ansible-role-manager
-# >> export ARCHFLAGS ='-Wno-error=unused-command-line-argument-hard-error-in-future'
+# >> export ARCHFLAGS='-Wno-error=unused-command-line-argument-hard-error-in-future'
 
 import subprocess
 try:
