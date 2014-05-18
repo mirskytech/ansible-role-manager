@@ -2,6 +2,7 @@ import sys
 import argparse
 import os
 from routes import RouteException
+from commands import CommandException
 
 def main():
     
@@ -26,12 +27,12 @@ def main():
     try:
         args.func(args)
     except RouteException as e:
-        print "Error :: %s" % e
+        print "Error (fetch) :: %s" % e
+        return 1
+    except CommandException as e:
+        print "Error (command) :: %s" % e
         return 1
     
-
-    
-    
-        
+    return 0
 
     

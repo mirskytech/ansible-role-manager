@@ -2,7 +2,7 @@ Specifiers
 =============================
 
 
-1. Install `SomeRole` by `SomeOwner` and its dependencies from `Ansible Galaxy <https://galaxy.ansible.com/>`_
+1. Install ``SomeRole`` by ``SomeOwner`` and its dependencies from `Ansible Galaxy <https://galaxy.ansible.com/>`_
 
   ::
 
@@ -11,9 +11,9 @@ Specifiers
 	SomeOwner.SomeRole,v1.0.4     # `ansible-galaxy` compatiblity
 	SomeOwner.SomeRole>=1.0.4     # minimum version
 
-For example: `arm install SomeOwner.SomeRole,v1.0.4`
+For example: ``arm install SomeOwner.SomeRole,v1.0.4``
 
-2. Install `SomeRole` by `SomeOwner` from a git repository
+2. Install ``SomeRole`` by ``SomeOwner`` from a git repository
 
 **using pip-like specifiers**
 
@@ -41,11 +41,11 @@ Any of the above can specify a tag, branch or commit by using `@` plus the tag, 
 	>> arm install git+git://git.myproject.org/MyProject.git@da39a3ee5e6b4b0d3255bfef95601890afd80709
 
 
-3. Install `SomeRole` by `SomeOwner` from a mercurial (hg) repository
+3. Install ``SomeRole`` by ``SomeOwner`` from a mercurial (hg) repository
 
 *coming soon*
 
-4. Install `SomeRole` by `SomeOwner` from a subversion (svn) repository
+4. Install ``SomeRole`` by ``SomeOwner`` from a subversion (svn) repository
 
 *coming soon*
 

@@ -1,5 +1,6 @@
 import os, shutil
 from git import Repo
+from .odict import odict
 
 def retrieve_role(identifier, dest=None):
     from routes import routes, RouteException
@@ -9,19 +10,27 @@ def retrieve_role(identifier, dest=None):
         pass
     raise RouteException('Could not determine access point for `%s`' % identifier)
     
-def retrieve_all_roles(identifier, needs={}):
+def retrieve_all_roles(identifier, alias=None, roles=odict()):
+    
+    if alias and alias in roles.keys():
+        raise Exception("two roles have the same alias of '%s'" % alias)
     
     role = retrieve_role(identifier)
     
-    needs.update( { role.get_name(): role } )
+    if not alias:
+        alias = role.get_name()
     
-    for need in role.get_dependencies():
+    if alias not in roles.keys():
+        roles.update( { alias:role } )  
+    
+    for role in role.get_dependencies():
 
-        if need in needs:
+        if role in roles.keys():
             continue
-        needs = retrieve_all_roles(identifier, needs)
         
-    return needs
+        roles = retrieve_all_roles(identifier, roles=roles )
+        
+    return roles
         
 
 
