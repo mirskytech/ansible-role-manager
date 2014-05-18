@@ -51,7 +51,7 @@ Any of the above can specify a tag, branch or commit by using `@` plus the tag, 
 
   
 Alias
-================================
+------------------------
 
 To change the role's name for local reference
 
@@ -60,7 +60,7 @@ To change the role's name for local reference
 	>> arm install SomeOwner.SomeRoleName#alias=SomeName
   
 Dependencies File
-================================
+---------------------------
 
 
 Install a list of requirements specified in a file.  See the :ref:`Requirements files <Requirements Files>`.

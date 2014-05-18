@@ -10,54 +10,32 @@ A tool for installing and managing Ansible roles, playbooks & modules.
 
 Follows `pip` and `git` design patterns. Inspiration from and compatibility with `ansible-galaxy`.
 
-Sections
+Documentation
 ----------------------------------
 
-* :ref:`intro-docs`
-* :ref:`command-docs`
+- :doc:`installation`
+- commands
+    - :doc:`init` 
+    - :doc:`install`
+    - :doc:`freeze`
+    - :doc:`uninstall`
+- :doc:`specifiers`
+- :doc:`releasenotes`
+    
 
+
+Reference
+----------------------------------
 
 .. toctree::
-
+    :maxdepth: 1
+    
     installation
     commands
+    releasenotes
     specifiers
-    
-
-.. _command-docs:
-
-Commands
-------------------
-
-.. toctree::
-    :maxdepth: 1
-
-    init
-    install
-    remove
-    update
-    freeze
-    
-Reference
-------------------
-
-.. toctree::
-    :maxdepth: 1
-    
-    specifiers
-
-
-Indices and tables
-==================
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-.. rubric:: Footnotes
-
-.. [#] http://www.pip-installer.org/en/latest/reference/pip_install.html#pip-install-examples
-.. [#] http://git-scm.com/docs/git-init
-.. [#] https://galaxy.ansible.com/intro
-.. [#] https://github.com/bcoe/librarian-ansible
 

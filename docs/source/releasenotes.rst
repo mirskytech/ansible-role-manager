@@ -1,3 +1,6 @@
+Release Notes
+-------------------
+
 *0.0.3*
 
 expected: 2014-05-18
@@ -28,8 +31,8 @@ released: 2014-04-29
 -  create ``install`` command & fetching from ansible galaxy (no
    dependencies)
 
-Future
-------
+Feature Requests
+================
 
 -  make library\_roles read-only and provide a ``-e`` mechanism
 -  warn when upgrading a role that has been modified
