@@ -7,12 +7,12 @@ Release Notes
 expected: 2014-05-18
 
 -  create ``freeze`` command to capture dependencies
--  ``remove`` (or ``uninstall``?) to remove role
+-  ``uninstall`` to remove role
 -  add ``alias`` when linking ``/library\_roles``  into ``/roles``
 -  fetch/install roles from ``requirements.txt`` file
 -  mercurial support
--  fetch roles from within other playbooks or "library" of roles
 -  svn support
+-  fetch roles from within other playbooks or "library" of roles
 
 
 0.2

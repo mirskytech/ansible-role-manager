@@ -1,5 +1,5 @@
 import re, os
-from . import Route
+from . import Route, ROUTE_REGEX
 from arm import Role
 from arm.util import fetch_git_repository
 from yaml import load, Loader
@@ -40,15 +40,15 @@ class BaseRoute(Route):
     patterns = [
 
         # pattern one
-        re.compile('git\:\/\/(%(user)s\@){0,1}%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % pieces),
+        re.compile('git\:\/\/(%(user)s\@){0,1}%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % ROUTE_REGEX),
         
         # patterns two & three
-        re.compile(r'^git\+(?P<protocol>http[s]{0,1}):\/\/%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % pieces),
-        re.compile(r'^git\+(?P<protocol>ssh)\:\/\/(%(user)s\@){0,1}%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % pieces),
+        re.compile(r'^git\+(?P<protocol>http[s]{0,1}):\/\/%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % ROUTE_REGEX),
+        re.compile(r'^git\+(?P<protocol>ssh)\:\/\/(%(user)s\@){0,1}%(fqdn)s\/%(owner)s\/%(repo)s%(tag)s' % ROUTE_REGEX),
         
         # patterns four & five
-        re.compile(r'^(?P<protocol>http[s]{0,1}):\/\/%(fqdn)s\/%(owner)s\/%(repo)s\.git%(tag)s' % pieces),        
-        re.compile(r'^(?P<protocol>ssh):\/\/(%(user)s\@){0,1}%(fqdn)s\:%(owner)s\/%(repo)s\.git%(tag)s' % pieces),
+        re.compile(r'^(?P<protocol>http[s]{0,1}):\/\/%(fqdn)s\/%(owner)s\/%(repo)s\.git%(tag)s' % ROUTE_REGEX),        
+        re.compile(r'^(?P<protocol>ssh):\/\/(%(user)s\@){0,1}%(fqdn)s\:%(owner)s\/%(repo)s\.git%(tag)s' % ROUTE_REGEX),
 
         ]
     

@@ -1,7 +1,13 @@
 import os
 
 
-
+ROUTE_REGEX =  {
+    'user':'(?P<user>[a-z][a-z\d\-]+?)',
+    'fqdn':'(?P<fqdn>([a-z][a-z\.\d\-]+)\.(?:[a-z][a-z\-]+)(?![\w\.]))',
+    'owner':'(?P<owner>[a-z][a-z\.\-]+)',
+    'repo':'(?P<repo>[a-z][a-z\-]+)',
+    'tag': '(\@(?P<tag>[a-z]+)){0,1}'
+}   
 
 class RouteException(Exception):
     pass
