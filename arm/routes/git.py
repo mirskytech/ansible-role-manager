@@ -61,7 +61,7 @@ class BaseRoute(Route):
     
     
     def fetch(self, identifier):
-        print "Fetching `%s` from git..." % identifier
+        print "\nFetching `%s` from git..." % identifier
         matches = [p.match(identifier).groupdict() for p in self.patterns if p.match(identifier)]
         
         # TODO : is it ok if there are multiple messages

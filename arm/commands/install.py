@@ -35,7 +35,7 @@ class BaseCommand(Command):
         roles = odict()
         
         if getattr(argv, 'requirements', ''):
-            for role_ident in open(argv.role,'r'):
+            for role_ident in open(argv.requirements,'r'):
                 roles = self._fetch(role_ident, argv.no_dependencies, roles)
         else:
             roles = self._fetch(argv.role, argv.no_dependencies, roles )
@@ -44,7 +44,7 @@ class BaseCommand(Command):
         for alias,role in roles.items():
             self._install_and_link(alias, role, getattr(argv, 'upgrade', False))
                    
-        print "role(s) '%s' installed succesfully" % (", ".join(roles.keys()))
+        print "\n\nrole(s) '%s' installed succesfully.\n" % (", ".join(roles.keys()))
         return 0
             
     
@@ -91,7 +91,7 @@ class BaseCommand(Command):
                     print "unlinking: %s" % link_path
                     os.unlink(link_path)
             else:
-                raise CommandException("existing version already installed in library, use --upgrade to install latest")
+                raise CommandException("'%s' already installed in library, use --upgrade to install latest" % role.get_name())
             
         shutil.copytree(source_path, library_path)
         

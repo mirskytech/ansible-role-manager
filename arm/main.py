@@ -27,11 +27,11 @@ def main():
     try:
         args.func(args)
     except RouteException as e:
-        print "Error (fetch) :: %s" % e
-        return 1
+        print "\nError (fetch) :: %s\n" % e
+        exit(1)
     except CommandException as e:
-        print "Error (command) :: %s" % e
-        return 1
+        print "\nError (command) :: %s\n" % e
+        exit(1)
     
     return 0
 

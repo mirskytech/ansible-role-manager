@@ -21,13 +21,22 @@ class BaseCommand(Command):
             _item = os.path.join(_roles_directory, _item)
             if not os.path.islink(_item):
                 continue
-                                    
+                              
+            # _item vs realpath(_item)
+            alias = None
+            if os.path.basename(_item) != os.path.basename(os.path.realpath(_item)):
+                alias = os.path.basename(_item)
+                
+            
             # if git
             if os.path.exists(os.path.join(os.path.realpath(_item),'.git')):
                 repo = Repo(os.path.realpath(_item))
                 origin = repo.remotes[0].config_reader.config.get('remote "origin"','url')
                 commit = repo.head.commit.hexsha
-                print "git+%s@%s" % (origin,commit)
+                if not alias:
+                    print "git+%s@%s" % (origin,commit)
+                    continue
+                print "git+%s@%s#alias=%s" % (origin,commit,alias)
                 
         
 
