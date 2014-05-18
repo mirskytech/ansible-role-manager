@@ -31,8 +31,8 @@ Reference
     
     installation
     commands
-    releasenotes
     specifiers
+    releasenotes
 
 * :ref:`genindex`
 * :ref:`modindex`
