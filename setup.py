@@ -4,6 +4,7 @@ import os, re
 from distutils.version import LooseVersion
 from distutils.core import setup
 from setuptools import find_packages
+from arm.prompt import query_true_false
 
 
 VERSIONFILE="arm/_version.py"
@@ -41,16 +42,19 @@ try:
     if not os.environ.get('ARCHFLAGS',False) \
        and ver_match \
        and LooseVersion('5.1') <= LooseVersion(ver_match.groupdict()['version']):
+        
         print "Warning :"
         print "\t`pycrypto` on OSX with XCode 5.1 and above will not compile without ARCHFLAGS being set."
         print "\tsee http://mirskytech.github.io/ansible-role-manager/installation.html"
+        if not query_true_false("Would you like to continue?", default='y'):
+            return 0
+
 except OSError as e:
     # we're probably not running on OSX
     pass
 
 with open('README.rst') as file:
     long_description = file.read()
-
 
 setup(name='ansible-role-manager',
       version=verstr,
