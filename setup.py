@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, re
+import os, re, sys
 from distutils.version import LooseVersion
 from distutils.core import setup
 from setuptools import find_packages
@@ -32,26 +32,26 @@ links = [
 # pycrypto is a dependency of ansible & git-python and has issues compiling on OSX with XCode 5.1 and above.
 # display warning. need to set this before running setup for ansible-role-manager
 # >> export ARCHFLAGS='-Wno-error=unused-command-line-argument-hard-error-in-future'
-
-import subprocess
-try:
-    p = subprocess.Popen(['xcodebuild','-version'], stdout=subprocess.PIPE)
-    out, err = p.communicate()
-    ver_re = re.compile('(?P<version>\d(.\d){0,2})')
-    ver_match = ver_re.search(out)
-    if not os.environ.get('ARCHFLAGS',False) \
-       and ver_match \
-       and LooseVersion('5.1') <= LooseVersion(ver_match.groupdict()['version']):
-        
-        print "Warning :"
-        print "\t`pycrypto` on OSX with XCode 5.1 and above will not compile without ARCHFLAGS being set."
-        print "\tsee http://mirskytech.github.io/ansible-role-manager/installation.html"
-        if not query_true_false("Would you like to continue?", default='y'):
-            return 0
-
-except OSError as e:
-    # we're probably not running on OSX
-    pass
+if 'install' in sys.argv:
+    import subprocess
+    try:
+        p = subprocess.Popen(['xcodebuild','-version'], stdout=subprocess.PIPE)
+        out, err = p.communicate()
+        ver_re = re.compile('(?P<version>\d(.\d){0,2})')
+        ver_match = ver_re.search(out)
+        if not os.environ.get('ARCHFLAGS',False) \
+           and ver_match \
+           and LooseVersion('5.1') <= LooseVersion(ver_match.groupdict()['version']):
+            
+            print "Warning :"
+            print "\t`pycrypto` on OSX with XCode 5.1 and above will not compile without ARCHFLAGS being set."
+            print "\tsee http://mirskytech.github.io/ansible-role-manager/installation.html"
+            if not query_true_false("Would you like to continue?", default='y'):
+                exit(0)
+    
+    except OSError as e:
+        # we're probably not running on OSX
+        pass
 
 with open('README.rst') as file:
     long_description = file.read()
