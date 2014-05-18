@@ -42,10 +42,14 @@ Manual installation::
 Dependencies
 ======================
 
+- mercurial
+- git
+
 - ansible
 - requests
 - gitpython (0.3.2.RC1)
 - colorama
+- hgapi
 
 
 References
