@@ -6,12 +6,9 @@
 Ansible Role Manager
 ======================================
 
-Manager to install, uninstall, update roles from Ansible Galaxy & git repositories.
+A tool for installing and managing Ansible roles, playbooks & modules.
 
-Uses design patterns from `pip` [#]_ and `git` [#]_.
-
-Inspiration from `ansible-galaxy` [#]_ and `librarian-ansible` [#]_.
-
+Follows `pip` and `git` design patterns. Inspiration from and compatibility with `ansible-galaxy`.
 
 Sections
 ----------------------------------
@@ -20,17 +17,12 @@ Sections
 * :ref:`command-docs`
 
 
-.. _intro-docs:
-
-Getting Started
----------------------
-
 .. toctree::
-    :maxdepth: 1
 
     installation
+    commands
+    specifiers
     
-
 
 .. _command-docs:
 

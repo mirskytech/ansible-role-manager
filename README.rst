@@ -27,7 +27,7 @@ Installation of ARM (Ansible Role Manager)
 
 Standard installation::
   
-    >> pip install arm
+    >> pip install ansible-role-manager
     
 Installation for development::
 

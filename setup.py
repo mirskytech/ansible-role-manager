@@ -50,7 +50,7 @@ with open('README.rst') as file:
     long_description = file.read()
 
 
-setup(name='arm',
+setup(name='ansible-role-manager',
       version=verstr,
       description='A tool for installing and managing Ansible roles, playbooks & modules.',
       author='Andrew Mirsky',
