@@ -138,15 +138,12 @@
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>0.3<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>expected: 2014-05-18</p>
+<p>released: 2014-05-18</p>
 <ul class="simple">
 <li>create <tt class="docutils literal"><span class="pre">freeze</span></tt> command to capture dependencies</li>
-<li><tt class="docutils literal"><span class="pre">remove</span></tt> (or <tt class="docutils literal"><span class="pre">uninstall</span></tt>?) to remove role</li>
-<li>add <tt class="docutils literal"><span class="pre">alias</span></tt> when linking library_roles -&gt; roles</li>
+<li><tt class="docutils literal"><span class="pre">uninstall</span></tt> to remove role</li>
+<li>add <tt class="docutils literal"><span class="pre">alias</span></tt> when linking <tt class="docutils literal"><span class="pre">/library\_roles</span></tt>  into <tt class="docutils literal"><span class="pre">/roles</span></tt></li>
 <li>fetch/install roles from <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file</li>
-<li>mercurial support</li>
-<li>fetch roles from within other playbooks or &#8220;library&#8221; of roles</li>
-<li>svn support</li>
 </ul>
 </div>
 <div class="section" id="id2">
@@ -173,7 +170,11 @@ dependencies)</li>
 <ul class="simple">
 <li>make library_roles read-only and provide a <tt class="docutils literal"><span class="pre">-e</span></tt> mechanism</li>
 <li>add <cite>upload</cite> command to add role into galaxy</li>
+<li>mercurial support (v 0.4) **</li>
+<li>svn support (v 0.4) **</li>
+<li>fetch roles from within other playbooks or &#8220;library&#8221; of roles</li>
 </ul>
+<p>** note : ansible galaxy meta format only supports git on github.com (specifically <tt class="docutils literal"><span class="pre">github_owner</span></tt> and <tt class="docutils literal"><span class="pre">github_repo</span></tt>)</p>
 </div>
 </div>
 
