@@ -1,7 +1,7 @@
 Release Notes
 -------------------
 
-*0.0.3*
+**0.3.0**
 
 expected: 2014-05-18
 
@@ -14,7 +14,7 @@ expected: 2014-05-18
 -  svn support
 
 
-*release 0.0.2*
+**release 0.2.0**
 
 released: 2014-05-08
 
@@ -22,7 +22,7 @@ released: 2014-05-08
 -  create ``help`` command (alias to -h)
 -  fetch dependencies
 
-*release 0.0.1*
+**release 0.1.0**
 
 released: 2014-04-29
 
@@ -35,4 +35,4 @@ Feature Requests
 ================
 
 -  make library\_roles read-only and provide a ``-e`` mechanism
--  warn when upgrading a role that has been modified
+-  add `upload` command to add role into galaxy
