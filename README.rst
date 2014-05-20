@@ -5,7 +5,8 @@ Development:
     https://github.com/mirskytech/ansible-role-manager
 Feature & issue tracking:
     https://github.com/mirskytech/ansible-role-manager/issues
-
+Package Index:
+    https://pypi.python.org/pypi/ansible-role-manager
 
 Description
 ======================
@@ -29,11 +30,11 @@ Standard installation::
   
     >> pip install ansible-role-manager
     
-Installation for development::
+or installation for development::
 
     >> pip install -e git+https://github.com/mirskytech/ansible-role-manager.git#egg=role-manager
     
-Manual installation::
+or manual installation::
 
     >> git clone https://github.com/mirskytech/ansible-role-manager.git
     >> python setup.py install
@@ -45,12 +46,12 @@ Dependencies
 - mercurial
 - git
 
-
-- ansible
-- requests
-- gitpython (0.3.2.RC1)
-- colorama
-- hgapi
+- python
+    - ansible
+    - requests
+    - gitpython (0.3.2.RC1)
+    - colorama
+    - hgapi
 
 
 References
