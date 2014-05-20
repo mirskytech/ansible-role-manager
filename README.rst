@@ -38,7 +38,13 @@ or manual installation::
 
     >> git clone https://github.com/mirskytech/ansible-role-manager.git
     >> python setup.py install
-  
+
+Get Started
+======================
+
+Create a well-structured playbooks:
+
+    >> arm init -p MyNewPlaybook
   
 Dependencies
 ======================
