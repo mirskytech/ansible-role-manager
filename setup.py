@@ -21,7 +21,9 @@ dependencies = [
     'requests',
     'gitpython==0.3.2.RC1',
     'semantic_version',
-    'colorama'
+    'colorama',
+    'mercurial',
+    'hgapi',
 ]
 
 links = [

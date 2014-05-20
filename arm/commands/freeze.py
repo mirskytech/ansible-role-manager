@@ -2,7 +2,8 @@ import os, shutil, sys
 from . import Command
 from arm.util import get_playbook_root
 import argparse
-from git import Repo
+from git import Repo as git_repo
+from hgapi import Repo as hg_repo
 
 class freeze(Command):
         
@@ -29,13 +30,25 @@ class freeze(Command):
             
             # if git
             if os.path.exists(os.path.join(os.path.realpath(_item),'.git')):
-                repo = Repo(os.path.realpath(_item))
+                repo = git_repo(os.path.realpath(_item))
                 origin = repo.remotes[0].config_reader.config.get('remote "origin"','url')
                 commit = repo.head.commit.hexsha
                 if not alias:
                     print "git+%s@%s" % (origin,commit)
                     continue
                 print "git+%s@%s#alias=%s" % (origin,commit,alias)
+            
+            # if mercurial
+            if os.path.exists(os.path.join(os.path.realpath(_item),'.hg')):
+                repo = hg_repo(os.path.realpath(_item))
+                
+                print repo
+                
+                if not alias:
+                    print "hg+%s@%s" % (origin,commit)
+                    continue
+                print "hg+%s@%s#alias=%s" % (origin,commit,alias)
+                
                 
         
 

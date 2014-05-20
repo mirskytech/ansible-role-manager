@@ -1,6 +1,15 @@
 Release Notes
 -------------------
 
+
+0.3.1
+=================
+
+released: 2014-05-19
+
+- updated comments & documentation
+
+
 0.3
 =================
 
