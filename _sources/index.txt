@@ -34,7 +34,8 @@ Reference
     specifiers
     releasenotes
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+
+* Source Code: https://github.com/mirskytech/ansible-role-manager/
+* Feature & Issue Tracking: https://github.com/mirskytech/ansible-role-manager/issues
+* Package Index: https://pypi.python.org/pypi/ansible-role-manager
 
