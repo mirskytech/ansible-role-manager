@@ -1,5 +1,6 @@
 import os
 from abc import ABCMeta, abstractmethod
+from arm.util import find_subclasses
 
 
 # ----------------------------------------------------------------------
@@ -19,12 +20,14 @@ class Route(object):
     
     Subclass is required to have the name ``BaseCommand``. TODO : replace with 
     '''    
-    
     __metaclass__ = ABCMeta
     
     def __init__(self):
         pass
     
+    @abstractmethod
+    def __unicode__(self):
+        return type(self.__class__)
 
     @abstractmethod
     def is_valid(self, identifier):
@@ -69,15 +72,18 @@ class Route(object):
            except TypeError: pass
 '''
     
-commands_dir = os.path.dirname(__file__)
+routes_dir = os.path.dirname(__file__)
 routes = []
 
-for module in os.listdir(commands_dir):
+for module in os.listdir(routes_dir):
     # skip this file and any other non-python file
     if module == '__init__.py' or module[-3:] != '.py':
         continue
     # import route module
     route_mod = __import__('arm.routes.%s' % module[:-3], locals(), globals(),['object'],-1)
     
-    # instantiate and append to ``routes`` list
-    routes.append(route_mod.BaseRoute())    
+    # search for all subclasses of ``arm.routes.Route``
+    for route_name,route_class in find_subclasses(route_mod, Route):
+        # instantiate and append to ``routes`` list
+        routes.append(route_class())
+        

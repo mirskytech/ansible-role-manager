@@ -1,4 +1,5 @@
 import os, shutil
+import inspect
 from git import Repo
 from .odict import odict
 
@@ -6,6 +7,8 @@ def retrieve_role(identifier, dest=None):
     from routes import routes, RouteException
     for route in routes:
         if route.is_valid(identifier):
+            print u"fetching `%s` from %s" % (identifier, route)
+            
             return route.fetch(identifier)
         pass
     raise RouteException('Could not determine access point for `%s`' % identifier)
@@ -65,3 +68,12 @@ def get_playbook_root(path):
     elif os.path.exists(os.path.join(path, 'roles')):
         return os.path.realpath(path)
     return get_playbook_root(os.path.join(os.path.abspath(path), os.pardir))
+
+def find_subclasses(module, clazz):
+
+    for name in dir(module):
+        o = getattr(module, name)
+        try:
+            if (o != clazz) and issubclass(o, clazz):
+                yield name, o
+        except TypeError: pass

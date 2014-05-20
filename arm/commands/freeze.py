@@ -4,14 +4,13 @@ from arm.util import get_playbook_root
 import argparse
 from git import Repo
 
-class BaseCommand(Command):
+class freeze(Command):
         
     help = "produces dependencies file for this playbook based on arm installed roles"    
     
     def __init__(self, parser):
         parser.description = self.help
         #parser.add_argument('command_name', nargs='?', help='name of command to get help')
-
         
     def run(self, argv):
         

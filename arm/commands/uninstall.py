@@ -6,15 +6,14 @@ from git import Repo
 from arm.prompt import query_true_false
 
 
-class BaseCommand(Command):
+class uninstall(Command):
         
     help = "remove a role from the library of dependencies"    
     
     def __init__(self, parser):
         parser.description = self.help
-        parser.add_argument('role', help='name of command to get help')
+        parser.add_argument('role', help='name of role to remove')
         parser.add_argument('-u','--unlink',action='store_true', help="remove link but leave in library")
-        
         
     def run(self, argv):
         

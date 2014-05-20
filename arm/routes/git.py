@@ -6,7 +6,7 @@ from yaml import load, Loader
 
 
 
-class BaseRoute(Route):
+class GitRoute(Route):
     
     pieces = {
         'user':'(?P<user>[a-z][a-z\d\-]+?)',
@@ -54,6 +54,9 @@ class BaseRoute(Route):
     
     def __init__(self):
         pass
+    
+    def __unicode__(self):
+        return "git"
     
     def is_valid(self, identifier):
         matches = [True for p in self.patterns if p.match(identifier)] 

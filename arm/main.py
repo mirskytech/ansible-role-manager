@@ -2,7 +2,8 @@ import sys
 import argparse
 import os
 from routes import RouteException
-from commands import CommandException
+from commands import Command, CommandException
+from util import find_subclasses
 
 # ----------------------------------------------------------------------
 
@@ -10,6 +11,8 @@ def main():
     '''
     Entry point function for the Ansible Role Manager.
     '''
+    
+    os.environ['COLUMNS'] = '100'
     
     # create command line argument parser and a sub-parser for the subcommands
     parser = argparse.ArgumentParser(prog=sys.argv[0])    
@@ -23,28 +26,21 @@ def main():
         if module == '__init__.py' or module[-3:] != '.py':
             continue
         
-        # command is named using its filename
-        command = module[:-3]
-        
-        cmd_mod = __import__('arm.commands.%s' % command, locals(), globals(),['object'],-1)
+        command_mod = __import__('arm.commands.%s' % module[:-3], locals(), globals(),['object'],-1)
 
         # add a subparser for each command
         '''
-        Assumes that each command defines a ``BaseCommand`` which inherits from ``arm.commands.Command``
-        TODO: allow arbitrary name for command as long as it inherits from ``arm.commands.Command``
-        def find_subclasses(module, clazz):
-            for name in dir(module):
-                o = getattr(module, name)
-                try:
-                    if (o != clazz) and issubclass(o, clazz):
-                        yield name, o
-                except TypeError: pass        
+        Assumes that each command defines a ``BaseCommand`` which inherits from ``arm.commands.Command``     
         '''
-        cmd_parser = subparsers.add_parser(command, help=cmd_mod.BaseCommand.help)
-        
-        # instantiate the command and provide its ``run`` method as the callback
-        cmd = cmd_mod.BaseCommand(cmd_parser)
-        cmd_parser.set_defaults(func=cmd.run)
+        # search for all subclasses of ``arm.commands.Command``
+        for command_name, command_class in find_subclasses(command_mod, Command):
+
+            # attch the command
+            command_parser = subparsers.add_parser(command_name, help=command_class.help)
+            
+            # instantiate the command and provide its ``run`` method as the callback
+            command = command_class(command_parser)
+            command_parser.set_defaults(func=command.run)
         
     # parse the command line arguments
     args = parser.parse_args(sys.argv[1:])

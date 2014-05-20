@@ -8,7 +8,7 @@ from arm.util import fetch_git_repository
 GALAXY_SERVER_DEFAULT = 'galaxy.ansible.com'
 
 
-class BaseRoute(Route):
+class GalaxyRoute(Route):
     
     owner__name = r'(?P<owner>[a-zA-Z][\w_.-]+)\.(?P<name>[a-zA-Z][\w_.-]+)'
     version = r'v(?P<version>[0-9]\.[0-9]\.[0-9])'
@@ -19,8 +19,12 @@ class BaseRoute(Route):
         )
     
     def __init__(self, api_server=GALAXY_SERVER_DEFAULT):
+        super(GalaxyRoute,self).__init__()
         self.api_server = api_server
-    
+        
+    def __unicode__(self):
+        return "Galaxy"
+        
     def is_valid(self, identifier):
         matches = [True for p in self.patterns if p.match(identifier)] 
         return len(matches) != 0

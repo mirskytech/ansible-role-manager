@@ -5,9 +5,9 @@ from arm.odict import odict
 from arm.util import retrieve_role, retrieve_all_roles, get_playbook_root
 
 
-class BaseCommand(Command):
+class install(Command):
         
-    help = "install playbook role"    
+    help = "install playbook role" 
     
     def __init__(self, parser):
         parser.description = self.help
@@ -15,12 +15,13 @@ class BaseCommand(Command):
         parser.add_argument('-n', '--no-dependencies', action='store_true')
         
         group = parser.add_mutually_exclusive_group(required=True)               
-        group.add_argument('-r', '--requirements')
-        group.add_argument('role', nargs='?')
+        group.add_argument('-r',  '--requirements', nargs=1, help="install from requirements file (see `arm help freeze`)")
+        group.add_argument('role', nargs='?', help="specifier of role to install locally")
 
         # TODO : add argument of where the role is to be installed
         # TODO : add argument of where the installed role should be linked
-        
+
+
     def run(self, argv):
         
         root = get_playbook_root(os.getcwd())

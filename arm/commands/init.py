@@ -3,7 +3,7 @@ import shutil
 from jinja2 import Environment, FileSystemLoader
 from . import Command, CommandException
 
-class BaseCommand(Command):
+class init(Command):
 
     help = "initialize directory structure & files"    
 
@@ -12,7 +12,7 @@ class BaseCommand(Command):
         group.add_argument('-p','--playbook', help="create the recommended structure for a playbook")
         group.add_argument('-r','--role', help="within a playbook, create directly & file structure for role")        
         group.add_argument('-m','--module', help="within a playbook, create the structure for a custom module")
-        
+    
     def run(self, argv):
 
         patterns = os.path.join(os.path.dirname(__file__),'init')

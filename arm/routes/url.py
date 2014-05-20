@@ -5,12 +5,15 @@ from . import Route
 
 
 
-class BaseRoute(Route):
+class URLRoute(Route):
     
     patterns = []
     
     def __init__(self):
         pass
+    
+    def __unicode__(self):
+        return 'tarball'
     
     def is_valid(self, identifier):
         matches = [True for p in self.patterns if p.match(identifier)] 
@@ -19,5 +22,4 @@ class BaseRoute(Route):
     
     def fetch(self, identifier):
         matches = [p.match(identifier).groupdict() for p in self.patterns if p.match(identifier)] 
-        print matches
-        print 'route to fetch from tarball'
+        raise RouteException('fetch from tarball not yet implemented')
