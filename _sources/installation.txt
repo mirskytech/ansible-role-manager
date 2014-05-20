@@ -12,7 +12,7 @@ or if you're interested in contributing, install the source:
 
 .. WARNING::
 
-    For those on MacOSX running Xcode5.1, there is a breaking change which turns a previous warning when compiling `pycrypto` 
+    For those on MacOSX running Xcode5.1, there is a breaking change which turns a previous warning when compiling ``pycrypto`` 
     into an error. To use the legacy behavior, set the environment variable::
 
     >> export ARCHFLAGS='-Wno-error=unused-command-line-argument-hard-error-in-future'

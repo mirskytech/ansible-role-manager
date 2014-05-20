@@ -94,9 +94,11 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#feature-requests">Feature Requests</a></li>
 </ul>
 </li>
@@ -137,7 +139,23 @@
   <div class="section" id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.3<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.4<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>release: TBD</p>
+<ul class="simple">
+<li>commands and routes are now found by looking for subclasses of arm.commands.Command and arm.routes.Route, respectively</li>
+<li>common dictionary of regular expressions for routes</li>
+<li>routes now need to define their name (__unicode__)</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>0.3.1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>released: 2014-05-19</p>
+<ul class="simple">
+<li>updated comments &amp; documentation</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>0.3<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>released: 2014-05-18</p>
 <ul class="simple">
 <li>create <tt class="docutils literal"><span class="pre">freeze</span></tt> command to capture dependencies</li>
@@ -146,8 +164,8 @@
 <li>fetch/install roles from <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file</li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2>0.2<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>0.2<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>released: 2014-05-08</p>
 <ul class="simple">
 <li>create fetch role from any git server</li>
@@ -155,8 +173,8 @@
 <li>fetch dependencies</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h2>0.1<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>0.1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>released: 2014-04-29</p>
 <ul class="simple">
 <li>framework for creating commands &amp; fetching rolls</li>

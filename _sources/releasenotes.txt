@@ -1,6 +1,25 @@
 Release Notes
 -------------------
 
+0.4
+==================
+
+release: TBD
+
+- commands and routes are now found by looking for subclasses of arm.commands.Command and arm.routes.Route, respectively
+- common dictionary of regular expressions for routes
+- routes now need to define their name (__unicode__)
+
+
+
+0.3.1
+=================
+
+released: 2014-05-19
+
+- updated comments & documentation
+
+
 0.3
 =================
 
