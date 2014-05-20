@@ -44,7 +44,7 @@ class BaseCommand(Command):
         for alias,role in roles.items():
             self._install_and_link(alias, role, getattr(argv, 'upgrade', False))
                    
-        print "\n\nrole(s) '%s' installed succesfully.\n" % (", ".join(roles.keys()))
+        print "\nrole(s) '%s' installed succesfully.\n" % (", ".join(roles.keys()))
         return 0
             
     
