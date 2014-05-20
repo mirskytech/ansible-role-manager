@@ -4,7 +4,6 @@ import os, re, sys
 from distutils.version import LooseVersion
 from distutils.core import setup
 from setuptools import find_packages
-from arm.prompt import query_true_false
 
 
 VERSIONFILE="arm/_version.py"
@@ -46,8 +45,6 @@ if 'install' in sys.argv:
             print "Warning :"
             print "\t`pycrypto` on OSX with XCode 5.1 and above will not compile without ARCHFLAGS being set."
             print "\tsee http://mirskytech.github.io/ansible-role-manager/installation.html"
-            if not query_true_false("Would you like to continue?", default='y'):
-                exit(0)
     
     except OSError as e:
         # we're probably not running on OSX
