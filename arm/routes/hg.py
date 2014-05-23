@@ -11,13 +11,17 @@ class MercurialRoute(Route):
     '''
     
     #### pip-style patterns
-    hg+http://git.myproject.org/MyProject
-    hg+ssh://git@myproject.org/MyProject
+    hg+http://hg.myproject.org/MyProject
+    hg+ssh://hg@myproject.org/MyProject
     
     #### all support
     @branch
     @commit (hexidecimal)
     @tag
+    
+    #### and
+    
+    #alias=myalias
 
     '''
 

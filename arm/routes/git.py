@@ -59,7 +59,7 @@ class GitRoute(Route):
         print "\nFetching `%s` from git..." % identifier
         matches = [p.match(identifier).groupdict() for p in self.patterns if p.match(identifier)]
         
-        # TODO : is it ok if there are multiple messages
+        # TODO : is it ok if there are multiple matches?
         info = matches[0]
         
         params = {

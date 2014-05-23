@@ -1,5 +1,5 @@
 import os
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta, abstractmethod, abstractproperty
 from arm.util import find_subclasses
 
 ROUTE_REGEX =  {
@@ -25,12 +25,37 @@ class Route(object):
     '''
     Abstract class which is used to implement the fetching of a role to local playbook.
     
-    Subclass is required to have the name ``BaseCommand``. TODO : replace with 
     '''    
     __metaclass__ = ABCMeta
+
+    @abstractproperty
+    def patterns(self):
+        pass
     
     def __init__(self):
         pass
+    
+    def _get_matched(identifier):
+        matches = [p.match(identifier).groupdict() for p in self.patterns if p.match(identifier)]
+        
+        info = matches[0]
+        
+        params = {
+            'server':info['fqdn'],
+            'owner':info['owner'],
+            'repo':info['repo'],
+        }
+        
+        if info.get('tag', None):
+            params['tag'] = info['tag']
+            
+        if info.get('user', None):
+            params['user'] = info['user']
+            
+        if info.get('protocol', None):
+            params['protocol'] = info['protocol']
+            
+        return params
     
     @abstractmethod
     def __unicode__(self):
@@ -47,7 +72,8 @@ class Route(object):
         Returns: bool
         
         '''
-        return False
+        matches = [True for p in self.patterns if p.match(identifier)] 
+        return len(matches) != 0        
     
     @abstractmethod
     def fetch(self, identifier):

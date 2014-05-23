@@ -67,6 +67,12 @@ class Role(object):
         for k,v in kwargs.iteritems():
             setattr(self, k, v)
             
+        meta_path = os.path.join(location, 'meta/main.yml')
+        if os.path.exists(meta_path):
+            meta_info = load(open(meta_path, 'r'), Loader=Loader)
+            meta_info.update({ 'github_user':self.owner,'github_repo':self.repo})
+                   
+            
     def get_name(self):
         '''
         Returns the named identifier of this role: <owner>.<repo name>
