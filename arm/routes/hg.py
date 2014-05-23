@@ -5,7 +5,7 @@ from arm import Role
 from arm.util import fetch_git_repository
 from yaml import load, Loader
 
-class BaseRoute(Route):
+class MercurialRoute(Route):
         
     '''
     
@@ -29,6 +29,9 @@ class BaseRoute(Route):
     
     def __init__(self):
         pass
+    
+    def __unicode__(self):
+        return "Mercurial"
     
     def is_valid(self, identifier):
         matches = [True for p in self.patterns if p.match(identifier)] 

@@ -8,14 +8,6 @@ from yaml import load, Loader
 
 class GitRoute(Route):
     
-    pieces = {
-        'user':'(?P<user>[a-z][a-z\d\-]+?)',
-        'fqdn':'(?P<fqdn>([a-z][a-z\.\d\-]+)\.(?:[a-z][a-z\-]+)(?![\w\.]))',
-        'owner':'(?P<owner>[a-z][a-z\.\-]+)',
-        'repo':'(?P<repo>[a-z][a-z\-]+)',
-        'tag': '(\@(?P<tag>[a-z]+)){0,1}'
-    }
-    
     '''
     #### pattern one
     git://git.myproject.org/MyProject
