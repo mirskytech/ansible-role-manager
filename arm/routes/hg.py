@@ -2,7 +2,8 @@ import re, os
 import hgapi
 from . import Route, ROUTE_REGEX
 from arm import Role
-from arm.util import fetch_git_repository
+from arm.util import get_playbook_root
+from arm.util import fetch_hg_repository
 from yaml import load, Loader
 
 class MercurialRoute(Route):
@@ -45,7 +46,6 @@ class MercurialRoute(Route):
         info = matches[0]
         
         params = {
-            'root':get_playbook_root(os.getcwd()),
             'server':info['fqdn'],
             'owner':info['owner'],
             'repo':info['repo'],
@@ -59,11 +59,8 @@ class MercurialRoute(Route):
             
         if info.get('protocol', None):
             params['protocol'] = info['protocol']
-            
-        _source = "%s://%s/%s/%s" % (protocol, server, owner, repo)
-        _destination = '%(root)s/.cache/%(repo)s' % params
     
-        repo = hgapi.hg_clone(_source, _destination)
+        location = fetch_hg_repository(**params)
         
         meta_path = os.path.join(location, 'meta/main.yml')
         if os.path.exists(meta_path):

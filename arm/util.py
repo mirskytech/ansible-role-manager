@@ -2,6 +2,7 @@ import os, shutil
 import inspect
 from git import Repo
 from .odict import odict
+import hgapi
 
 def retrieve_role(identifier, dest=None):
     from routes import routes, RouteException
@@ -56,6 +57,27 @@ def fetch_git_repository(server, owner, repo, user=None, tag=None, protocol='htt
     if tag:
         repo.git.checkout(tag)
 
+    return _destination
+
+
+"""
+   fetch a repository from mercurial
+"""
+def fetch_hg_repository(server, owner, repo, user=None, tag=None, protocol='https'):
+
+    _destination = '%s/.cache/%s' % (get_playbook_root(os.getcwd()), repo)
+
+    if os.path.exists(_destination):
+        shutil.rmtree(_destination)
+    _url = "%s://%s/%s/%s" % (protocol, server, owner, repo)
+    if user:
+        _url = "%s://%s@%s/%s/%s" % (protocol, user, server, owner, repo)        
+        
+    hgapi.hg_clone(_url,_destination)
+    
+    if tag:
+        raise NotImplementedError()
+    
     return _destination
 
 
