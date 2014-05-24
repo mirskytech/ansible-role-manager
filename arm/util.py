@@ -55,66 +55,6 @@ def split_alias_identifier(identifier):
     alias_info = alias_match.groupdict()
     return alias_info['identifier'], alias_info['alias']
 
-"""
-        Description:
-            fetch a git repository into playbook cache                
-"""
-
-def fetch_git_repository(server, owner, repo, user=None, tag=None, protocol='https'):
-    
-    _destination = '%s/.cache/%s' % (get_playbook_root(os.getcwd()), repo)
-    if os.path.exists(_destination):
-        shutil.rmtree(_destination)
-    _url = "%s://%s/%s/%s.git" % (protocol, server, owner, repo)
-    if user:
-        _url = "%s://%s@%s/%s/%s.git" % (protocol, user, server, owner, repo)        
-        
-    repo = Repo.clone_from(_url, _destination)
-    
-    if tag:
-        repo.git.checkout(tag)
-
-    return _destination
-
-
-"""
-   fetch a repository from mercurial
-"""
-def fetch_hg_repository(server, owner, repo, user=None, tag=None, protocol='https'):
-
-    _destination = '%s/.cache/%s' % (get_playbook_root(os.getcwd()), repo)
-
-    if os.path.exists(_destination):
-        shutil.rmtree(_destination)
-    _url = "%s://%s/%s/%s" % (protocol, server, owner, repo)
-    if user:
-        _url = "%s://%s@%s/%s/%s" % (protocol, user, server, owner, repo)        
-        
-    hgapi.hg_clone(_url,_destination)
-    
-    if tag:
-        raise NotImplementedError()
-    
-    return _destination
-
-"""
-   fetch a repository from subversion
-"""
-def fetch_svn_repository(url, uid):
-
-    root = get_playbook_root()
-
-    _destination = os.path.join(root, '.cache', uid)
-    if os.path.exists(_destination):
-        shutil.rmtree(_destination)
-        
-    svn = Subversion(url)   
-    svn.obtain(_destination)
-    raise Exception
-
-
-
-
 def get_playbook_root(path=None):
     
     if not path:
