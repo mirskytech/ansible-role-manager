@@ -37,28 +37,7 @@ class Route(object):
     @abstractmethod
     def _uid(self):
         return None
-    
-    def _get_matched(self,identifier):
-        matches = [p.match(identifier).groupdict() for p in self.patterns if p.match(identifier)]
         
-        info = matches[0]
-        
-        params = {
-            'server':info['fqdn'],
-            'uid':self._uid(info)
-        }
-        
-        if info.get('tag', None):
-            params['tag'] = info['tag']
-            
-        if info.get('user', None):
-            params['user'] = info['user']
-            
-        if info.get('protocol', None):
-            params['protocol'] = info['protocol']
-            
-        return params
-    
     @abstractmethod
     def __unicode__(self):
         return None
@@ -105,24 +84,19 @@ class VCSRoute(Route):
         return bool(pattern_match.match(identifier))
 
     def fetch(self, identifier):
-        
+
         _repo = self.vcs(identifier)
         _uid = self._uid(identifier)
         _destination = os.path.join(get_playbook_root(), '.cache', self._uid(identifier))
         if os.path.exists(_destination):
             shutil.rmtree(_destination)
-        
+        print _destination
         try:
             _repo.obtain(_destination)
         except InstallationError as e:
             raise RouteException("could not retrieve '%s' " % identifier)
-                
+                        
         return Role(_destination,uid=_uid)
-
-
-
-
-
 
 # ----------------------------------------------------------------------
 
