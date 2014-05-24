@@ -13,7 +13,10 @@ class URLRoute(Route):
         pass
     
     def __unicode__(self):
-        return 'tarball'
+        return None
+    
+    def _uid(self):
+        return None
     
     def is_valid(self, identifier):
         matches = [True for p in self.patterns if p.match(identifier)] 

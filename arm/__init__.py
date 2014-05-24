@@ -1,4 +1,5 @@
-import logging
+import logging,os
+from yaml import load, Loader
 
 # ----------------------------------------------------------------------
 
@@ -67,16 +68,19 @@ class Role(object):
         for k,v in kwargs.iteritems():
             setattr(self, k, v)
             
-        meta_path = os.path.join(location, 'meta/main.yml')
+        meta_path = os.path.join(self.local_store, 'meta/main.yml')
         if os.path.exists(meta_path):
             meta_info = load(open(meta_path, 'r'), Loader=Loader)
-            meta_info.update({ 'github_user':self.owner,'github_repo':self.repo})
+            for k,v in meta_info.iteritems():
+                setattr(self, k, v)
                    
             
     def get_name(self):
         '''
         Returns the named identifier of this role: <owner>.<repo name>
         '''
+        if hasattr(self,'uid'):
+            return getattr(self,'uid')
         if hasattr(self, 'github_user') and hasattr(self, 'github_repo'):
             return "%s.%s" % (getattr(self, 'github_user'), getattr(self, 'github_repo'))
         raise RoleException('Role does not have unique name')

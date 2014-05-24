@@ -50,6 +50,9 @@ class GitRoute(Route):
     def __unicode__(self):
         return "git"
     
+    def _uid(self, info):
+        return "%s.%s" % (info['owner'],info['repo'])
+    
     def is_valid(self, identifier):
         matches = [True for p in self.patterns if p.match(identifier)] 
         return len(matches) != 0

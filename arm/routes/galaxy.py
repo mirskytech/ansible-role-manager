@@ -22,6 +22,9 @@ class GalaxyRoute(Route):
         super(GalaxyRoute,self).__init__()
         self.api_server = api_server
         
+    def _uid(self, info):
+        return "%s.%s" % (info['owner'],info['repo'])             
+        
     def __unicode__(self):
         return "Galaxy"
         

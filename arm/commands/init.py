@@ -90,7 +90,8 @@ class init(Command):
         )
 
 
-        if os.path.exists(_destination) or os.path.exists(links[index]):
+        if os.path.exists(_destination) or \
+           (links[index] and os.path.exists(links[index])):
             raise CommandException("%s '%s' already exists." % (_name[index],os.path.basename(_destination)))
         _install_template('')
         if links[index]:

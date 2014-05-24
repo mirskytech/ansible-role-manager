@@ -3,6 +3,8 @@ import inspect
 from git import Repo
 from .odict import odict
 import hgapi
+from pip.vcs.subversion import Subversion
+
 
 def retrieve_role(identifier, dest=None):
     from routes import routes, RouteException
@@ -80,8 +82,28 @@ def fetch_hg_repository(server, owner, repo, user=None, tag=None, protocol='http
     
     return _destination
 
+"""
+   fetch a repository from subversion
+"""
+def fetch_svn_repository(url, uid):
 
-def get_playbook_root(path):
+    root = get_playbook_root()
+
+    _destination = os.path.join(root, '.cache', uid)
+    if os.path.exists(_destination):
+        shutil.rmtree(_destination)
+        
+    svn = Subversion(url)   
+    svn.obtain(_destination)
+    raise Exception
+
+
+
+
+def get_playbook_root(path=None):
+    
+    if not path:
+        path = os.getcwd()
 
     if os.path.realpath(path) == '/':
         return False

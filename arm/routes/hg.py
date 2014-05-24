@@ -41,7 +41,9 @@ class MercurialRoute(Route):
     def is_valid(self, identifier):
         matches = [True for p in self.patterns if p.match(identifier)] 
         return len(matches) != 0
-    
+
+    def _uid(self, info):
+        return "%s.%s" % (info['owner'],info['repo'])
     
     def fetch(self, identifier):
         print "\nFetching `%s` from mercurial..." % identifier

@@ -7,7 +7,8 @@ ROUTE_REGEX =  {
     'fqdn':'(?P<fqdn>([a-z][a-z\.\d\-]+)\.(?:[a-z][a-z\-]+)(?![\w\.]))',
     'owner':'(?P<owner>[a-z][a-z\.\-]+)',
     'repo':'(?P<repo>[a-z][a-z\-]+)',
-    'tag': '(\@(?P<tag>[a-z]+)){0,1}'
+    'tag': '(\@(?P<tag>[a-z]+)){0,1}',
+    'path':'(\/(?P<path>[\w.-_]+))*'
 }   
 
 # ----------------------------------------------------------------------
@@ -30,20 +31,27 @@ class Route(object):
 
     @abstractproperty
     def patterns(self):
-        pass
+        return []
+    
+    @abstractproperty
+    def vcs(self):
+        return None
     
     def __init__(self):
         pass
     
-    def _get_matched(identifier):
+    @abstractmethod
+    def _uid(self):
+        return None
+    
+    def _get_matched(self,identifier):
         matches = [p.match(identifier).groupdict() for p in self.patterns if p.match(identifier)]
         
         info = matches[0]
         
         params = {
             'server':info['fqdn'],
-            'owner':info['owner'],
-            'repo':info['repo'],
+            'uid':self._uid(info)
         }
         
         if info.get('tag', None):
@@ -59,7 +67,7 @@ class Route(object):
     
     @abstractmethod
     def __unicode__(self):
-        return type(self.__class__)
+        return None
 
     @abstractmethod
     def is_valid(self, identifier):
@@ -86,7 +94,15 @@ class Route(object):
         Returns: arm.Role with location of fetched role and meta information from ``meta/main.yml``
         
         '''
-        return False
+        _repo = self.vcs(identifier)
+        _uid = self._uid(identifier)
+        _destination = os.path.join(get_playbook_root(), '.cache', self._uid(identifier))
+        if os.path.exists(_destination):
+            shutil.rmtree(_destination)
+            
+        _repo.obtain(_destination)
+                
+        return Role(_destination,uid=_uid)
 
 # ----------------------------------------------------------------------
 
