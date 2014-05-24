@@ -8,7 +8,7 @@ ROUTE_REGEX =  {
     'user':'(?P<user>[a-z][a-z\d\-]+?)',
     'fqdn':'(?P<fqdn>([a-z][a-z\.\d\-]+)\.(?:[a-z][a-z\-]+)(?![\w\.]))',
     'owner':'(?P<owner>[a-z][a-z\.\-]+)',
-    'repo':'(?P<repo>[a-z][a-z\-]+)',
+    'repo':'(?P<repo>[a-z][\w\-_]+)',
     'tag': '(\@(?P<tag>[a-z]+)){0,1}',
     'path':'(\/(?P<path>[\w.-_]+))*'
 }   
@@ -80,7 +80,6 @@ class VCSRoute(Route):
 
     def is_valid(self, identifier):
         pattern_match = re.compile('^(%s)' % "|".join(self.vcs.schemes))
-        print pattern_match.pattern
         return bool(pattern_match.match(identifier))
 
     def fetch(self, identifier):
@@ -90,7 +89,6 @@ class VCSRoute(Route):
         _destination = os.path.join(get_playbook_root(), '.cache', self._uid(identifier))
         if os.path.exists(_destination):
             shutil.rmtree(_destination)
-        print _destination
         try:
             _repo.obtain(_destination)
         except InstallationError as e:

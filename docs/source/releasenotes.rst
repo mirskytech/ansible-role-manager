@@ -4,15 +4,25 @@ Release Notes
 0.4
 ==================
 
-release: TBD
+release: 2014-05-28
 
-- commands and routes are now found by looking for subclasses of arm.commands.Command and arm.routes.Route, respectively
+- commands and routes are now found by looking for subclasses
+of arm.commands.Command and arm.routes.Route, respectively
 - common dictionary of regular expressions for routes
-- routes now need to define their name (__unicode__)
+- convert Route base class into abstract
+- switched git route to use pip's functions
+- add support of mercurial, subversion and bazaar
+- fixed bug in gathering dependencies of a role
 
 
+test cases :
 
-0.3.1
+- dependency is already installed. eg arm install blah#alias=s3fs or is local
+
+- dependency uses arm syntax
+
+
+0.3.1 & 0.3.2
 =================
 
 released: 2014-05-19

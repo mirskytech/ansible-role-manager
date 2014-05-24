@@ -1,4 +1,4 @@
-import os, shutil
+import os, shutil, re
 import inspect
 from git import Repo
 from .odict import odict
@@ -34,11 +34,26 @@ def retrieve_all_roles(identifier, alias=None, roles=odict()):
         if role in roles.keys():
             continue
         
-        roles = retrieve_all_roles(role, roles=roles )
+        opts = {}
+        # dependency might have a '#alias='
+        identifier, alias = split_alias_identifier(role)
+        if alias:
+            opts = {'alias':alias}
+        
+        roles = retrieve_all_roles(role, roles=roles, **opts)
         
     return roles
-        
 
+
+def split_alias_identifier(identifier):
+    aliasRE = re.compile(r'^(?P<identifier>.+?)\#alias\=(?P<alias>[a-zA-Z][a-zA-Z0-9]+?)$')
+    
+    alias_match = aliasRE.match(identifier)
+    
+    if not alias_match:    
+        return alias_match.groupdict()['identifier'], None
+    alias_info = alias_match.groupdict()
+    return alias_info['identifier'], alias_info['alias']
 
 """
         Description:

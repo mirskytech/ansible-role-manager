@@ -63,12 +63,15 @@ class install(Command):
         alias = alias_match.groupdict().get('alias',None)
                 
         if no_dependencies:
-            role = retrieve_roll(roll_ident, alias, roles)
+            
+            role = retrieve_role(role_ident)
 
             if alias:
-                return roles.update( { alias:role } )
+                roles.update( { alias:role } )
+                return roles
             
-            return roles.update( { role.get_name():role } )
+            roles.update( { role.get_name():role } )
+            return roles
 
         return retrieve_all_roles(role_ident, alias, roles)
 

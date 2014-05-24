@@ -1,4 +1,4 @@
-import logging,os
+import logging, os, re
 from yaml import load, Loader
 
 # ----------------------------------------------------------------------
@@ -106,6 +106,18 @@ class Role(object):
         for dependency in getattr(self, 'dependencies',[]):
             if type(dependency) == str:
                 needs.append(dependency)
+            elif type(dependency) == dict and 'src' in dependency:
+                alias_re = re.compile('^(?P<source>.+)\#alias=(?P<alias>\w+)$')
+                alias_m = alias_re.search(dependency['src'])
+                if alias_m:
+                    if alias_m.groupdict()['alias'] != dependency['role']:
+                        print "Warning : '%s' has a dependency where alias doesn't match role: %s vs. %s" % (self.get_name(), dependency['role'], alias_m.groupdict()['alias'])
+                else:                    
+                    dependency['src'] += "#alias=%s" % (dependency['role'])
+
+                needs.append(dependency['src'])
+                
+                
             elif type(dependency) == dict and 'role' in dependency:
                 needs.append(dependency['role'])
             else:

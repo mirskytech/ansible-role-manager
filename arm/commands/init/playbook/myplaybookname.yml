@@ -1,0 +1,13 @@
+---
+## file: myplaybook.yml
+
+## usage: ansible-playbook -i <inventory file> myplaybook.yml
+
+# - hosts: production1
+#  roles:
+#    - roleA
+#    - roleB
+#  tasks:
+#    - name: taskA
+#      file: path=~/helloworld.txt state=touch
+    
