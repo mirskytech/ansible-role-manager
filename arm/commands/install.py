@@ -80,6 +80,10 @@ class install(Command):
         source_path = role.get_path()
         library_path = os.path.join(root, LIBRARY_ROLE_PATH, role.get_name())
         link_path = os.path.join(root, 'roles', alias)
+        
+        # if the library path is also the role, local role dependency
+        if os.path.realpath(link) == os.path.realpath(library_path):
+            return
     
         if os.path.exists(library_path):
         
