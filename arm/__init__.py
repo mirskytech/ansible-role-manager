@@ -104,10 +104,12 @@ class Role(object):
 
         # check to make sure that each dependency is formatted corrected - ie. a string
         for dependency in getattr(self, 'dependencies',[]):
-            if type(dependency) != str:
+            if type(dependency) == str:
+                needs.append(dependency)
+            elif type(dependency) == dict and 'role' in dependency:
+                needs.append(dependency['role'])
+            else:
                 print "Warning : '%s' has improperly defined dependencies." % self.get_name()
-                continue
-            needs.append(dependency)
         return needs
 
 # ----------------------------------------------------------------------

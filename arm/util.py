@@ -34,7 +34,7 @@ def retrieve_all_roles(identifier, alias=None, roles=odict()):
         if role in roles.keys():
             continue
         
-        roles = retrieve_all_roles(identifier, roles=roles )
+        roles = retrieve_all_roles(role, roles=roles )
         
     return roles
         
@@ -118,6 +118,6 @@ def find_subclasses(module, clazz):
     for name in dir(module):
         o = getattr(module, name)
         try:
-            if (o != clazz) and issubclass(o, clazz):
+            if (o != clazz) and issubclass(o, clazz) and not inspect.isabstract(o):
                 yield name, o
         except TypeError: pass

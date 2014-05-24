@@ -1,6 +1,8 @@
-import os
+import os, shutil, re
 from abc import ABCMeta, abstractmethod, abstractproperty
-from arm.util import find_subclasses
+from arm.util import find_subclasses, get_playbook_root
+from arm import Role
+from pip.exceptions import InstallationError
 
 ROUTE_REGEX =  {
     'user':'(?P<user>[a-z][a-z\d\-]+?)',
@@ -28,14 +30,6 @@ class Route(object):
     
     '''    
     __metaclass__ = ABCMeta
-
-    @abstractproperty
-    def patterns(self):
-        return []
-    
-    @abstractproperty
-    def vcs(self):
-        return None
     
     def __init__(self):
         pass
@@ -80,8 +74,7 @@ class Route(object):
         Returns: bool
         
         '''
-        matches = [True for p in self.patterns if p.match(identifier)] 
-        return len(matches) != 0        
+        return False
     
     @abstractmethod
     def fetch(self, identifier):
@@ -93,16 +86,43 @@ class Route(object):
             
         Returns: arm.Role with location of fetched role and meta information from ``meta/main.yml``
         
-        '''
+        '''   
+        return None
+
+# ----------------------------------------------------------------------
+
+class VCSRoute(Route):
+
+    __metaclass__ = ABCMeta
+
+    @abstractproperty
+    def vcs(self):
+        return None
+
+    def is_valid(self, identifier):
+        pattern_match = re.compile('^(%s)' % "|".join(self.vcs.schemes))
+        print pattern_match.pattern
+        return bool(pattern_match.match(identifier))
+
+    def fetch(self, identifier):
+        
         _repo = self.vcs(identifier)
         _uid = self._uid(identifier)
         _destination = os.path.join(get_playbook_root(), '.cache', self._uid(identifier))
         if os.path.exists(_destination):
             shutil.rmtree(_destination)
-            
-        _repo.obtain(_destination)
+        
+        try:
+            _repo.obtain(_destination)
+        except InstallationError as e:
+            raise RouteException("could not retrieve '%s' " % identifier)
                 
         return Role(_destination,uid=_uid)
+
+
+
+
+
 
 # ----------------------------------------------------------------------
 

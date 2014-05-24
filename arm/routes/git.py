@@ -1,12 +1,11 @@
 import re, os
-from . import Route, ROUTE_REGEX
-from arm import Role
-from arm.util import fetch_git_repository
-from yaml import load, Loader
+from . import VCSRoute, ROUTE_REGEX
+from pip.vcs.git import Git
 
 
 
-class GitRoute(Route):
+
+class GitRoute(VCSRoute):
     
     '''
     #### pattern one
@@ -28,7 +27,6 @@ class GitRoute(Route):
 
     '''
 
-
     patterns = [
 
         # pattern one
@@ -44,61 +42,19 @@ class GitRoute(Route):
 
         ]
     
-    def __init__(self):
-        pass
+    vcs = Git
     
     def __unicode__(self):
         return "git"
     
-    def _uid(self, info):
-        return "%s.%s" % (info['owner'],info['repo'])
-    
-    def is_valid(self, identifier):
-        matches = [True for p in self.patterns if p.match(identifier)] 
-        return len(matches) != 0
-    
-    
-    def fetch(self, identifier):
-        print "\nFetching `%s` from git..." % identifier
-        matches = [p.match(identifier).groupdict() for p in self.patterns if p.match(identifier)]
+    def _uid(self, identifier):
+        pattern_re = re.compile('%(fqdn)s\/%(owner)s\/%(repo)s' % ROUTE_REGEX)
+        pattern_match = pattern_re.search(identifier)
+        pattern_info = pattern_match.groupdict()
         
-        # TODO : is it ok if there are multiple matches?
-        info = matches[0]
-        
-        params = {
-            'server':info['fqdn'],
-            'owner':info['owner'],
-            'repo':info['repo'],
-        }
-        
-        if info.get('tag', None):
-            params['tag'] = info['tag']
-            
-        if info.get('user', None):
-            params['user'] = info['user']
-            
-        if info.get('protocol', None):
-            params['protocol'] = info['protocol']
-        
-        location = fetch_git_repository(**params)
-        meta_path = os.path.join(location, 'meta/main.yml')
-        if os.path.exists(meta_path):
-            meta_info = load(open(meta_path, 'r'), Loader=Loader)
-            meta_info.update({ 'github_user':info['owner'],'github_repo':info['repo']})
 
-            # TODO : could support version in this format:
-            # http://git.myproject.org/MyProject.git==0.2 
-            # would fail if the retrieved role doesn't line up. but could be useful if >= or <=
-            #_check_version(d.get('version', None), role_info.get('versions',None))
-            
-            return Role(location, **meta_info)
-        
-        print "WARNING : The role '%s' does not have a meta/main.yml. Role attributes & dependencies not available."
-        return Role(location,{
-            'github_user':info['owner'],
-            'github_repo':info['repo']
-        })
-            
+        return "%s.%s" % (pattern_info['owner'],pattern_info['repo'])
+
             
         
         
