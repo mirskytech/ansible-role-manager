@@ -2,6 +2,7 @@ import os, shutil, sys
 from . import Command
 from arm.util import get_playbook_root, find_subclasses
 import argparse
+from arm.conf import settings
 
 # ----------------------------------------------------------------------
 
@@ -15,6 +16,9 @@ class help(Command):
         #parser.add_argument('command_name', nargs='?', help='name of command to get help')
         
     def run(self, argv):
+        
+        
+        print "SETTINGS: %s" % settings.paths__role_install
         
         commands_dir = os.path.dirname(__file__)
         parser = argparse.ArgumentParser(prog=sys.argv[0])    

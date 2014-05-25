@@ -124,8 +124,5 @@ class Role(object):
                 print "Warning : '%s' has improperly defined dependencies." % self.get_name()
         return needs
 
-# ----------------------------------------------------------------------
 
-# Playbook subdirectory which stores the role dependencies
-# TODO : should be an option, which can be set in the ``.arm`` configuration file or on the cmd line
-LIBRARY_ROLE_PATH = 'library_roles/'
+        

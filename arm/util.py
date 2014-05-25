@@ -76,3 +76,25 @@ def find_subclasses(module, clazz):
             if (o != clazz) and issubclass(o, clazz) and not inspect.isabstract(o):
                 yield name, o
         except TypeError: pass
+
+
+"""
+        Description:
+            fetch a git repository into playbook cache                
+"""
+
+def fetch_git_repository(server, owner, repo, user=None, tag=None, protocol='https'):
+    
+    _destination = '%s/.cache/%s' % (get_playbook_root(os.getcwd()), repo)
+    if os.path.exists(_destination):
+        shutil.rmtree(_destination)
+    _url = "%s://%s/%s/%s.git" % (protocol, server, owner, repo)
+    if user:
+        _url = "%s://%s@%s/%s/%s.git" % (protocol, user, server, owner, repo)        
+        
+    repo = Repo.clone_from(_url, _destination)
+    
+    if tag:
+        repo.git.checkout(tag)
+
+    return _destination

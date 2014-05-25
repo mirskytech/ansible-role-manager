@@ -1,6 +1,6 @@
 import os, shutil, re
 from . import Command, CommandException
-from arm import LIBRARY_ROLE_PATH
+from arm.conf import settings
 from arm.odict import odict
 from arm.util import retrieve_role, retrieve_all_roles, get_playbook_root
 
@@ -81,7 +81,7 @@ class install(Command):
         root = get_playbook_root(os.getcwd())
         
         source_path = role.get_path()
-        library_path = os.path.join(root, LIBRARY_ROLE_PATH, role.get_name())
+        library_path = os.path.join(root, setting.role_install, role.get_name())
         link_path = os.path.join(root, 'roles', alias)
         
         # if the library path is also the role, local role dependency

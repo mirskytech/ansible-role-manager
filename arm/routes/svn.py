@@ -1,6 +1,5 @@
 import re, os, shutil
 from . import VCSRoute, ROUTE_REGEX
-from arm.util import find_subclasses, fetch_svn_repository, get_playbook_root
 from pip.vcs.subversion import Subversion
 from arm import Role
 

@@ -1,0 +1,110 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# (c) <year>, <author name> <author email>
+#
+# Ansible is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Ansible is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
+
+DOCUMENTATION = '''
+---
+module: {{ name }}
+short_description: <short description>
+description:
+  - <full description>
+version_added: <ansible version>
+author: <name>
+options:
+  <option name>:
+    description:
+      - <option description>
+    required: <true|false>
+    default: <default value>
+    version_added: <optional>
+    choices: [ '<optional choice>', '<optional choice>']
+  .
+  .
+  .
+'''
+
+EXAMPLES = """
+# Set the federation parameter 'local_username' to a value of 'guest' (in quotes)
+- {{ name }}: <option name>=<option value>
+                      name=local-username
+                      value='"guest"'
+                      state=present
+"""
+
+# -----------------------------------
+# Module instantiation
+
+
+def main():
+    
+    # module arguments
+    module_args = dict(
+       # state     = dict(default='<default>', choices=['<optional choice 1>', '<optional choice 2>']),
+       # name      = dict(required=True),
+       # enabled   = dict(required=True, choices=BOOLEANS),
+       # something = dict(aliases=['whatever'])       
+    )
+    
+    # module instantiation
+    
+    module = AnsibleModule(
+        argument_spec = module_args,
+        supports_check_mode=True,
+    )
+
+    # module variables
+    state = module.params['state']
+    name = module.params['name']
+    enabled = module.params['enabled']
+    something = module.params['something']
+
+
+    # -----------------------------------
+    # Module checkmode
+    
+    if module.check_mode:
+        # Check if any changes would be made by don't actually make those changes
+        module.exit_json(changed=check_if_system_state_would_be_changed())
+
+    # ----------------------------------
+    # Module returns
+    
+    module_returns = {
+        "changed" : True,
+        "rc" : 5,
+        "ansible_facts" : {
+            "<fact name 1>" : '<fact 1>',
+            "<fact name 2>" : {
+                "<fact 2>" : "<fact 2>",
+                "<fact 2>" : "<fact 2>"
+            }
+        }
+    }
+    
+    if module_succeeds:
+        module.exit_json(**module_returns)
+    else:    
+        module.fail_json(msg="Something fatal happened")    
+
+
+    
+    
+    
+from ansible.module_utils.basic import *
+# all utilities can be found in :
+# https://github.com/ansible/ansible/tree/devel/lib/ansible/module_utils
+main()

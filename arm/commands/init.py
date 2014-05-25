@@ -3,6 +3,7 @@ import shutil
 from jinja2 import Environment, FileSystemLoader
 from . import Command, CommandException
 from arm.util import get_playbook_root
+from arm.conf import settings
 
 class init(Command):
 
@@ -40,7 +41,7 @@ class init(Command):
         
         destinations = (
             os.path.join(current, playbook), None,
-            os.path.join(root, 'roles', role), os.path.join(root, 'library_roles', role),
+            os.path.join(root, 'roles', role), os.path.join(root, settings.INSTALL_ROLE_PATH, role),
             os.path.join(root, 'modules', module), os.path.join(root, 'library_modules', module)
         )
 
