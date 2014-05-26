@@ -1,6 +1,4 @@
-import sys
-import argparse
-import os
+import sys, argparse, os
 from routes import RouteException
 from commands import Command, CommandException
 from util import find_subclasses
