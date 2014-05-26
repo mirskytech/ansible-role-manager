@@ -13,7 +13,7 @@ class Command(object):
     '''
     Abstract class which is used to implement the execution of an ``arm`` command.
     
-    Currently, subclass is required to have the name ``BaseCommand``.
+    Name of subclass is used as command name. ``help`` property should be set to describe this command.
     '''    
     
     __metaclass__ = ABCMeta    
