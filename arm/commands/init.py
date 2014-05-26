@@ -40,15 +40,18 @@ class init(Command):
         )
         
         destinations = (
-            os.path.join(current, playbook), None,
-            os.path.join(root, 'roles', role), os.path.join(root, settings.INSTALL_ROLE_PATH, role),
-            os.path.join(root, 'modules', module), os.path.join(root, 'library_modules', module)
+            os.path.join(current, playbook),
+            None,
+            os.path.join(root, settings.paths.roles, role),
+            os.path.join(root, settings.paths.installed_roles, role),
+            os.path.join(root, settings.paths.modules, module),
+            os.path.join(root, settings.paths.installed_modules, module)
         )
 
         links = (
             None, None,
-            None, os.path.join(root, 'roles', role),
-            None, os.path.join(root, 'modules', module)
+            None, os.path.join(root, settings.paths.roles, role),
+            None, os.path.join(root, settings.paths.modules, module)
         )
         
         def _eval(item,value): return bool(item) * value

@@ -1,5 +1,6 @@
 .cache
 .arm
-library_roles
+.installed_roles
+.installed_modules
 
 *.pyc

@@ -104,7 +104,7 @@ class install(Command):
         shutil.copytree(source_path, library_path)
         
         os.symlink(
-            os.path.relpath(os.path.join(LIBRARY_ROLE_PATH,role.get_name()), 'roles/'),
+            os.path.relpath(os.path.join(settings.paths.role_install, role.get_name()), 'roles/'),
             os.path.join(root,'roles',os.path.basename(alias))
             )
         

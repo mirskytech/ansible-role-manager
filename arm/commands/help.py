@@ -17,9 +17,6 @@ class help(Command):
         
     def run(self, argv):
         
-        
-        print "SETTINGS: %s" % settings.paths__role_install
-        
         commands_dir = os.path.dirname(__file__)
         parser = argparse.ArgumentParser(prog=sys.argv[0])    
         subparsers = parser.add_subparsers()
