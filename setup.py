@@ -22,7 +22,6 @@ dependencies = [
     'gitpython==0.3.2.RC1',
     'semantic_version',
     'colorama',
-    'mercurial',
     'hgapi',
 ]
 

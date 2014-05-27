@@ -2,9 +2,7 @@ import os, shutil, re
 import inspect
 from git import Repo
 from .odict import odict
-import hgapi
 from pip.vcs.subversion import Subversion
-
 
 def retrieve_role(identifier, dest=None):
     from routes import routes, RouteException

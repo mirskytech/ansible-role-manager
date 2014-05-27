@@ -8,6 +8,7 @@ release: TBD
 
 - specify module dependencies, eg { module: mycustommodule, src:http://github.... }
 - add hg/svn/bzr support into ``freeze`` command
+- uninstall needs to handle module removal
 
 0.4
 ==================
