@@ -12,7 +12,7 @@ class BaseRoute(Route):
         'user':'(?P<user>[a-z][a-z\d\-]+?)',
         'fqdn':'(?P<fqdn>([a-z][a-z\.\d\-]+)\.(?:[a-z][a-z\-]+)(?![\w\.]))',
         'owner':'(?P<owner>[a-z][a-z\.\-]+)',
-        'repo':'(?P<repo>[a-z][a-z\-]+)',
+        'repo':'(?P<repo>[a-z][a-z\-_]+)',
         'tag': '(\@(?P<tag>[a-z]+)){0,1}'
     }
     
