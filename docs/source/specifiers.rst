@@ -1,6 +1,7 @@
 Specifiers
 =============================
 
+Refer to :ref:`alias` for more information on local naming of installed roles.
 
 1. Install ``SomeRole`` by ``SomeOwner`` and its dependencies from `Ansible Galaxy <https://galaxy.ansible.com/>`_
 
@@ -22,41 +23,54 @@ currently supported forms for cloning are ``git``, ``git+https`` and ``git+ssh``
 	>> git+ssh://git@git.myproject.org/SomeOwner/SomeRole
 	>> git+git@git.myproject.org:SomeOwner/SomeRole
   
-see :ref:`tagbranchcommit` and :ref:`alias` for additional options
-
 3. Install ``SomeRole`` by ``SomeOwner`` from a mercurial (hg) repository
 
 currently supported forms for cloning are ``hg+http``, ``hg+https``, ``hg+static-http`` and ``hg+ssh``::
 
-	>> arm install hg+http://hg.myproject.org/MyProject
-	>> arm install hg+https://hg.myproject.org/MyProject
-	>> arm install hg+ssh://hg.myproject.org/MyProject
+	>> arm install hg+http://hg.myproject.org/SomeRole
+	>> arm install hg+https://hg.myproject.org/SomeRole
+	>> arm install hg+ssh://hg.myproject.org/SomeRole
+	
+specify a revision number, a revision hash, a tag name or a local branch name using ``@``::
 
-see :ref:`tagbranchcommit` and :ref:`alias` for additional options
-
+    >> arm install hg+http://hg.myproject.org/SomeRole@da39a3ee5e6b
+    >> arm install hg+http://hg.myproject.org/SomeRole@2019
+    >> arm install hg+http://hg.myproject.org/SomeRole@v1.0
+    >> arm install hg+http://hg.myproject.org/SomeRole@special_feature
 
 4. Install ``SomeRole`` by ``SomeOwner`` from a subversion (svn) repository
 
-*coming soon*
+currently supported forms for checkout are ``svn``, ``svn+svn``, ``svn+http``, ``svn+https``, ``svn+ssh``.
 
-4. Install ``SomeRole`` by ``SomeOwner`` from a subversion (svn) repository
+    >> arm install svn+svn://svn.myproject.org/svn/SomeRole
+    >> arm install svn+http://svn.myproject.org/svn/SomeRole/trunk
+	
+You can also give specific revisions to an SVN URL, like so::
 
-.. tagbranchcommit
+	>> arm install svn+svn://svn.myproject.org/svn/SomeRole/branch/mybranch@{20080101}
+	>> arm install svn+http://svn.myproject.org/svn/SomeRole/trunk@2019
+	
+which checks out revison from 2008-01-01 or revision 2019, spectively
+	
+5. Install ``SomeRole`` by ``SomeOwner`` from a bazaar (bzr) repository
 
-Tag, Branch or Commit (git and hg only)
--------------------------------------------
+currently supported forms for checkout are ``bzr+http``, ``bzr+https``, ``bzr+ssh``,
+``bzr+sftp``, ``bzr+ftp`` and ``bzr+lp``::
 
-Git and Mercurial use the same syntax for specifying a tag, branch or commit by using `@` plus the tag, branch or commit identifier.
+    >> arm install bzr+http://bzr.myproject.org/SomeRole/trunk
+    >> arm install bzr+sftp://user@myproject.org/SomeRole/trunk
+    >> arm install bzr+ssh://user@myproject.org/SomeRole/trunk
+    >> arm install bzr+ftp://user@myproject.org/SomeRole/trunk
+    >> arm install bzr+lp:SomeRole
+	
+tags or revisions can be installed using ``@``::
 
-  ::
-      
-	>> arm install git+git://git.myproject.org/MyProject.git@master
-	>> arm install git+git://git.myproject.org/MyProject.git@v1.0
-	>> arm install git+git://git.myproject.org/MyProject.git@da39a3ee5e6b4b0d3255bfef95601890afd80709
+    >> arm install bzr+https://bzr.myproject.org/SomeRole/trunk@2019 
+    >> arm install bzr+http://bzr.myproject.org/SomeRole/trunk@v1.0
 
-.. alias
+.. _alias:
   
-Alias (all)
+Alias
 ------------------------
 
 To change the role's name for local reference. Works with all forms above::

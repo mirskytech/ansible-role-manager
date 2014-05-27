@@ -4,8 +4,10 @@ Release Notes
 0.5
 ==================
 
+release: TBD
+
 - specify module dependencies, eg { module: mycustommodule, src:http://github.... }
-- 
+- add hg/svn/bzr support into ``freeze`` command
 
 0.4
 ==================

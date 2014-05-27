@@ -17,7 +17,7 @@ class install(Command):
         
         group = parser.add_mutually_exclusive_group(required=True)               
         group.add_argument('-r',  '--requirements', nargs=1, help="install from requirements file (see `arm help freeze`)")
-        group.add_argument('role', nargs='?', help="specifier of role to install locally")
+        group.add_argument('role_or_module', nargs='?', help="specifier of role or module to install locally")
 
         # TODO : add argument of where the role is to be installed
         # TODO : add argument of where the installed role should be linked
@@ -40,7 +40,7 @@ class install(Command):
             for role_ident in open(argv.requirements,'r'):
                 roles = self._fetch(role_ident, argv.no_dependencies, roles)
         else:
-            roles = self._fetch(argv.role, argv.no_dependencies, roles )
+            roles = self._fetch(argv.role_or_module, argv.no_dependencies, roles )
         
         print "Roles to install: %s" % roles
             

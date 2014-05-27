@@ -71,15 +71,17 @@ class Settings(dict):
     config_default = os.path.join(os.path.dirname(__file__),'defaults.ini')
 
     
-    config_files = [
-        os.path.join(get_playbook_root(), '.arm'),
-        os.path.realpath('~/.arm'),
-    ]    
-    
     def __init__(self):
-        
+
+        self.config_files = []
+        if get_playbook_root():
+            self.config_files.append(os.path.join(get_playbook_root(), '.arm'))
+        self.config_files.append(os.path.realpath('~/.arm'))
+
         self.config_parser.readfp(open(self.config_default))        
         self.config_parser.read(self.config_files)
+        
+        
                 
     def get(self, item, default=None):
         if hasattr(self, item):

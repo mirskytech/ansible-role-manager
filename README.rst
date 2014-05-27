@@ -50,9 +50,13 @@ Install a role from Ansible Galaxy::
 
     >> arm install github_owner.github_repo
     
-Install a role from an arbitrary git repository::
+Install a role from an arbitrary git repository and name it locally as ``myrolename``::
 
     >> arm install git+ssh://github.com/github_owner/github_repo.git
+    
+or install with changing the locally installed name to ``myrolename``::
+
+    >> arm install git+ssh://github.com/github_owner/github_repo.git#alias=myrolename
   
 Dependencies
 ======================
