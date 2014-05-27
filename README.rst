@@ -52,7 +52,7 @@ Install a role from Ansible Galaxy::
     
 Install a role from an arbitrary git repository::
 
-    >> arm install git+ssh://github.com/github_owner.github_repo.git
+    >> arm install git+ssh://github.com/github_owner/github_repo.git
   
 Dependencies
 ======================
