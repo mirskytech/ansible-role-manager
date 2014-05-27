@@ -15,24 +15,38 @@ For example: ``arm install SomeOwner.SomeRole,v1.0.4``
 
 2. Install ``SomeRole`` by ``SomeOwner`` from a git repository
 
-**using pip-like specifiers**
-
-  ::
+currently supported forms for cloning are ``git``, ``git+https`` and ``git+ssh``::
 
 	>> git://git.myproject.org/SomeOwner/SomeRole
 	>> git+https://git.myproject.org/SomeOwner/SomeRole
 	>> git+ssh://git@git.myproject.org/SomeOwner/SomeRole
 	>> git+git@git.myproject.org:SomeOwner/SomeRole
-
-**using git-like specifiers**
-
-  ::
-
-	>> arm install git@github.com:Owner/MyProject.git
-	>> arm install https://github.com/Owner/MyProject.git
-	>> arm install ssh://git@github.com/Owner/MyProject.git
   
-Any of the above can specify a tag, branch or commit by using `@` plus the tag, branch or commit identifier.
+see :ref:`tagbranchcommit` and :ref:`alias` for additional options
+
+3. Install ``SomeRole`` by ``SomeOwner`` from a mercurial (hg) repository
+
+currently supported forms for cloning are ``hg+http``, ``hg+https``, ``hg+static-http`` and ``hg+ssh``::
+
+	>> arm install hg+http://hg.myproject.org/MyProject
+	>> arm install hg+https://hg.myproject.org/MyProject
+	>> arm install hg+ssh://hg.myproject.org/MyProject
+
+see :ref:`tagbranchcommit` and :ref:`alias` for additional options
+
+
+4. Install ``SomeRole`` by ``SomeOwner`` from a subversion (svn) repository
+
+*coming soon*
+
+4. Install ``SomeRole`` by ``SomeOwner`` from a subversion (svn) repository
+
+.. tagbranchcommit
+
+Tag, Branch or Commit (git and hg only)
+-------------------------------------------
+
+Git and Mercurial use the same syntax for specifying a tag, branch or commit by using `@` plus the tag, branch or commit identifier.
 
   ::
       
@@ -40,22 +54,13 @@ Any of the above can specify a tag, branch or commit by using `@` plus the tag, 
 	>> arm install git+git://git.myproject.org/MyProject.git@v1.0
 	>> arm install git+git://git.myproject.org/MyProject.git@da39a3ee5e6b4b0d3255bfef95601890afd80709
 
-
-3. Install ``SomeRole`` by ``SomeOwner`` from a mercurial (hg) repository
-
-*coming soon*
-
-4. Install ``SomeRole`` by ``SomeOwner`` from a subversion (svn) repository
-
-*coming soon*
-
+.. alias
   
-Alias
+Alias (all)
 ------------------------
 
-To change the role's name for local reference
+To change the role's name for local reference. Works with all forms above::
 
-  ::
 
 	>> arm install SomeOwner.SomeRoleName#alias=SomeName
   

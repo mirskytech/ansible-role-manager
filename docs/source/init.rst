@@ -64,8 +64,11 @@ Roles
 Module
 ---------------------
 
-*coming soon*
+    ::
 
+      library/<MODULE>/
+          firstmodulecommand      # python scripts without ``.py``
+          secondmodulecommand
 
 
 Reference
