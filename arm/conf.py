@@ -5,6 +5,7 @@
 
 import os, itertools
 import ConfigParser
+from util import get_playbook_root
 
 class SettingsError(Exception):
     pass
@@ -71,6 +72,7 @@ class Settings(dict):
 
     
     config_files = [
+        os.path.join(get_playbook_root(), '.arm'),
         os.path.realpath('~/.arm'),
     ]    
     

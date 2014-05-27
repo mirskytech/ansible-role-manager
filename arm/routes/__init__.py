@@ -1,7 +1,7 @@
 import os, shutil, re
 from abc import ABCMeta, abstractmethod, abstractproperty
 from arm.util import find_subclasses, get_playbook_root
-from arm import Role
+from arm import Role, Module
 from pip.exceptions import InstallationError
 
 ROUTE_REGEX =  {
@@ -93,8 +93,32 @@ class VCSRoute(Route):
             _repo.obtain(_destination)
         except InstallationError as e:
             raise RouteException("could not retrieve '%s' " % identifier)
-                        
-        return Role(_destination,uid=_uid)
+
+        playbook_tests = ('roles', '.arm', 'group_vars', 'host_vars',)
+        role_tests = ('tasks', 'meta', 'files', 'handlers')
+        
+        def _test_fetched(tests):
+            return len([True for test in tests if os.path.exists(os.path.join(_destination, test))]) > 0
+        
+        is_playbook = _test_fetched(playbook_tests)
+        is_role = _test_fetched(role_tests)
+        
+        if is_role:
+            return Role(_destination, uid=_uid)
+        elif is_playbook:
+            return Playbook(_destination, uid=_uid)
+        else:
+            return Module(_destination, uid=_uid)
+        
+        
+        #if is_role and type(pod) != Role:
+            #print "Warning: potential install of module or playbook as role"
+        #if is_playbook and type(pod) != Playbook:
+            #print "Warning: potential install of module or role as playbook"
+        #if not is_playbook and not is_role and type(pod) != Module:
+            #print "Warning: potential install of role or playbook as module"
+
+        return pod(_destination, uid=_uid)
 
 # ----------------------------------------------------------------------
 

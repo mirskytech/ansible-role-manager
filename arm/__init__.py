@@ -1,5 +1,7 @@
+
 import logging, os, re
 from yaml import load, Loader
+from abc import ABCMeta, abstractmethod, abstractproperty
 
 # ----------------------------------------------------------------------
 
@@ -49,9 +51,30 @@ class RoleException(Exception):
     '''
     pass
 
+class IsModuleException(Exception):
+    pass
+
+
+class AnsibleObject(object):
+    
+    __metaclass__ = ABCMeta
+    
+    def __init__(self, local_store, uid, *args, **kwargs):
+        self.local_store = local_store
+        self.uid = uid
+        
+    def get_name(self):
+        return self.uid
+    
+    def get_dependencies(self):
+        return []
+    
+    def get_path(self):
+        return self.local_store
+
 
 # ----------------------------------------------------------------------
-class Role(object):
+class Role(AnsibleObject):
     '''
     Container object for an Ansible Role which holds meta information about the role
     '''    
@@ -125,4 +148,9 @@ class Role(object):
         return needs
 
 
+class Module(AnsibleObject):
+    pass
+    
+class Playbook(AnsibleObject):
+    pass
         
