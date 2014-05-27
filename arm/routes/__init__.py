@@ -4,6 +4,8 @@ from arm.util import find_subclasses, get_playbook_root
 from arm import Role, Module
 from pip.exceptions import InstallationError
 
+# TODO : these should be case-insensitive (or search/match should ignore case)
+
 ROUTE_REGEX =  {
     'user':'(?P<user>[a-z][a-z\d\-]+?)',
     'fqdn':'(?P<fqdn>([a-z][a-z\.\d\-]+)\.(?:[a-z][a-z\-]+)(?![\w\.]))',

@@ -42,17 +42,17 @@ or manual installation::
 Get Started
 ======================
 
-Create a well-structured playbooks (directory structure, initial files):
+Create a well-structured playbooks (directory structure, initial files)::
 
     >> arm init -p MyNewPlaybook
     
-Install a role from Ansible Galaxy:
+Install a role from Ansible Galaxy::
 
     >> arm install github_owner.github_repo
     
-Install a role from an arbitrary git repository:
+Install a role from an arbitrary git repository::
 
-    >> arm install git+ssh://github.com/github_owner.github_repo.git
+    >> arm install git+ssh://github.com/github_owner/github_repo.git
   
 Dependencies
 ======================
