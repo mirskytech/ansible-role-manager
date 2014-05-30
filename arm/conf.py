@@ -85,7 +85,6 @@ class Settings(dict):
                 
     def get(self, item, default=None):
         if hasattr(self, item):
-            print item
             return self.__getattr__(item)
         return default
         
