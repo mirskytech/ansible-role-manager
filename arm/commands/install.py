@@ -36,7 +36,7 @@ class install(Command):
         roles = odict()
         
         if getattr(argv, 'requirements', ''):
-            for role_ident in open(argv.requirements,'r'):
+            for role_ident in open(argv.requirements[0],'r'):
                 roles = self._fetch(role_ident, argv.no_deps, roles)
         else:
             roles = self._fetch(argv.role_or_module, argv.no_deps, roles )

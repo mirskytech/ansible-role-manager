@@ -8,7 +8,6 @@ release: TBD
 
 - specify module dependencies, eg { module: mycustommodule, src:http://github.... }
 - add hg/svn/bzr support into ``freeze`` command
-- uninstall needs to handle module removal
 
 0.4
 ==================
@@ -26,7 +25,7 @@ release: 2014-05-28
 - provided mechanism to install custom module (install auto determines role vs. module and installs in the correct location)
 - updated playbook template
 - handle multiple dependency formats (list of strings or list of dictionaries).
-- 'src' parameter now required for non-local dependencies, for
+- 'src' parameter now required for non-local, non-galaxy role dependencies
 
   example ``- { role:mycustomrole, src:git+http://github.com/myname/myrole.git }``
 
@@ -38,6 +37,7 @@ test cases :
 
 - dependency is already installed. eg arm install blah#alias=s3fs or is local
 - dependency uses arm syntax
+
 
 
 0.3.1 & 0.3.2
