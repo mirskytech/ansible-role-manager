@@ -93,11 +93,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="releasenotes.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id1">0.4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id2">0.3.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id3">0.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id4">0.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id5">0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id1">0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id2">0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id3">0.3.1 &amp; 0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id4">0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id5">0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id6">0.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releasenotes.html#feature-requests">Feature Requests</a></li>
 </ul>
 </li>
@@ -138,21 +139,88 @@
   <div class="section" id="install">
 <h1>install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>usage: arm install [-h] [-U] [-n] role
+<div><div class="highlight-python"><div class="highlight"><pre>usage: /Users/andrew/env/arm/bin/arm install [-h] [-U] [-n] (-r REQUIREMENTS | role_or_module)
 
 install playbook role
 
 positional arguments:
-  role                  specifier of the role to install
+  role_or_module        specifier of role or module to install locally
 
 optional arguments:
   -h, --help            show this help message and exit
   -U, --upgrade
   -n, --no-dependencies
+  -r REQUIREMENTS, --requirements REQUIREMENTS    install from requirements file
 </pre></div>
 </div>
 </div></blockquote>
 <p>For specifier syntax, see <a class="reference internal" href="specifiers.html"><em>Specifiers</em></a>.</p>
+<div class="section" id="depedency-installation">
+<h2>depedency installation<a class="headerlink" href="#depedency-installation" title="Permalink to this headline">¶</a></h2>
+<p>The Ansible Role Manager uses the information contained with a role&#8217;s <tt class="docutils literal"><span class="pre">meta/main.yml</span></tt>. If there are no
+dependencies, it will be defined like:</p>
+<div class="highlight-python"><div class="highlight"><pre>---
+
+# file: ROLE/meta/main.yml
+
+dependencies: [ ]
+</pre></div>
+</div>
+<p>If there are dependencies, Ansible will run them first:</p>
+<div class="highlight-python"><div class="highlight"><pre>---
+
+# file: ROLE/meta/main.yml
+
+dependencies:
+    - { role: my_local_role }
+</pre></div>
+</div>
+<p>If you install a custom role using ARM, it will try to fetch
+and install these roles as well. If the role is located in Ansible
+Galaxy, you can specify it with no additional fields:</p>
+<div class="highlight-python"><div class="highlight"><pre>---
+
+# file: ROLE/meta/main.yml
+
+dependencies:
+    - { role: repo.owner }
+</pre></div>
+</div>
+<p>For dependent roles that are in other locations, add a <tt class="docutils literal"><span class="pre">src</span></tt> field, using the same <a class="reference internal" href="specifiers.html"><em>Specifiers</em></a> as before:</p>
+<div class="highlight-python"><div class="highlight"><pre>---
+
+# file: ROLE/meta/main.yml
+
+dependencies:
+    - { role: my_local_role, src:git+https://git.myproject.org/SomeOwner/SomeRole }
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>In order for Ansible to find the dependent role, the installed name needs to
+match the role name. The previous example has this error and can be fixed by
+(1) <tt class="docutils literal"><span class="pre">my_local_role</span></tt> should be changed to <tt class="docutils literal"><span class="pre">SomeOwner.SomeRole</span></tt> or (2) add
+<tt class="docutils literal"><span class="pre">#alias=mycustomrole</span></tt> to the source path:</p>
+<div class="highlight-python"><div class="highlight"><pre>---
+
+# file: ROLE/meta/main.yml
+
+dependencies:
+    - { role: my_local_role, src:git+https://git.myproject.org/SomeOwner/SomeRole#alias=my_local_role }
+    - { role: SomeOwner.SomeRole, src:git+https://git.myproject.org/SomeOwner/SomeRole }
+</pre></div>
+</div>
+<p class="last">If these don&#8217;t match, ARM will warn but not throw an error. Ansible, however, will not be able
+to execute properly.</p>
+</div>
+</div>
+<div class="section" id="requirements-file-format">
+<h2>requirements file format<a class="headerlink" href="#requirements-file-format" title="Permalink to this headline">¶</a></h2>
+<p>Use a file where each line is a new role (or module) that should be installed using the same <a class="reference internal" href="specifiers.html"><em>Specifiers</em></a>
+as from the <tt class="docutils literal"><span class="pre">arm</span> <span class="pre">install</span></tt> command line. Before installing any role, ARM will download all items in the list
+plus all their dependencies. If there is overlap, ARM will only install each item once.</p>
+<p>After manually installing roles and modules, the requirements file can be generated by using <a class="reference internal" href="freeze.html"><em>freeze</em></a>.</p>
+</div>
 </div>
 
 

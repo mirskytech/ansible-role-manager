@@ -95,11 +95,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="releasenotes.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id1">0.4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id2">0.3.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id3">0.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id4">0.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id5">0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id1">0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id2">0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id3">0.3.1 &amp; 0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id4">0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id5">0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releasenotes.html#id6">0.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="releasenotes.html#feature-requests">Feature Requests</a></li>
 </ul>
 </li>
@@ -139,6 +140,7 @@
             
   <div class="section" id="specifiers">
 <h1>Specifiers<a class="headerlink" href="#specifiers" title="Permalink to this headline">¶</a></h1>
+<p>Refer to <a class="reference internal" href="#alias"><em>Alias</em></a> for more information on local naming of installed roles.</p>
 <ol class="arabic simple">
 <li>Install <tt class="docutils literal"><span class="pre">SomeRole</span></tt> by <tt class="docutils literal"><span class="pre">SomeOwner</span></tt> and its dependencies from <a class="reference external" href="https://galaxy.ansible.com/">Ansible Galaxy</a></li>
 </ol>
@@ -154,47 +156,65 @@ SomeOwner.SomeRole&gt;=1.0.4     # minimum version
 <ol class="arabic simple" start="2">
 <li>Install <tt class="docutils literal"><span class="pre">SomeRole</span></tt> by <tt class="docutils literal"><span class="pre">SomeOwner</span></tt> from a git repository</li>
 </ol>
-<p><strong>using pip-like specifiers</strong></p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>&gt;&gt; git://git.myproject.org/SomeOwner/SomeRole
+<p>currently supported forms for cloning are <tt class="docutils literal"><span class="pre">git</span></tt>, <tt class="docutils literal"><span class="pre">git+https</span></tt> and <tt class="docutils literal"><span class="pre">git+ssh</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; git://git.myproject.org/SomeOwner/SomeRole
 &gt;&gt; git+https://git.myproject.org/SomeOwner/SomeRole
 &gt;&gt; git+ssh://git@git.myproject.org/SomeOwner/SomeRole
 &gt;&gt; git+git@git.myproject.org:SomeOwner/SomeRole
 </pre></div>
 </div>
-</div></blockquote>
-<p><strong>using git-like specifiers</strong></p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install git@github.com:Owner/MyProject.git
-&gt;&gt; arm install https://github.com/Owner/MyProject.git
-&gt;&gt; arm install ssh://git@github.com/Owner/MyProject.git
-</pre></div>
-</div>
-</div></blockquote>
-<p>Any of the above can specify a tag, branch or commit by using <cite>&#64;</cite> plus the tag, branch or commit identifier.</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install git+git://git.myproject.org/MyProject.git@master
-&gt;&gt; arm install git+git://git.myproject.org/MyProject.git@v1.0
-&gt;&gt; arm install git+git://git.myproject.org/MyProject.git@da39a3ee5e6b4b0d3255bfef95601890afd80709
-</pre></div>
-</div>
-</div></blockquote>
 <ol class="arabic simple" start="3">
 <li>Install <tt class="docutils literal"><span class="pre">SomeRole</span></tt> by <tt class="docutils literal"><span class="pre">SomeOwner</span></tt> from a mercurial (hg) repository</li>
 </ol>
-<p><em>coming soon</em></p>
+<p>currently supported forms for cloning are <tt class="docutils literal"><span class="pre">hg+http</span></tt>, <tt class="docutils literal"><span class="pre">hg+https</span></tt>, <tt class="docutils literal"><span class="pre">hg+static-http</span></tt> and <tt class="docutils literal"><span class="pre">hg+ssh</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install hg+http://hg.myproject.org/SomeRole
+&gt;&gt; arm install hg+https://hg.myproject.org/SomeRole
+&gt;&gt; arm install hg+ssh://hg.myproject.org/SomeRole
+</pre></div>
+</div>
+<p>specify a revision number, a revision hash, a tag name or a local branch name using <tt class="docutils literal"><span class="pre">&#64;</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install hg+http://hg.myproject.org/SomeRole@da39a3ee5e6b
+&gt;&gt; arm install hg+http://hg.myproject.org/SomeRole@2019
+&gt;&gt; arm install hg+http://hg.myproject.org/SomeRole@v1.0
+&gt;&gt; arm install hg+http://hg.myproject.org/SomeRole@special_feature
+</pre></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>Install <tt class="docutils literal"><span class="pre">SomeRole</span></tt> by <tt class="docutils literal"><span class="pre">SomeOwner</span></tt> from a subversion (svn) repository</li>
 </ol>
-<p><em>coming soon</em></p>
-<div class="section" id="alias">
-<h2>Alias<a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h2>
-<p>To change the role&#8217;s name for local reference</p>
+<p>currently supported forms for checkout are <tt class="docutils literal"><span class="pre">svn</span></tt>, <tt class="docutils literal"><span class="pre">svn+svn</span></tt>, <tt class="docutils literal"><span class="pre">svn+http</span></tt>, <tt class="docutils literal"><span class="pre">svn+https</span></tt>, <tt class="docutils literal"><span class="pre">svn+ssh</span></tt>.</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install SomeOwner.SomeRoleName#alias=SomeName
+<div>&gt;&gt; arm install svn+svn://svn.myproject.org/svn/SomeRole
+&gt;&gt; arm install svn+http://svn.myproject.org/svn/SomeRole/trunk</div></blockquote>
+<p>You can also give specific revisions to an SVN URL, like so:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install svn+svn://svn.myproject.org/svn/SomeRole/branch/mybranch@{20080101}
+&gt;&gt; arm install svn+http://svn.myproject.org/svn/SomeRole/trunk@2019
 </pre></div>
 </div>
-</div></blockquote>
+<p>which checks out revison from 2008-01-01 or revision 2019, spectively</p>
+<ol class="arabic simple" start="5">
+<li>Install <tt class="docutils literal"><span class="pre">SomeRole</span></tt> by <tt class="docutils literal"><span class="pre">SomeOwner</span></tt> from a bazaar (bzr) repository</li>
+</ol>
+<p>currently supported forms for checkout are <tt class="docutils literal"><span class="pre">bzr+http</span></tt>, <tt class="docutils literal"><span class="pre">bzr+https</span></tt>, <tt class="docutils literal"><span class="pre">bzr+ssh</span></tt>,
+<tt class="docutils literal"><span class="pre">bzr+sftp</span></tt>, <tt class="docutils literal"><span class="pre">bzr+ftp</span></tt> and <tt class="docutils literal"><span class="pre">bzr+lp</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install bzr+http://bzr.myproject.org/SomeRole/trunk
+&gt;&gt; arm install bzr+sftp://user@myproject.org/SomeRole/trunk
+&gt;&gt; arm install bzr+ssh://user@myproject.org/SomeRole/trunk
+&gt;&gt; arm install bzr+ftp://user@myproject.org/SomeRole/trunk
+&gt;&gt; arm install bzr+lp:SomeRole
+</pre></div>
+</div>
+<p>tags or revisions can be installed using <tt class="docutils literal"><span class="pre">&#64;</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install bzr+https://bzr.myproject.org/SomeRole/trunk@2019
+&gt;&gt; arm install bzr+http://bzr.myproject.org/SomeRole/trunk@v1.0
+</pre></div>
+</div>
+<div class="section" id="alias">
+<span id="id1"></span><h2>Alias<a class="headerlink" href="#alias" title="Permalink to this headline">¶</a></h2>
+<p>To change the role&#8217;s name for local reference. Works with all forms above:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; arm install SomeOwner.SomeRoleName#alias=SomeName
+</pre></div>
+</div>
 </div>
 <div class="section" id="dependencies-file">
 <h2>Dependencies File<a class="headerlink" href="#dependencies-file" title="Permalink to this headline">¶</a></h2>

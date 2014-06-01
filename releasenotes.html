@@ -94,11 +94,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.3.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">0.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">0.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.3.1 &amp; 0.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">0.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#feature-requests">Feature Requests</a></li>
 </ul>
 </li>
@@ -139,23 +140,60 @@
   <div class="section" id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.4<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.5<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>release: TBD</p>
 <ul class="simple">
-<li>commands and routes are now found by looking for subclasses of arm.commands.Command and arm.routes.Route, respectively</li>
-<li>common dictionary of regular expressions for routes</li>
-<li>routes now need to define their name (__unicode__)</li>
+<li>specify module dependencies, eg { module: mycustommodule, src:http://github.... }</li>
+<li>add hg/svn/bzr support into <tt class="docutils literal"><span class="pre">freeze</span></tt> command</li>
+<li>uninstall using alias or full specifier</li>
 </ul>
 </div>
 <div class="section" id="id2">
-<h2>0.3.1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>0.4<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>release: 2014-06-01</p>
+<ul>
+<li><p class="first">commands and routes are now found by looking for subclasses
+of arm.commands.Command and arm.routes.Route, respectively</p>
+</li>
+<li><p class="first">common dictionary of regular expressions for routes</p>
+</li>
+<li><p class="first">convert Route base class into abstract</p>
+</li>
+<li><p class="first">switched git route to use pip&#8217;s functions</p>
+</li>
+<li><p class="first">add support of mercurial, subversion and bazaar</p>
+</li>
+<li><p class="first">fixed bug in gathering dependencies of a role</p>
+</li>
+<li><p class="first">added custom module template (playbook level)</p>
+</li>
+<li><p class="first">provided mechanism to install custom module (install auto determines role vs. module and installs in the correct location)</p>
+</li>
+<li><p class="first">updated playbook template</p>
+</li>
+<li><p class="first">handle multiple dependency formats (list of strings or list of dictionaries).</p>
+</li>
+<li><p class="first">&#8216;src&#8217; parameter now required for non-local, non-galaxy role dependencies</p>
+<p>example <tt class="docutils literal"><span class="pre">-</span> <span class="pre">{</span> <span class="pre">role:mycustomrole,</span> <span class="pre">src:git+http://github.com/myname/myrole.git</span> <span class="pre">}</span></tt></p>
+<p>note: <tt class="docutils literal"><span class="pre">mycustomrole</span></tt> should match the unique identifier that arm creates. there are two options to fix the previous example
+in this example: (1) <tt class="docutils literal"><span class="pre">mycustomrole</span></tt> should be changed to <tt class="docutils literal"><span class="pre">myname.myrole</span></tt> or (2) add <tt class="docutils literal"><span class="pre">#alias=mycustomrole</span></tt> to the source path</p>
+</li>
+</ul>
+<p>test cases :</p>
+<ul class="simple">
+<li>dependency is already installed. eg arm install blah#alias=s3fs or is local</li>
+<li>dependency uses arm syntax</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>0.3.1 &amp; 0.3.2<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>released: 2014-05-19</p>
 <ul class="simple">
 <li>updated comments &amp; documentation</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h2>0.3<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>0.3<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>released: 2014-05-18</p>
 <ul class="simple">
 <li>create <tt class="docutils literal"><span class="pre">freeze</span></tt> command to capture dependencies</li>
@@ -164,8 +202,8 @@
 <li>fetch/install roles from <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file</li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h2>0.2<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>0.2<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>released: 2014-05-08</p>
 <ul class="simple">
 <li>create fetch role from any git server</li>
@@ -173,8 +211,8 @@
 <li>fetch dependencies</li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h2>0.1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>0.1<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>released: 2014-04-29</p>
 <ul class="simple">
 <li>framework for creating commands &amp; fetching rolls</li>
