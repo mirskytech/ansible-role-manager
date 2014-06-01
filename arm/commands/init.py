@@ -42,16 +42,16 @@ class init(Command):
         destinations = (
             os.path.join(current, playbook),
             None,
-            os.path.join(root, settings.paths.roles, role),
-            os.path.join(root, settings.paths.installed_roles, role),
-            os.path.join(root, settings.paths.modules, module),
-            os.path.join(root, settings.paths.installed_modules, module)
+            os.path.join(root, settings.paths.ansible_roles_dir, role),
+            os.path.join(root, settings.paths.installed_roles_dir, role),
+            os.path.join(root, settings.paths.ansible_modules_dir, module),
+            os.path.join(root, settings.paths.installed_modules_dir, module)
         )
 
         links = (
             None, None,
-            None, os.path.join(root, settings.paths.roles, role),
-            None, os.path.join(root, settings.paths.modules, module)
+            None, os.path.join(root, settings.paths.ansible_roles_dir, role),
+            None, os.path.join(root, settings.paths.ansible_modules_dir, module)
         )
         
         def _eval(item,value): return bool(item) * value
