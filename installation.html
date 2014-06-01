@@ -144,25 +144,6 @@
 <p><tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+ssh://git&#64;github.com/ajmirsky/ansible-role-manager.git</span></tt></p>
 <p>or if you&#8217;re interested in contributing, install the source:</p>
 <p><tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">git+ssh://git&#64;github.com/ajmirsky/ansible-role-manager.git#egg=ansible-role-manager</span></tt></p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p>For those on MacOSX running Xcode5.1, there is a breaking change which turns a previous warning when compiling <tt class="docutils literal"><span class="pre">pycrypto</span></tt>
-into an error. To use the legacy behavior, set the environment variable:</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; export ARCHFLAGS=&#39;-Wno-error=unused-command-line-argument-hard-error-in-future&#39;
-</pre></div>
-</div>
-<p>Excerpt from XCode Release Notes:</p>
-<div class="highlight-python"><div class="highlight"><pre>Apple LLVM compiler in Xcode 5.1 treats unrecognized command-line options as errors. This issue has been
-seen when building both Python native extensions and Ruby Gems, where some invalid compiler options are
-currently specified. Projects using invalid compiler options will need to be changed to remove those
-options. To help ease that transition, the compiler will temporarily accept an option to downgrade
-the error to a warning:
-
--Wno-error=unused-command-line-argument-hard-error-in-future
-</pre></div>
-</div>
-<p class="last">For more information, see the <a class="reference external" href="https://developer.apple.com/library/mac/releasenotes/DeveloperTools/RN-Xcode/xc5_release_notes/xc5_release_notes.html">XCode 5.1 Release Notes</a></p>
-</div>
 </div>
 
 
