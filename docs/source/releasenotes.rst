@@ -8,11 +8,12 @@ release: TBD
 
 - specify module dependencies, eg { module: mycustommodule, src:http://github.... }
 - add hg/svn/bzr support into ``freeze`` command
+- uninstall using alias or full specifier
 
 0.4
 ==================
 
-release: 2014-05-28
+release: 2014-06-01
 
 - commands and routes are now found by looking for subclasses
   of arm.commands.Command and arm.routes.Route, respectively
