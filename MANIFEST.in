@@ -1,2 +1,2 @@
 recursive-include arm/commands/init *
-include arm/default.ini
+include arm/defaults.ini
