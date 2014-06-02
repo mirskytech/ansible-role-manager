@@ -1,5 +1,5 @@
 import re, os
-from . import VCSRoute, ROUTE_REGEX
+from . import VCSRoute, ROUTE_REGEX, RouteException
 from pip.vcs.git import Git
 
 class GitRoute(VCSRoute):
@@ -32,6 +32,8 @@ class GitRoute(VCSRoute):
     def _uid(self, identifier):
         pattern_re = re.compile('%(fqdn)s\/%(owner)s\/%(repo)s' % ROUTE_REGEX)
         pattern_match = pattern_re.search(identifier)
+        if not pattern_match:
+            raise RouteException('malformed git path')
         pattern_info = pattern_match.groupdict()
         return "%s.%s" % (pattern_info['owner'],pattern_info['repo'])
 
