@@ -6,7 +6,7 @@ class GitRoute(VCSRoute):
     
     '''
     #### pattern one
-    git://git.myproject.org/MyProject
+    git+git://git.myproject.org/MyProject
     
     #### pattern two & three (pip style)
     git+http://git.myproject.org/MyProject
@@ -14,8 +14,8 @@ class GitRoute(VCSRoute):
     
     #### pattern four & five (git style)
     
-    http://git.myproject.org/MyProject.git    
-    ssh://git@myproject.org:MyProject.git
+    git+http://git.myproject.org/MyProject.git    
+    git+ssh://git@myproject.org:MyProject.git
     
     #### all support
     @branch
@@ -30,7 +30,7 @@ class GitRoute(VCSRoute):
         return "git"
     
     def _uid(self, identifier):
-        pattern_re = re.compile('%(fqdn)s\/%(owner)s\/%(repo)s' % ROUTE_REGEX)
+        pattern_re = re.compile('%(fqdn)s\/%(owner)s\/%(repo)s' % ROUTE_REGEX, re.IGNORECASE)
         pattern_match = pattern_re.search(identifier)
         pattern_info = pattern_match.groupdict()
         return "%s.%s" % (pattern_info['owner'],pattern_info['repo'])

@@ -49,7 +49,7 @@ def split_alias_identifier(identifier):
     alias_match = aliasRE.match(identifier)
     
     if not alias_match:    
-        return alias_match.groupdict()['identifier'], None
+        return identifier, None
     alias_info = alias_match.groupdict()
     return alias_info['identifier'], alias_info['alias']
 
