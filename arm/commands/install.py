@@ -99,26 +99,29 @@ class install(Command):
         #if os.path.realpath(link_path) == os.path.realpath(library_path):
             #return
         
-        if os.path.exists(library_path):
-        
-            if os.path.exists(link_path) and not os.path.islink(link_path):
-                
-                print "TODO: %s" % link_path
-                
+        if os.path.exists(library_path) and not upgrade:
+            raise CommandException("'%s' already installed in library, use --upgrade to install latest" % rmp.get_name())
+
+        if os.path.exists(link_path):
+
+            if not os.path.islink(link_path):
                 if type(rmp) == Role:
                     raise Exception("role '%s' already exists as a non-installed role" % rmp)
                 elif type(rmp) == Module:
                     raise Exception("module '%s' aleady exists as a non-installed module" % rmp)
-        
-            if upgrade:
-                if os.path.exists(library_path):
-                    print "\t upgrading :: removing old version"
-                    shutil.rmtree(library_path)
-                if os.path.islink(link_path):
-                    print "\t upgrading :: unlinking old version"
-                    os.unlink(link_path)
-            else:
+
+            if not upgrade:
                 raise CommandException("'%s' already installed in library, use --upgrade to install latest" % rmp.get_name())
+
+        
+        if upgrade:
+
+            if os.path.exists(library_path):
+                print "\t upgrading :: removing old version"
+                shutil.rmtree(library_path)
+            if os.path.islink(link_path):
+                print "\t upgrading :: unlinking old version"
+                os.unlink(link_path)
 
         shutil.copytree(source_path, library_path)
         ansible_rmp_path = os.path.join(root,ansible_rmp_dir)
