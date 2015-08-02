@@ -1,4 +1,4 @@
-import os, shutil, sys
+import os, shutil, sys, textwrap
 from . import Command
 from arm.util import get_playbook_root
 import argparse
@@ -16,6 +16,11 @@ class freeze(Command):
     def run(self, argv):
         
         _root = get_playbook_root(os.getcwd())
+        if not _root:
+            print(textwrap.dedent('''\
+            can't find playbook. 
+            use `arm init` to create recommended structure.'''))
+            return 1
         _roles_directory = os.path.join(_root, 'roles')
         for _item in os.listdir(_roles_directory):
             _item = os.path.join(_roles_directory, _item)
