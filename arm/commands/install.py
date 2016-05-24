@@ -37,7 +37,9 @@ class install(Command):
         
         if getattr(argv, 'requirements', ''):
             for role_ident in open(argv.requirements[0],'r'):
-                roles = self._fetch(role_ident, argv.no_deps, roles)
+                ret = self._fetch(role_ident, argv.no_deps, roles)
+                if ret is not None:
+                    roles = ret
         else:
             roles = self._fetch(argv.role_or_module, argv.no_deps, roles )
                     
@@ -49,6 +51,9 @@ class install(Command):
             
     
     def _fetch(self, role_ident, no_deps, roles):
+
+        if role_ident.startswith('#'):
+            return None
         
         aliasRE = re.compile(r'^(?P<ident>.+?)(\#alias\=(?P<alias>[a-zA-Z][a-zA-Z0-9]+?)){0,1}$')
         
