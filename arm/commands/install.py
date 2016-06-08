@@ -50,7 +50,7 @@ class install(Command):
     
     def _fetch(self, role_ident, no_deps, roles):
         
-        aliasRE = re.compile(r'^(?P<ident>.+?)(\#alias\=(?P<alias>[a-zA-Z][a-zA-Z0-9]+?)){0,1}$')
+        aliasRE = re.compile(r'^(?P<ident>.+?)(\#alias\=(?P<alias>[a-zA-Z][a-zA-Z0-9-_.]+?)){0,1}$')
         
         alias_match = aliasRE.match(role_ident)
         
